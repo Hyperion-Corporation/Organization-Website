@@ -1,0 +1,1133 @@
+/**
+ * Hyperion "Observatory" visual identity for the documentation dashboard.
+ *
+ * This is the docs-site half of the design language established by the main
+ * Next.js site (../../../app/globals.css): deep-space surfaces, luminous
+ * cyan/violet/pink data accents, editorial display type, tactile glass panels,
+ * and restrained cinematic motion (UI3–UI5 in docs/moon/roadmaps/user_interface.md).
+ *
+ * Everything here is prefixed `hy-` so it can be loaded by both Docusaurus
+ * (via ./custom.css) and Storybook (via ../../.storybook/tailwind-entry.css)
+ * without colliding with Infima or Tailwind utilities.
+ *
+ * Motion rule: every continuous animation below is disabled under
+ * `prefers-reduced-motion: reduce` at the bottom of this file. Canvas-driven
+ * motion is gated in JS instead (see components/docs/ObservatoryBackdrop.tsx).
+ */
+
+/* ===================================================================
+   1 · Tokens
+   =================================================================== */
+
+:root {
+  --hy-cyan: #38bdf8;
+  --hy-violet: #8b5cf6;
+  --hy-pink: #f472b6;
+  --hy-mint: #22d3ee;
+
+  --hy-font-display: 'Lexend', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --hy-font-mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Consolas, monospace;
+
+  --hy-radius: 1.15rem;
+  --hy-radius-sm: 0.7rem;
+  --hy-blur: 22px;
+
+  /* Light surfaces */
+  --hy-ink: #0f172a;
+  --hy-ink-soft: #475569;
+  --hy-ink-faint: #64748b;
+  --hy-panel: rgb(255 255 255 / 0.72);
+  --hy-panel-solid: #ffffff;
+  --hy-border: rgb(15 23 42 / 0.1);
+  --hy-border-strong: rgb(15 23 42 / 0.18);
+  --hy-grid: rgb(100 116 139 / 0.16);
+  --hy-shadow: 0 30px 80px rgb(15 23 42 / 0.1);
+  --hy-halo: radial-gradient(circle, rgb(56 189 248 / 0.22), rgb(139 92 246 / 0.09) 45%, transparent 68%);
+
+  --hy-gradient-text: linear-gradient(105deg, #0284c7 8%, #7c3aed 52%, #db2777);
+  --hy-gradient-action: linear-gradient(110deg, #0369a1, #6d28d9);
+}
+
+[data-theme='dark'],
+.dark {
+  --hy-ink: #f8fafc;
+  --hy-ink-soft: #a8b4c7;
+  --hy-ink-faint: #94a3b8;
+  --hy-panel: rgb(9 18 35 / 0.72);
+  --hy-panel-solid: #0b1424;
+  --hy-border: rgb(148 163 184 / 0.16);
+  --hy-border-strong: rgb(148 163 184 / 0.3);
+  --hy-grid: rgb(148 163 184 / 0.1);
+  --hy-shadow: 0 35px 90px rgb(0 0 0 / 0.45);
+  --hy-halo: radial-gradient(circle, rgb(56 189 248 / 0.28), rgb(139 92 246 / 0.12) 45%, transparent 68%);
+
+  --hy-gradient-text: linear-gradient(105deg, #67e8f9 8%, #a78bfa 52%, #f9a8d4);
+  --hy-gradient-action: linear-gradient(110deg, #0ea5e9, #7c3aed);
+}
+
+/* ===================================================================
+   2 · Primitives
+   =================================================================== */
+
+.hy-panel {
+  position: relative;
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius);
+  background: var(--hy-panel);
+  box-shadow: var(--hy-shadow);
+  backdrop-filter: blur(var(--hy-blur));
+  -webkit-backdrop-filter: blur(var(--hy-blur));
+}
+
+.hy-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--hy-ink-faint);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hy-eyebrow::before {
+  content: '';
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--hy-mint);
+  box-shadow: 0 0 10px var(--hy-mint);
+}
+
+.hy-section {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  max-width: 74rem;
+}
+
+/* Vertical rhythm between the homepage's top-level sections. */
+.hy-home main > .hy-section {
+  padding-top: clamp(3rem, 7vw, 5rem);
+}
+
+.hy-home main > .hy-section:first-child {
+  padding-top: 0;
+}
+
+.hy-home main > .hy-section:last-child {
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.hy-section-title {
+  margin: 0.7rem 0 0;
+  color: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.hy-section-lead {
+  max-width: 46rem;
+  margin: 0.9rem 0 0;
+  color: var(--hy-ink-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.hy-gradient-text {
+  color: transparent;
+  background-image: var(--hy-gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hy-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.82rem 1.3rem;
+  border: 1px solid var(--hy-border);
+  border-radius: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.hy-action:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.hy-action--primary {
+  color: #fff;
+  border-color: transparent;
+  background: var(--hy-gradient-action);
+  box-shadow: 0 12px 30px rgb(79 70 229 / 0.28);
+}
+
+.hy-action--primary:hover {
+  color: #fff;
+  box-shadow: 0 18px 38px rgb(79 70 229 / 0.36);
+}
+
+.hy-action--secondary {
+  color: var(--hy-ink);
+  background: var(--hy-panel);
+  backdrop-filter: blur(16px);
+}
+
+.hy-action--secondary:hover {
+  color: var(--hy-ink);
+  border-color: var(--hy-border-strong);
+}
+
+/* ===================================================================
+   3 · Ambient backdrop (canvas + aurora + grid)
+   =================================================================== */
+
+.hy-home {
+  position: relative;
+  isolation: isolate;
+}
+
+.hy-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hy-backdrop canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hy-aurora {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 46rem;
+  pointer-events: none;
+  background:
+    radial-gradient(46rem 26rem at 74% 8%, rgb(56 189 248 / 0.16), transparent 70%),
+    radial-gradient(40rem 24rem at 22% 34%, rgb(139 92 246 / 0.14), transparent 70%),
+    radial-gradient(34rem 20rem at 54% 2%, rgb(244 114 182 / 0.08), transparent 70%);
+  filter: blur(6px);
+  animation: hy-aurora-drift 24s ease-in-out infinite alternate;
+}
+
+.hy-grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+  background-image: linear-gradient(var(--hy-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hy-grid) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+@keyframes hy-aurora-drift {
+  from {
+    transform: translate3d(-1.5%, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(1.5%, 1.5%, 0) scale(1.06);
+  }
+}
+
+/* ===================================================================
+   4 · Hero
+   =================================================================== */
+
+.hy-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2rem, 5vw, 4rem);
+}
+
+.hy-hero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.hy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.42rem 0.95rem;
+  color: var(--hy-ink);
+  border: 1px solid var(--hy-border);
+  border-radius: 999px;
+  background: var(--hy-panel);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(12px);
+}
+
+.hy-pulse {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 5px rgb(34 197 94 / 0.12);
+  animation: hy-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes hy-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 5px rgb(34 197 94 / 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgb(34 197 94 / 0.04);
+  }
+}
+
+.hy-hero__title {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: clamp(2.9rem, 6.4vw, 5.2rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.062em;
+}
+
+.hy-hero__summary {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--hy-ink-soft);
+  font-size: clamp(1rem, 1.6vw, 1.1rem);
+  line-height: 1.72;
+}
+
+.hy-hero__summary strong {
+  color: var(--hy-ink);
+  font-weight: 650;
+}
+
+.hy-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hy-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0.5rem 0 0;
+}
+
+.hy-metrics > div {
+  min-width: 7.5rem;
+  padding-right: 1.4rem;
+  margin-right: 1.4rem;
+  border-right: 1px solid var(--hy-border);
+}
+
+.hy-metrics > div:last-child {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.hy-metrics dt {
+  color: var(--hy-ink-faint);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hy-metrics dd {
+  margin: 0.3rem 0 0;
+  color: var(--hy-ink);
+  font-size: 0.92rem;
+  font-weight: 750;
+}
+
+/* --- Hero stage: the live docs constellation frame --- */
+
+.hy-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 26rem;
+  border: 1px solid var(--hy-border);
+  border-radius: 2rem;
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.7), rgb(238 242 255 / 0.3));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.6), var(--hy-shadow);
+  isolation: isolate;
+}
+
+[data-theme='dark'] .hy-stage,
+.dark .hy-stage {
+  background: linear-gradient(145deg, rgb(15 23 42 / 0.78), rgb(30 27 75 / 0.42));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.07), var(--hy-shadow);
+}
+
+.hy-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.4;
+  background-image: linear-gradient(var(--hy-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hy-grid) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.hy-stage__halo {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  z-index: -1;
+  width: 78%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--hy-halo);
+  filter: blur(14px);
+}
+
+.hy-stage__label {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 2;
+}
+
+.hy-stage__controls {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.hy-icon-button {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  place-items: center;
+  color: var(--hy-ink-soft);
+  border: 1px solid var(--hy-border);
+  border-radius: 0.7rem;
+  background: var(--hy-panel);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.hy-icon-button:hover {
+  color: var(--hy-ink);
+  border-color: var(--hy-border-strong);
+  transform: translateY(-1px);
+}
+
+/* ===================================================================
+   5 · Knowledge graph (zoom/pan SVG)
+   =================================================================== */
+
+.hy-map {
+  margin-top: 1.75rem;
+}
+
+.hy-stage--map {
+  min-height: 30rem;
+}
+
+.hy-graph {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 26rem;
+  touch-action: none;
+  cursor: grab;
+}
+
+.hy-graph:active {
+  cursor: grabbing;
+}
+
+.hy-graph svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hy-graph__edge {
+  stroke: var(--hy-ink-faint);
+  stroke-width: 1.2;
+  opacity: 0.18;
+  transition: opacity 0.25s ease, stroke-width 0.25s ease;
+}
+
+.hy-graph__edge.is-active {
+  stroke: url(#hy-edge-gradient);
+  stroke-width: 2.2;
+  opacity: 0.8;
+  stroke-dasharray: 5 7;
+  animation: hy-edge-flow 9s linear infinite;
+}
+
+@keyframes hy-edge-flow {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+.hy-graph__node {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.hy-graph__node:focus {
+  outline: none;
+}
+
+.hy-graph__node:focus-visible .hy-graph__node-ring {
+  stroke: var(--hy-cyan);
+  stroke-width: 3;
+  opacity: 1;
+}
+
+.hy-graph__node.is-muted {
+  opacity: 0.32;
+}
+
+.hy-graph__node-ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  opacity: 0.55;
+  transition: stroke-width 0.2s ease, opacity 0.2s ease;
+}
+
+.hy-graph__node.is-selected .hy-graph__node-ring {
+  stroke-width: 3;
+  opacity: 1;
+}
+
+.hy-graph__node-dot {
+  fill: currentColor;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.hy-graph__node-label {
+  fill: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: 11px;
+  font-weight: 750;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--hy-panel-solid);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.hy-graph__hint {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  margin: 0;
+  color: var(--hy-ink-faint);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hy-graph-detail {
+  min-height: 8.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border-left: 2px solid var(--hy-violet);
+  background: rgb(139 92 246 / 0.07);
+  border-radius: 0 var(--hy-radius-sm) var(--hy-radius-sm) 0;
+}
+
+.hy-graph-detail__kind {
+  color: var(--hy-violet);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+[data-theme='dark'] .hy-graph-detail__kind,
+.dark .hy-graph-detail__kind {
+  color: #c4b5fd;
+}
+
+.hy-graph-detail h3 {
+  margin: 0.35rem 0 0;
+  color: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: 1.05rem;
+  font-weight: 750;
+}
+
+.hy-graph-detail p {
+  margin: 0.4rem 0 0;
+  color: var(--hy-ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.hy-graph-detail a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+/* Accessible, always-present equivalent of the canvas/SVG view (IF3). */
+.hy-node-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hy-node-list a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  color: var(--hy-ink-soft);
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius-sm);
+  background: var(--hy-panel);
+  font-size: 0.8rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.hy-node-list a:hover {
+  color: var(--hy-ink);
+  border-color: var(--hy-border-strong);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.hy-node-list span[data-kind] {
+  width: 0.45rem;
+  height: 0.45rem;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+  background: currentColor;
+}
+
+/* ===================================================================
+   6 · Bento navigation cards
+   =================================================================== */
+
+.hy-bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.1rem;
+  margin: 1.75rem 0 0;
+}
+
+.hy-bento__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  overflow: hidden;
+  padding: 1.5rem;
+  color: inherit;
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius);
+  background: var(--hy-panel);
+  text-decoration: none;
+  backdrop-filter: blur(var(--hy-blur));
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Pointer-tracked spotlight — the --hy-mx/--hy-my custom properties are set
+   from JS (BentoCards.tsx) so the highlight follows the cursor. */
+.hy-bento__card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    14rem 14rem at var(--hy-mx, 50%) var(--hy-my, 0%),
+    rgb(56 189 248 / 0.16),
+    transparent 70%
+  );
+  transition: opacity 0.25s ease;
+}
+
+.hy-bento__card:hover,
+.hy-bento__card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--hy-border-strong);
+  box-shadow: 0 22px 50px rgb(56 189 248 / 0.14);
+  text-decoration: none;
+  color: inherit;
+}
+
+.hy-bento__card:hover::before,
+.hy-bento__card:focus-visible::before {
+  opacity: 1;
+}
+
+.hy-bento__icon {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  border-radius: 0.85rem;
+  border: 1px solid var(--hy-border);
+  background: linear-gradient(145deg, rgb(56 189 248 / 0.14), rgb(139 92 246 / 0.14));
+  color: var(--hy-cyan);
+  font-size: 1.25rem;
+}
+
+.hy-bento__title {
+  margin: 0;
+  color: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: 1.08rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.hy-bento__desc {
+  margin: 0;
+  color: var(--hy-ink-soft);
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+.hy-bento__more {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  color: var(--hy-cyan);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+a.hy-bento__more {
+  display: inline-block;
+  text-decoration: none;
+}
+
+a.hy-bento__more:hover {
+  color: var(--hy-violet);
+  text-decoration: none;
+}
+
+[data-theme='dark'] .hy-bento__more,
+.dark .hy-bento__more {
+  color: #7dd3fc;
+}
+
+/* ===================================================================
+   7 · Hub tabs
+   =================================================================== */
+
+.hy-tabs {
+  margin-top: 1.75rem;
+  scroll-margin-top: 5rem;
+}
+
+.hy-tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--hy-border);
+}
+
+.hy-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.62rem 1.05rem;
+  color: var(--hy-ink-faint);
+  border: 1px solid transparent;
+  border-radius: 0.8rem;
+  background: transparent;
+  font-family: var(--hy-font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.hy-tab:hover {
+  color: var(--hy-ink);
+  background: var(--hy-panel);
+}
+
+.hy-tab[aria-selected='true'] {
+  color: var(--hy-ink);
+  border-color: var(--hy-border);
+  background: linear-gradient(120deg, rgb(56 189 248 / 0.16), rgb(139 92 246 / 0.16));
+  box-shadow: 0 10px 26px rgb(56 189 248 / 0.12);
+}
+
+.hy-tabs__panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 1.75rem;
+  margin-top: 1.75rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  animation: hy-fade-up 0.4s ease both;
+}
+
+.hy-tabs__panel h3 {
+  margin: 0.6rem 0 0;
+  color: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.hy-tabs__panel p {
+  margin: 0.75rem 0 0;
+  color: var(--hy-ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+@keyframes hy-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hy-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+}
+
+.hy-stat {
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius-sm);
+  background: linear-gradient(150deg, rgb(56 189 248 / 0.07), transparent);
+}
+
+.hy-stat dt {
+  color: var(--hy-ink-faint);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hy-stat dd {
+  margin: 0.3rem 0 0;
+  color: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.hy-link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hy-link-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.8rem 0.95rem;
+  color: var(--hy-ink);
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius-sm);
+  background: var(--hy-panel);
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.hy-link-list a:hover {
+  transform: translateX(3px);
+  border-color: var(--hy-border-strong);
+  text-decoration: none;
+}
+
+.hy-link-list strong {
+  font-family: var(--hy-font-display);
+  font-size: 0.92rem;
+  font-weight: 750;
+}
+
+.hy-link-list span {
+  color: var(--hy-ink-faint);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+/* ===================================================================
+   8 · Roadmap timeline
+   =================================================================== */
+
+.hy-timeline {
+  position: relative;
+  margin: 2rem 0 0;
+  padding-left: 1.6rem;
+  list-style: none;
+}
+
+.hy-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.32rem;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 2px;
+  background: linear-gradient(180deg, var(--hy-cyan), var(--hy-violet), var(--hy-pink));
+  opacity: 0.55;
+}
+
+.hy-phase {
+  position: relative;
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 0.9rem;
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius);
+  background: var(--hy-panel);
+  backdrop-filter: blur(var(--hy-blur));
+}
+
+/* The scroll reveal only exists once RoadmapTimeline.tsx has armed it, so the
+   phases are readable even if the observer never runs. */
+.hy-timeline.is-armed .hy-phase {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s ease;
+}
+
+.hy-timeline.is-armed .hy-phase.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.hy-phase:hover {
+  border-color: var(--hy-border-strong);
+}
+
+.hy-phase::before {
+  content: '';
+  position: absolute;
+  left: -1.6rem;
+  top: 1.55rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  transform: translateX(-0.03rem);
+  border-radius: 50%;
+  background: var(--hy-panel-solid);
+  border: 2px solid var(--hy-cyan);
+  box-shadow: 0 0 12px rgb(56 189 248 / 0.7);
+}
+
+.hy-phase[data-status='done']::before {
+  border-color: #22c55e;
+  box-shadow: 0 0 12px rgb(34 197 94 / 0.7);
+}
+
+.hy-phase[data-status='planned']::before {
+  border-color: var(--hy-ink-faint);
+  box-shadow: none;
+}
+
+.hy-phase__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hy-phase__id {
+  color: var(--hy-cyan);
+  font-family: var(--hy-font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.hy-phase h3 {
+  margin: 0;
+  color: var(--hy-ink);
+  font-family: var(--hy-font-display);
+  font-size: 1.02rem;
+  font-weight: 750;
+}
+
+.hy-phase p {
+  margin: 0.45rem 0 0;
+  color: var(--hy-ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.hy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--hy-border);
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hy-chip[data-status='done'] {
+  color: #16a34a;
+  border-color: rgb(34 197 94 / 0.4);
+  background: rgb(34 197 94 / 0.1);
+}
+
+.hy-chip[data-status='active'] {
+  color: #d97706;
+  border-color: rgb(217 119 6 / 0.4);
+  background: rgb(217 119 6 / 0.1);
+}
+
+.hy-chip[data-status='planned'] {
+  color: var(--hy-ink-faint);
+  background: var(--hy-panel);
+}
+
+[data-theme='dark'] .hy-chip[data-status='done'],
+.dark .hy-chip[data-status='done'] {
+  color: #4ade80;
+}
+
+[data-theme='dark'] .hy-chip[data-status='active'],
+.dark .hy-chip[data-status='active'] {
+  color: #fbbf24;
+}
+
+/* ===================================================================
+   9 · Island frame (Astro / multi-framework embeds)
+   =================================================================== */
+
+.hy-island {
+  overflow: hidden;
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+}
+
+.hy-island__frame {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius-sm);
+  background: transparent;
+}
+
+/* ===================================================================
+   10 · Responsive
+   =================================================================== */
+
+@media (max-width: 996px) {
+  .hy-hero,
+  .hy-tabs__panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hy-hero {
+    padding-top: 2.5rem;
+  }
+
+  .hy-hero__title {
+    max-width: none;
+  }
+
+  .hy-stage {
+    min-height: 22rem;
+  }
+}
+
+/* ===================================================================
+   11 · Reduced motion — decorative motion off, content unchanged
+   =================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hy-aurora,
+  .hy-pulse,
+  .hy-graph__edge.is-active,
+  .hy-tabs__panel {
+    animation: none !important;
+  }
+
+  .hy-timeline.is-armed .hy-phase {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hy-action,
+  .hy-bento__card,
+  .hy-link-list a,
+  .hy-node-list a,
+  .hy-icon-button {
+    transition: none;
+  }
+
+  .hy-action:hover,
+  .hy-bento__card:hover,
+  .hy-link-list a:hover,
+  .hy-node-list a:hover {
+    transform: none;
+  }
+}

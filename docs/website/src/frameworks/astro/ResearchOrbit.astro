@@ -1,7 +1,14 @@
 ---
 /**
- * ResearchOrbit — Astro island visualizing the organization product graph
- * as orbiting theme nodes (docs-site companion to the main ResearchConstellation).
+ * ResearchOrbit — Astro island visualizing the Visual Graph Programming
+ * product graph as orbiting domain nodes (docs-site companion to the main
+ * site's ResearchConstellation).
+ *
+ * Styled with the Hyperion observatory palette (see
+ * docs/website/src/css/observatory.css) and a transparent page background, so
+ * the island reads as a native section of the host page rather than an
+ * embedded document. The orbit ring rotates; the animation is dropped under
+ * `prefers-reduced-motion: reduce`.
  */
 interface Props {
   seed?: number;
@@ -20,12 +27,12 @@ function mulberry32(a: number) {
 }
 
 const rand = mulberry32(seed);
-const labels = ['Research', 'AI', 'OR', 'Systems', 'Routing', 'Audio'];
+const labels = ['Research', 'Graph', 'Metrics', 'Assets', 'Storyboards', 'Simulation'];
 const cx = 200;
 const cy = 140;
 const nodes = labels.map((label, i) => {
   const angle = (i / labels.length) * Math.PI * 2 - Math.PI / 2;
-  const r = 72 + rand() * 18;
+  const r = 74 + rand() * 16;
   return {
     label,
     x: cx + Math.cos(angle) * r,
@@ -39,17 +46,34 @@ const islandId = `ro-${seed}`;
   <header>
     <p class="kicker">Astro island · docs site</p>
     <h2 id={`${islandId}-title`}>{title}</h2>
-    <p class="sub">Theme nodes in orbit around applied research (illustrative, static export).</p>
+    <p class="sub">Domain nodes in orbit around applied research (illustrative, static export).</p>
   </header>
   <svg viewBox="0 0 400 280" role="img" aria-label={title} class="orbit-svg">
-    <circle cx={cx} cy={cy} r="28" class="core" />
-    <text x={cx} y={cy + 4} text-anchor="middle" class="core-label">Core</text>
-    <circle cx={cx} cy={cy} r="90" class="ring" fill="none" />
+    <defs>
+      <radialGradient id={`${islandId}-core`} cx="50%" cy="50%">
+        <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.15" />
+      </radialGradient>
+      <linearGradient id={`${islandId}-spoke`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#22d3ee" />
+        <stop offset="100%" stop-color="#a78bfa" />
+      </linearGradient>
+    </defs>
+
+    <circle cx={cx} cy={cy} r="96" class="ring ring-outer" fill="none" />
+    <circle cx={cx} cy={cy} r="72" class="ring" fill="none" />
+
+    {nodes.map((n) => <line x1={cx} y1={cy} x2={n.x} y2={n.y} class="spoke" stroke={`url(#${islandId}-spoke)`} />)}
+
+    <circle cx={cx} cy={cy} r="30" class="core-glow" fill={`url(#${islandId}-core)`} />
+    <circle cx={cx} cy={cy} r="22" class="core" />
+    <text x={cx} y={cy + 4} text-anchor="middle" class="core-label">VGP</text>
+
     {nodes.map((n) => (
       <g>
-        <line x1={cx} y1={cy} x2={n.x} y2={n.y} class="spoke" />
-        <circle cx={n.x} cy={n.y} r="16" class="node" />
-        <text x={n.x} y={n.y + 4} text-anchor="middle" class="node-label">{n.label}</text>
+        <circle cx={n.x} cy={n.y} r="15" class="node" />
+        <circle cx={n.x} cy={n.y} r="3" class="node-dot" />
+        <text x={n.x} y={n.y + 28} text-anchor="middle" class="node-label">{n.label}</text>
       </g>
     ))}
   </svg>
@@ -59,64 +83,93 @@ const islandId = `ro-${seed}`;
 <style>
   .research-orbit {
     color: #e2e8f0;
-    background: #0b1220;
-    border: 1px solid rgba(148, 163, 184, 0.25);
-    border-radius: 14px;
-    padding: 1.25rem 1.35rem 1rem;
-    font-family: system-ui, sans-serif;
+    font-family: 'Lexend', 'Inter', ui-sans-serif, system-ui, sans-serif;
   }
   .kicker {
-    margin: 0 0 0.25rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    margin: 0 0 0.3rem;
     color: #94a3b8;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
   header h2 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
+    font-weight: 750;
+    letter-spacing: -0.02em;
   }
   .sub {
     margin: 0.35rem 0 0.85rem;
     color: #94a3b8;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   .orbit-svg {
-    width: 100%;
-    height: auto;
     display: block;
-    border-radius: 10px;
-    background: #020617;
-  }
-  .core {
-    fill: rgba(59, 130, 246, 0.35);
-    stroke: #60a5fa;
-    stroke-width: 2;
-  }
-  .core-label {
-    fill: #e2e8f0;
-    font-size: 11px;
+    width: 100%;
+    max-width: 34rem;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 12px;
+    background: radial-gradient(circle at 50% 46%, rgba(56, 189, 248, 0.12), transparent 62%);
   }
   .ring {
-    stroke: rgba(148, 163, 184, 0.25);
-    stroke-dasharray: 4 4;
+    stroke: rgba(148, 163, 184, 0.3);
+    stroke-dasharray: 4 8;
+    transform-origin: 200px 140px;
+    animation: orbit-spin 46s linear infinite;
+  }
+  .ring-outer {
+    stroke: rgba(139, 92, 246, 0.28);
+    animation-direction: reverse;
+    animation-duration: 68s;
   }
   .spoke {
-    stroke: rgba(148, 163, 184, 0.35);
-    stroke-width: 1;
+    stroke-width: 1.1;
+    opacity: 0.45;
+  }
+  .core-glow {
+    filter: blur(1px);
+  }
+  .core {
+    fill: rgba(8, 20, 38, 0.85);
+    stroke: #67e8f9;
+    stroke-width: 1.6;
+  }
+  .core-label {
+    fill: #e0f2fe;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
   }
   .node {
-    fill: rgba(251, 191, 36, 0.25);
-    stroke: #fbbf24;
-    stroke-width: 1.5;
+    fill: rgba(15, 23, 42, 0.8);
+    stroke: #a78bfa;
+    stroke-width: 1.4;
+  }
+  .node-dot {
+    fill: #c4b5fd;
   }
   .node-label {
-    fill: #fde68a;
-    font-size: 9px;
+    fill: #cbd5e1;
+    font-size: 9.5px;
+    font-weight: 650;
   }
   .note {
-    margin: 0.75rem 0 0;
-    font-size: 0.78rem;
+    margin: 0.8rem 0 0;
     color: #94a3b8;
+    font-size: 0.74rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring {
+      animation: none;
+    }
+  }
+
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>

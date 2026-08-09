@@ -42,6 +42,25 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Hyperion's type pairing: Lexend for display/headings, Inter for body —
+  // the same families the main Next.js site loads (tailwind.config.js
+  // fontFamily). Served with `display=swap` so a slow font never blocks the
+  // hero copy; src/css/observatory.css falls back to the system stack.
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    },
+    {
+      tagName: 'link',
+      attributes: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous' },
+    },
+  ],
+
+  stylesheets: [
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@600;700;800&display=swap',
+  ],
+
   presets: [
     [
       'classic',

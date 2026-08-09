@@ -1,36 +1,264 @@
 /**
- * Brand colors match the main site's Tailwind theme (tailwind.config.js:
- * primary.500/600) so this docs dashboard reads as part of the same
- * project rather than a generic Docusaurus site.
+ * Docusaurus theme layer for the Hyperion documentation dashboard.
+ *
+ * ./observatory.css owns the design tokens and the homepage's own components;
+ * this file maps those tokens onto Infima's variables and restyles the
+ * Docusaurus chrome (navbar, sidebar, doc content, footer) so the docs site
+ * reads as the same product as the main Next.js site rather than a default
+ * Docusaurus install. See docs/moon/roadmaps/user_interface.md (UI3–UI5).
  */
-:root {
-  --ifm-color-primary: #2563eb;
-  --ifm-color-primary-dark: #1d5fe0;
-  --ifm-color-primary-darker: #1b59d4;
-  --ifm-color-primary-darkest: #1749ae;
-  --ifm-color-primary-light: #3b82f6;
-  --ifm-color-primary-lighter: #4f8ff7;
-  --ifm-color-primary-lightest: #7aabf9;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
-  /* Homepage hero (src/pages/index.module.css) */
+@import './observatory.css';
+
+:root {
+  /* Brand primaries follow the main site's Tailwind theme (tailwind.config.js:
+     primary.500/600) shifted toward the observatory cyan used for links. */
+  --ifm-color-primary: #0369a1;
+  --ifm-color-primary-dark: #035e91;
+  --ifm-color-primary-darker: #035888;
+  --ifm-color-primary-darkest: #024870;
+  --ifm-color-primary-light: #0378b1;
+  --ifm-color-primary-lighter: #037eba;
+  --ifm-color-primary-lightest: #048ed2;
+
+  --ifm-code-font-size: 92%;
+  --ifm-font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ifm-heading-font-family: var(--hy-font-display);
+  --ifm-heading-font-weight: 750;
+  --ifm-h1-font-size: 2.5rem;
+  --ifm-global-radius: 0.85rem;
+  --ifm-navbar-height: 4rem;
+  --ifm-navbar-background-color: rgb(255 255 255 / 0.72);
+  --ifm-navbar-shadow: none;
+  --ifm-background-color: #f7f9fc;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-toc-border-color: var(--hy-border);
+  --ifm-code-background: rgb(15 23 42 / 0.05);
+  --ifm-blockquote-color: var(--hy-ink-soft);
+  --ifm-blockquote-border-color: var(--hy-violet);
+  --docusaurus-highlighted-code-line-bg: rgb(56 189 248 / 0.14);
+
+  /* Legacy homepage-module names kept so any remaining CSS-module rule that
+     still references them resolves to the observatory palette. */
   --hero-accent: #7c3aed;
-  --hero-glow-color: rgba(37, 99, 235, 0.25);
+  --hero-glow-color: rgb(56 189 248 / 0.28);
   --hero-bg-end: #eef2ff;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #3b82f6;
-  --ifm-color-primary-dark: #206bf5;
-  --ifm-color-primary-darker: #135ff0;
-  --ifm-color-primary-darkest: #0f4dc6;
-  --ifm-color-primary-light: #5c97f8;
-  --ifm-color-primary-lighter: #6da2f9;
-  --ifm-color-primary-lightest: #9bbffb;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #7dd3fc;
+  --ifm-color-primary-dark: #59c5fa;
+  --ifm-color-primary-darker: #47bef9;
+  --ifm-color-primary-darkest: #12abf6;
+  --ifm-color-primary-light: #a1e1fd;
+  --ifm-color-primary-lighter: #b3e8fe;
+  --ifm-color-primary-lightest: #e9f8ff;
+
+  --ifm-navbar-background-color: rgb(6 12 24 / 0.72);
+  --ifm-background-color: #05080f;
+  --ifm-background-surface-color: #0b1424;
+  --ifm-code-background: rgb(148 163 184 / 0.12);
+  --docusaurus-highlighted-code-line-bg: rgb(56 189 248 / 0.16);
 
   --hero-accent: #a78bfa;
-  --hero-glow-color: rgba(59, 130, 246, 0.35);
+  --hero-glow-color: rgb(56 189 248 / 0.35);
   --hero-bg-end: #0f172a;
+}
+
+/* -------------------------------------------------------------------
+   Page ground: the same layered aurora the main site paints on <body>
+   (app/globals.css), so every route — not just the homepage — sits on
+   Hyperion's deep-space surface.
+   ------------------------------------------------------------------- */
+
+html,
+body {
+  background-color: var(--ifm-background-color);
+}
+
+body {
+  background-image: radial-gradient(circle at 74% 6%, rgb(56 189 248 / 0.09), transparent 34rem),
+    radial-gradient(circle at 20% 62%, rgb(139 92 246 / 0.07), transparent 36rem);
+  background-attachment: fixed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--hy-cyan);
+  outline-offset: 3px;
+}
+
+/* -------------------------------------------------------------------
+   Navbar — glass bar with a luminous hairline
+   ------------------------------------------------------------------- */
+
+.navbar {
+  border-bottom: 1px solid var(--hy-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(56 189 248 / 0.5), rgb(139 92 246 / 0.5), transparent);
+  pointer-events: none;
+}
+
+.navbar__title {
+  font-family: var(--hy-font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.navbar__logo img {
+  border-radius: 0.4rem;
+}
+
+.navbar__link {
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.navbar__link--active {
+  color: var(--ifm-color-primary);
+}
+
+/* -------------------------------------------------------------------
+   Sidebar — active item gets the gradient rail
+   ------------------------------------------------------------------- */
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--hy-border) !important;
+}
+
+.menu {
+  padding: 1rem 0.75rem !important;
+  font-size: 0.88rem;
+}
+
+.menu__link {
+  border-radius: 0.6rem;
+  font-weight: 600;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  position: relative;
+  background: linear-gradient(100deg, rgb(56 189 248 / 0.14), rgb(139 92 246 / 0.1));
+}
+
+.menu__link--active:not(.menu__link--sublist)::before {
+  content: '';
+  position: absolute;
+  left: -0.35rem;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--hy-cyan), var(--hy-violet));
+}
+
+/* -------------------------------------------------------------------
+   Doc content — editorial rhythm
+   ------------------------------------------------------------------- */
+
+.markdown h1:first-child {
+  letter-spacing: -0.04em;
+}
+
+.markdown > h2 {
+  margin-top: 2.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--hy-border);
+  letter-spacing: -0.025em;
+}
+
+.markdown a {
+  font-weight: 600;
+  text-decoration-color: rgb(56 189 248 / 0.4);
+  text-underline-offset: 0.2em;
+}
+
+.markdown blockquote {
+  border-left-width: 2px;
+  border-radius: 0 var(--hy-radius-sm) var(--hy-radius-sm) 0;
+  background: rgb(139 92 246 / 0.07);
+}
+
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: var(--hy-radius-sm);
+  font-size: 0.9rem;
+}
+
+.markdown table thead tr {
+  background: linear-gradient(120deg, rgb(56 189 248 / 0.12), rgb(139 92 246 / 0.1));
+}
+
+.markdown table th,
+.markdown table td {
+  border: 1px solid var(--hy-border);
+}
+
+.theme-code-block {
+  border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius-sm) !important;
+  box-shadow: 0 14px 34px rgb(15 23 42 / 0.1) !important;
+}
+
+.pagination-nav__link {
+  border-color: var(--hy-border);
+  border-radius: var(--hy-radius-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pagination-nav__link:hover {
+  transform: translateY(-2px);
+  border-color: var(--hy-border-strong);
+}
+
+.table-of-contents__link--active {
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------
+   Footer — deep panel closing the page
+   ------------------------------------------------------------------- */
+
+.footer {
+  position: relative;
+  border-top: 1px solid var(--hy-border);
+  background: linear-gradient(180deg, transparent, rgb(3 7 18 / 0.9));
+}
+
+[data-theme='light'] .footer {
+  background: linear-gradient(180deg, #0b1424, #05080f);
+}
+
+.footer__title {
+  font-family: var(--hy-font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.footer__link-item {
+  font-size: 0.88rem;
+  transition: color 0.18s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagination-nav__link:hover {
+    transform: none;
+  }
 }
