@@ -46,10 +46,7 @@ Content routes live under `app/content/<section>/`. `notebooks/` is an optional 
 - `notebooks/` — independent Python/uv workspace for exploratory analysis. Not part of the Next.js build; never imported from `src/`/`app/`.
 - `public/` — static assets served as-is.
 - `assets/` — build-time assets (icons, images) imported from source.
-- `infra/global/` — optional external/public-facing deploy and host tooling (docker, k8s, helm, terraform, ansible). Not used by the default GitHub Pages workflow.
-- `infra/cloud/` — managed cloud static-host configs (AWS, Azure Pipelines, Firebase, Serverless).
-- `infra/server/` — standalone nginx and Envoy reverse-proxy configs.
-- `infra/private/` — internal developer-only infra experiments (e.g. webpack, wordpress).
+- `infra/` — optional self-host tooling only: `docker/`, `nginx/`, `ansible/`, `terraform/`. Not used by the default GitHub Pages workflow.
 
 ## 4. Key Commands
 

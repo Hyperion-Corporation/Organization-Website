@@ -1,6 +1,6 @@
 # Multi-Framework Platform Roadmap
 
-**IDs:** MFP1–MFP16 · **Status:** 🔄 Partial foundation · **Evidence base:** [`Next.js Multi-Framework Architecture.md`](../research/Next.js%20Multi-Framework%20Architecture.md), [`React Hosting Vue Micro-Frontends.md`](../research/React%20Hosting%20Vue%20Micro-Frontends.md), [`Advanced Web Portfolio Architecture Research.md`](../research/Advanced%20Web%20Portfolio%20Architecture%20Research.md), [`Global Interactive Portfolio Website Architecture.md`](../research/Global%20Interactive%20Portfolio%20Website%20Architecture.md)
+**IDs:** MFP1–MFP16 · **Status:** 🔄 Partial foundation · **Evidence base:** [`Visual Development Tool Roadmap & Tech Stack.md`](../research/Visual%20Development%20Tool%20Roadmap%20%26%20Tech%20Stack.md), [`Game Dev Tools Market Research.md`](../reports/Game%20Dev%20Tools%20Market%20Research.md), plus in-repo multi-framework seeds under `src/frameworks/`
 
 Goal: make the static organization site a **polyglot island host** where React owns the Next.js shell, while Vue 3, Astro, and Aurelia 2 can present specialized UI islands that share **framework-neutral data contracts**, a **single GraphQL/Apollo cache**, and **optional WASM workers**—without breaking static export, accessibility, or route budgets.
 

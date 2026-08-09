@@ -1,10 +1,10 @@
 # Client-side Machine Learning Roadmap
 
-Goal: demonstrate meaningful ML expertise through small, private, reproducible browser experiments—not through a heavyweight model that obscures the product story.
+Goal: optional, small, private browser ML demos that support Hyperion tooling stories—never a heavyweight model that obscures VGP or product clarity.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
-| ML1 | Audio signal-processing report backed by the notebooks workspace | M | — | ✅ |
+| ML1 | Notebooks workspace retained for exploratory analysis behind reports | M | — | ✅ |
 | ML2 | Feasibility matrix comparing ONNX Runtime Web, Transformers.js, TensorFlow.js, WebGPU/WASM and WebNN status | M | IT6 | 📋 |
 | ML3 | Worker-hosted inference runtime with lazy model download, cache/version policy, progress, cancellation and CPU fallback | L | IT9, ML2 | 📋 |
 | ML4 | First bounded demo: classify or embed a small supplied text/audio sample and visualize confidence/features | L | ML3, IF3 | 📋 |

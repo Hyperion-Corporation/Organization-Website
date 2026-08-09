@@ -1,10 +1,10 @@
 # Documentation and Content Roadmap
 
-Goal: make every visual experiment maintainable, reproducible and understandable as both a product story and an engineering system.
+Goal: make every Hyperion product surface and visual experiment maintainable, reproducible, and understandable as both a product story and an engineering system.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
-| DOC1 | Immersive portfolio architecture research under `docs/moon/research` | L | — | ✅ |
+| DOC1 | Product research under `docs/moon/research` and market report under `docs/moon/reports` | L | — | ✅ |
 | DOC2 | Architecture Decision Record system under `docs/adr` | S | — | ✅ |
 | DOC3 | Keep development, testing, dependency and troubleshooting guides current | S | — | 🚧 |
 | DOC4 | Publish an edited research report on accessible progressive immersion | M | DOC1 | 📋 |
@@ -26,4 +26,4 @@ Goal: make every visual experiment maintainable, reproducible and understandable
 
 ## R2 research integration
 
-The [research report](../research/Interactive%20Features%20and%20Visual%20Storytelling%20Research.md) is the source of truth for RR1–RR10. Each issue and feature page links its academic, standards, geospatial, or practitioner evidence; records licensing and browser support; distinguishes measured outcomes from illustrative demos; and documents the equivalent non-visual interaction. New roadmap entries use stable IDs so project status and changelog history remain auditable.
+Primary product research is the [Visual Development Tool Roadmap & Tech Stack](../research/Visual%20Development%20Tool%20Roadmap%20%26%20Tech%20Stack.md) and [Game Dev Tools Market Research](../reports/Game%20Dev%20Tools%20Market%20Research.md). Each issue and feature page links evidence; records licensing and browser support; distinguishes measured outcomes from illustrative demos; and documents the equivalent non-visual interaction. Roadmap IDs stay stable for auditability.

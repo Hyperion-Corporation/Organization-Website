@@ -64,7 +64,7 @@ This document serves as the registry for all interactive components across the r
 
 ### `GeospatialRenderer` (`src/frameworks/react/components/maps/GeospatialRenderer.tsx`)
 *   **Input Contract**: `nodes` (features), `links` (edges), and a threshold limit.
-*   **Data Source**: Geographic datasets (e.g., PCVRP instances).
+*   **Data Source**: Geographic or structure datasets (fixtures; illustrative routing demos).
 *   **Accessibility Equivalent**: Data table summary of locations and distances.
 *   **Loading Behavior**: Progressively enhanced based on node count (see ADR 0003).
 *   **Resource Ownership**: Owns a `<canvas>` for datasets > 500 points, or purely SVG for smaller datasets.

@@ -1,6 +1,6 @@
 # Visual Design and User Interface Roadmap
 
-Goal: create a distinctive “research observatory” visual identity—deep-space surfaces, luminous data accents, editorial typography, tactile glass panels, and restrained cinematic motion—while keeping content legible and navigation predictable.
+Goal: create a distinctive Hyperion product identity—deep-space surfaces, luminous data accents, editorial typography, tactile glass panels, and restrained cinematic motion—while keeping mission, VGP, and navigation legible.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |

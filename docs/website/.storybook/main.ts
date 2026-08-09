@@ -39,7 +39,7 @@ const config: StorybookConfig = {
             'next/image': path.resolve(__dirname, 'shims/next-image.tsx'),
             'next/link': path.resolve(__dirname, 'shims/next-link.tsx'),
             'next/navigation': path.resolve(__dirname, 'shims/next-navigation.ts'),
-            '@/assets/images/23041868.jpeg': path.resolve(__dirname, 'shims/profile-pic.ts'),
+            '@/assets/icons/Hyperion-Corp-small.png': path.resolve(__dirname, 'shims/profile-pic.ts'),
             '@': root,
         };
         // Inline PostCSS/Tailwind config (not a root postcss.config.js) so

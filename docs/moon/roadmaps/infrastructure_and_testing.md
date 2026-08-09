@@ -1,6 +1,6 @@
 # Infrastructure, Performance and Test Roadmap
 
-Goal: make ambitious visuals safe to ship by treating accessibility, performance, browser resilience, and asset lifecycle as release gates.
+Goal: make ambitious Hyperion visuals safe to ship by treating accessibility, performance, browser resilience, and asset lifecycle as release gates. Default deploy is GitHub Pages; optional self-host is limited to `infra/{docker,nginx,ansible,terraform}/`.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
@@ -48,6 +48,19 @@ Capture production builds on a representative integrated-GPU laptop and a thrott
 ## R2 research integration
 
 RR9 requires capability matrices for WebGPU/WebGL, secure-context messaging, adapter/device failure fixtures, and an SVG/canvas fallback benchmark. RR10 requires deterministic worker replay tests, typed-array transfer accounting, stale-response rejection, and leak checks after ten mount/unmount cycles. Research demos cannot regress the static export or default route budget.
+
+## Optional self-host layout (R5)
+
+Default deployment is GitHub Pages via `.github/workflows/deploy.yml`. Optional self-host tooling is limited to:
+
+| Path | Role |
+| --- | --- |
+| `infra/docker/` | Compose build + nginx serve of `out/` |
+| `infra/nginx/` | Standalone nginx configs |
+| `infra/ansible/` | Host deploy for the site container |
+| `infra/terraform/` | Cloud provisioning helpers (e.g. ECR) |
+
+Cloud CFN/Firebase/Serverless, k8s/helm, WordPress/webpack experiments, and Envoy were removed to keep the repo focused.
 
 ## R3 benchmark implementation
 

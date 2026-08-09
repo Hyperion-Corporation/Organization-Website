@@ -1,4 +1,4 @@
-// Stand-in for `@/assets/images/23041868.jpeg`, which Sidebar.tsx imports as
+// Stand-in for `@/assets/icons/Hyperion-Corp-small.png`, which Sidebar.tsx imports as
 // a Next.js static image (`{ src, width, height }`). Storybook doesn't run
 // through Next's image loader, so `main.ts` aliases that exact import path
 // to this shim — a small inline placeholder avatar rather than the real

@@ -1,10 +1,10 @@
 # Interactive Mathematical Optimization Roadmap
 
-Goal: let visitors manipulate a small optimization problem, watch the algorithm respond, and understand trade-offs through synchronized explanation and visualization.
+Goal: let visitors explore structure and trade-offs—routing/metrics demos today; increasingly module–asset–storyboard relationship and constraint stories aligned with VGP—through synchronized explanation and visualization.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
-| MO1 | PCVRP report backed by reproducible notebook analysis | M | — | ✅ |
+| MO1 | Technical optimization reports retained under `public/reports/` (template-era library) | M | — | ✅ |
 | MO2 | Accessible route explorer with depots/customers, day/capacity filters, timeline playback and solution metrics | L | IF3 | 📋 |
 | MO3 | Worker-hosted WASM solver spike comparing OR-Tools/HiGHS-compatible options, size, license and static-host constraints | L | IT9 | 📋 |
 | MO4 | Small interactive solver lab: edit demand/capacity, solve/cancel, animate incumbent routes and compare baseline | XL | MO2, MO3 | 📋 |

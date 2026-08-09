@@ -1,13 +1,13 @@
 # Interactive Graphics, Data Visualization, 3D and Spatial Roadmap
 
-Goal: make research tangible through direct manipulation. Every canvas is an enhancement over meaningful HTML/SVG content and follows an explicit quality tier.
+Goal: make Hyperion’s product ideas tangible through direct manipulation—especially graph, metrics, and structure views for Visual Graph Programming. Every canvas is an enhancement over meaningful HTML/SVG content and follows an explicit quality tier.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
 | IF1 | Graphics feasibility spike: persistent singleton canvas versus isolated lazy islands; record ADR and memory profile | M | UI6, IT6 | ✅ |
 | IF2 | Capability-gated 3D hero model with orbit/pointer response, pause/reset controls, static SVG fallback and context recovery | L | UI3–UI6 | ✅ |
 | IF3 | Shared typed visualization primitives: scales, palettes, legends, tooltips, selection, keyboard roving and accessible summaries | L | UI3, IT6 | ✅ |
-| IF4 | Interactive research constellation showing relationships among AI, optimization, projects and publications | M | IF3 | ✅ |
+| IF4 | Interactive product constellation showing relationships among Hyperion domains, VGP, tools, and applications | M | IF3 | ✅ |
 | IF5 | Reusable glTF/GLB model viewer with camera presets, annotations, loading progress, quality tiers and asset disposal | L | IF1, IF2, IT8 | ✅ |
 | IF6 | Equirectangular 360° panorama viewer with drag/keyboard look, hotspot DOM overlays, minimap and flat-image fallback | L | IF1, IF5 | ✅ |
 | IF7 | Audio-reactive signal-processing exhibit using Web Audio FFT, play/pause, user-selected/local media and non-audio demo mode | L | IF2, IT9 | ✅ |

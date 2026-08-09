@@ -144,17 +144,15 @@ Optional alternatives to GitHub Pages (not used by the default workflow) live un
 
 | Path | Purpose |
 | --- | --- |
-| [`infra/global/docker/`](infra/global/docker/) | Build + serve the export locally with Docker Compose / nginx |
-| [`infra/global/k8s/`](infra/global/k8s/) · [`helm/`](infra/global/helm/) · [`terraform/`](infra/global/terraform/) · [`ansible/`](infra/global/ansible/) | Self-host the nginx container on a cluster or plain host |
-| [`infra/cloud/`](infra/cloud/) | AWS (S3 + CloudFront / Serverless), Azure Static Web Apps, Firebase configs |
-| [`infra/private/webpack/`](infra/private/webpack/) | Developer-only Webpack experiments |
-| [`infra/private/wordpress/`](infra/private/wordpress/) | WordPress theme scaffolding for local/CMS experiments |
-| [`infra/server/nginx/`](infra/server/nginx/) · [`proxy/`](infra/server/proxy/) | Standalone nginx and Envoy reverse-proxy configs |
+| [`infra/docker/`](infra/docker/) | Build + serve the export with Docker Compose / nginx |
+| [`infra/nginx/`](infra/nginx/) | Standalone nginx configs for the `out/` export |
+| [`infra/ansible/`](infra/ansible/) | Deploy the site container on a plain host |
+| [`infra/terraform/`](infra/terraform/) | Cloud provisioning (e.g. ECR) for the container image |
 
 Example local self-host:
 
 ```bash
-docker compose -f infra/global/docker/docker-compose.yml up --build
+docker compose -f infra/docker/docker-compose.yml up --build
 ```
 
 ## License
@@ -234,14 +232,11 @@ Keep titles concise for cards and browser tabs. Use stable lowercase tags. Dates
 │   ├── ARCHITECTURE.md
 │   ├── adr/
 │   └── moon/{research,roadmaps}/
-├── infra/                       # optional self-hosting / alt-deploy tooling
-│   ├── global/                  # external public-facing deploy & host configs
-│   │   ├── ansible/ docker/ helm/ k8s/ terraform/
-│   ├── private/                 # internal developer-only tooling
-│   │   └── webpack/ wordpress/
-│   ├── cloud/                   # AWS / Azure / Firebase / Serverless
-│   └── server/                  # nginx / Envoy reverse-proxy configs
-│       └── nginx/ proxy/
+├── infra/                       # optional self-host (not default GitHub Pages)
+│   ├── docker/                  # Compose build + nginx serve of out/
+│   ├── nginx/                   # standalone nginx configs
+│   ├── ansible/                 # host deploy for the site container
+│   └── terraform/               # cloud provisioning helpers (e.g. ECR)
 ├── lib/                         # build-time Markdown/front-matter helpers
 ├── notebooks/                   # independent Python/uv research workspace
 ├── public/                      # static, licensed browser assets

@@ -1,47 +1,37 @@
 # infra/
 
-Infrastructure-as-code for self-hosting Organization-Website as an alternative to its actual deployment, which is the GitHub Pages static export via [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml).
+Optional self-hosting alternatives to the default GitHub Pages static export
+([`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml)).
 
-Layout is split by audience:
+Default deployment remains: `npm run build` → publish `out/` to `gh-pages`.
+Use the tooling below only when you want to serve the same export outside GitHub Pages.
 
-| Directory | Scope | Purpose |
-| --- | --- | --- |
-| [`global/`](global/) | External / public-facing | Tools used to deploy or host the site for public consumption |
-| [`private/`](private/) | Internal / developer-only | Local developer tooling not used for public deployment |
-| [`cloud/`](cloud/) | Managed cloud static hosts | AWS / Azure / Firebase / Serverless configs (sibling of global/) |
-| [`server/`](server/) | Edge / reverse-proxy configs | Standalone nginx and Envoy proxy configs |
-
-## global/ (external)
-
-Every hosting option here containerizes the same thing: `npm run build` output, served by nginx — or uses an equivalent public static host. Pick one deployment path — don't run more than one against the same target at once.
-
-| Directory | What it does |
+| Directory | Purpose |
 | --- | --- |
-| `global/docker/` | Build + serve locally via Docker Compose |
-| `global/k8s/` | Kubernetes manifests (base + dev/prod kustomize overlays) for the nginx container |
-| `global/helm/` | Helm chart wrapping the `k8s/` manifests |
-| `global/terraform/` | Cloud provisioning for wherever the container ends up running |
-| `global/ansible/` | Playbook for installing/running the container on a plain host |
+| [`docker/`](docker/) | Build the static export and serve it with nginx via Docker Compose |
+| [`nginx/`](nginx/) | Standalone nginx configs for the `out/` export (without Compose) |
+| [`ansible/`](ansible/) | Install/run the site container (or static files) on a plain host |
+| [`terraform/`](terraform/) | Cloud provisioning helpers for hosting the container image / resources |
 
-## cloud/
+## Quick starts
 
-| Directory | What it does |
-| --- | --- |
-| `cloud/aws/` | CloudFormation for S3 + CloudFront static hosting |
-| `cloud/azure-pipelines/` | Azure DevOps pipeline for Azure Static Web Apps |
-| `cloud/firebase/` | Firebase app config sample |
-| `cloud/serverless/` | Serverless Framework + finch static deploy |
+```bash
+# Docker Compose (build + serve)
+docker compose -f infra/docker/docker-compose.yml up --build
 
-## private/ (internal)
+# Standalone nginx container mounting out/ + configs
+npm run build
+docker run --rm -p 8080:80 \
+  -v "$PWD/out:/usr/share/nginx/html:ro" \
+  -v "$PWD/infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro" \
+  -v "$PWD/infra/nginx/conf.d:/etc/nginx/conf.d:ro" \
+  nginx:1.27-alpine
 
-| Directory | What it does |
-| --- | --- |
-| `private/webpack/` | Webpack config for developer-side bundling experiments |
-| `private/wordpress/` | WordPress theme scaffolding for local/CMS experiments |
+# Ansible (edit inventory first)
+cd infra/ansible && ansible-playbook -i inventory/hosts.ini playbook.yml
 
-## server/
+# Terraform (example)
+cd infra/terraform && terraform init && terraform plan -var-file=environments/dev.tfvars
+```
 
-| Directory | What it does |
-| --- | --- |
-| `server/nginx/` | Standalone nginx reverse-proxy / static site configs |
-| `server/proxy/` | Envoy proxy configs |
+Visit `http://localhost:8080/Organization-Website/` when using the project `basePath`.

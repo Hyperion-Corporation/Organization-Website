@@ -1,6 +1,6 @@
 # Interactive Simulations and Aurelia Roadmap
 
-Goal: build reproducible interactive experiments once, then present them through lightweight React or isolated Aurelia 2 islands without coupling numerical logic to a view framework.
+Goal: build reproducible interactive experiments (convergence, metrics, structure stories) once, then present them through lightweight React or isolated Aurelia 2 islands without coupling numerical logic to a view framework—aligned with Hyperion product demos.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
