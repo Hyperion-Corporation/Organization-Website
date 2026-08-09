@@ -7,7 +7,7 @@ Standalone nginx configs for serving the Next.js static export (`out/`), as an a
 | Path | Purpose |
 | --- | --- |
 | `nginx.conf` | Main process config (gzip, logging, includes `conf.d/`) |
-| `conf.d/github-pages.conf` | Virtual host: static export + Next.js `try_files` fallback |
+| `conf.d/Organization-Website.conf` | Virtual host: static export + Next.js `try_files` fallback |
 | `conf.d/reverse-proxy.conf.example` | Sample reverse-proxy vhost in front of an upstream |
 
 ## Quick start (container)
@@ -21,4 +21,4 @@ docker run --rm -p 8080:80 \
   nginx:1.27-alpine
 ```
 
-Visit `http://localhost:8080`. For the GitHub Pages `basePath`, open `http://localhost:8080/github-pages/` after the postbuild symlink exists, or serve from a root that already includes that prefix.
+Visit `http://localhost:8080`. For the GitHub Pages `basePath`, open `http://localhost:8080/Organization-Website/` after the postbuild symlink exists, or serve from a root that already includes that prefix.

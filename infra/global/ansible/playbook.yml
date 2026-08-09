@@ -3,6 +3,6 @@
   hosts: app_servers
   become: true
   vars:
-    site_image: github-pages:latest
+    site_image: organization-website:latest
   roles:
     - app

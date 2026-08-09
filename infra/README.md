@@ -1,6 +1,6 @@
 # infra/
 
-Infrastructure-as-code for self-hosting `github-pages` as an alternative to its actual deployment, which is the GitHub Pages static export via [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml).
+Infrastructure-as-code for self-hosting Organization-Website as an alternative to its actual deployment, which is the GitHub Pages static export via [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml).
 
 Layout is split by audience:
 

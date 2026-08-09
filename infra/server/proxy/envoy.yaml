@@ -1,4 +1,4 @@
-# Envoy proxy bootstrap for github-pages.
+# Envoy proxy bootstrap for organization-website.
 #
 # Default mode: reverse-proxy to an upstream HTTP origin serving the static
 # export (e.g. the nginx container from infra/global/docker or infra/server/nginx).

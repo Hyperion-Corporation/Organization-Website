@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "github-pages.name" . }}
+  name: {{ include "organization-website.name" . }}
   labels:
-    {{- include "github-pages.labels" . | nindent 4 }}
+    {{- include "organization-website.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "github-pages.labels" . | nindent 6 }}
+      {{- include "organization-website.labels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "github-pages.labels" . | nindent 8 }}
+        {{- include "organization-website.labels" . | nindent 8 }}
     spec:
       containers:
         - name: site

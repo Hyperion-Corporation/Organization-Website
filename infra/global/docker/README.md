@@ -22,4 +22,4 @@ Visit `http://localhost:8080`.
 ## Notes
 
 - Build context is the **repository root**, not `infra/global/docker/` — the Dockerfile needs `package.json` and the rest of the site.
-- `next.config.js` sets `basePath: '/github-pages'` for the GitHub Pages deployment. Self-hosting at a domain's root will need that removed or made conditional, or every link will expect the `/github-pages` prefix.
+- `next.config.js` sets `basePath: '/Organization-Website'` for the GitHub Pages deployment. Self-hosting at a domain's root will need that removed or made conditional, or every link will expect the `/Organization-Website` prefix.

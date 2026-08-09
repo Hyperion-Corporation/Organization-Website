@@ -1,3 +1,3 @@
 environment  = "dev"
-project_name = "github-pages"
+project_name = "organization-website"
 region       = "us-east-1"

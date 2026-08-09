@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: github-pages
+  repository: organization-website
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -12,7 +12,7 @@ service:
 
 ingress:
   enabled: false
-  host: github-pages.example.com
+  host: organization-website.example.com
 
 resources:
   requests:

@@ -10,7 +10,7 @@
 #   npm run build
 #   npx serverless client deploy
 
-service: github-pages-site
+service: organization-website-site
 
 frameworkVersion: "3"
 
@@ -23,7 +23,7 @@ plugins:
 
 custom:
   client:
-    bucketName: github-pages-${aws:accountId}-site
+    bucketName: organization-website-${aws:accountId}-site
     distributionFolder: out
     indexDocument: index.html
     errorDocument: 404.html

@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: github-pages
+  name: organization-website
   labels:
-    app: github-pages
+    app: organization-website
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: github-pages
+      app: organization-website
   template:
     metadata:
       labels:
-        app: github-pages
+        app: organization-website
     spec:
       containers:
         - name: site
           # TODO: point at your real registry once infra/global/docker/Dockerfile is published there.
-          image: github-pages:latest
+          image: organization-website:latest
           ports:
             - containerPort: 80
           readinessProbe:

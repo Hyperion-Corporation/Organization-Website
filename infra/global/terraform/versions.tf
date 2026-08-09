@@ -10,8 +10,8 @@ terraform {
 
   # TODO: configure a remote state backend before using this in a team setting.
   # backend "s3" {
-  #   bucket = "github-pages-tfstate"
-  #   key    = "github-pages/terraform.tfstate"
+  #   bucket = "organization-website-tfstate"
+  #   key    = "organization-website/terraform.tfstate"
   #   region = "us-east-1"
   # }
 }

@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: github-pages-dev
+namespace: organization-website-dev
 
 resources:
   - ../../base
@@ -9,11 +9,11 @@ resources:
 patches:
   - target:
       kind: Deployment
-      name: github-pages
+      name: organization-website
     patch: |-
       - op: replace
         path: /spec/replicas
         value: 1
       - op: replace
         path: /spec/template/spec/containers/0/image
-        value: github-pages:dev
+        value: organization-website:dev

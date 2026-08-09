@@ -7,7 +7,7 @@ variable "environment" {
 variable "project_name" {
   description = "Short name used to prefix provisioned resources."
   type        = string
-  default     = "github-pages"
+  default     = "organization-website"
 }
 
 variable "region" {

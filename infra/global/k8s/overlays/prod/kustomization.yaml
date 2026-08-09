@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: github-pages-prod
+namespace: organization-website-prod
 
 resources:
   - ../../base
@@ -9,14 +9,14 @@ resources:
 patches:
   - target:
       kind: Deployment
-      name: github-pages
+      name: organization-website
     patch: |-
       - op: replace
         path: /spec/replicas
         value: 3
       - op: replace
         path: /spec/template/spec/containers/0/image
-        value: github-pages:latest
+        value: organization-website:latest
       - op: replace
         path: /spec/template/spec/containers/0/resources/limits/cpu
         value: "500m"
