@@ -27,13 +27,15 @@ Run `uv sync --extra dev` from inside `notebooks/`, not the repo root — it's a
 
 Check `next.config.js`'s `basePath`/`NEXT_PUBLIC_BASE_PATH` still match the repository name (`/Organization-Website`) — a repo rename requires updating both.
 
-## Site looks unstyled (plain HTML, huge logo, no layout)
+## Site looks unstyled or shows 404 at `localhost:3000`
 
-CSS is served under the base path. Open:
+| Mode | Correct URL |
+| --- | --- |
+| **`npm run dev`** | [`http://localhost:3000/`](http://localhost:3000/) (no basePath) |
+| **`npm run build && npm start`** | [`http://localhost:3000/Organization-Website/`](http://localhost:3000/Organization-Website/) |
 
-- Dev: `http://localhost:3000/Organization-Website/`
-- Static: after `npm run build && npm start`, same path (the `postbuild` symlink makes `/Organization-Website` resolve into `out/`)
+Production static export is always under `/Organization-Website` for GitHub Pages. Opening bare `http://localhost:3000/` against a **production** serve returns **404** (what the address bar shows in that case).
 
-If you open `http://localhost:3000/` or an old path like `/github-pages/`, HTML may load while `/Organization-Website/_next/static/css/*.css` returns **404**, which collapses the shell.
+After changing `basePath` / PostCSS / Tailwind, restart the dev server and hard-refresh (`Ctrl+Shift+R`).
 
 In DevTools → Network, confirm the main CSS file is **200**, not 404.

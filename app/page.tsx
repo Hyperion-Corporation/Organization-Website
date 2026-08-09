@@ -19,6 +19,7 @@ import { AureliaWrapper } from '../src/frameworks/aurelia/components/AureliaWrap
 import { WebGPUExperiment } from '../src/frameworks/react/components/canvas/WebGPUExperiment';
 import { WebXRExperiment } from '../src/frameworks/react/components/canvas/WebXRExperiment';
 import { GaussianSplatGallery } from '../src/frameworks/react/components/models/GaussianSplatGallery';
+import { appPath } from '../src/utils/paths';
 
 /**
  * Featured updates — replace with Markdown-backed content as org publishing matures.
@@ -78,7 +79,7 @@ const PROJECTS: Project[] = [
     links: [
       {
         label: 'About Hyperion',
-        url: '/Organization-Website/content/about',
+        url: appPath("/content/about"),
         icon: <Layers size={14} className="w-4 h-4 mr-1" />,
       },
     ],
@@ -122,10 +123,10 @@ export default function Home() {
             <strong>games, simulations, and related systems</strong>—so teams can understand structure, metrics, and relationships, and ship with less friction.
           </p>
           <div className="hero-actions">
-            <a href="/Organization-Website/content/projects" className="hero-action hero-action--primary">
+            <a href={appPath("/content/projects")} className="hero-action hero-action--primary">
               Explore projects <ArrowRight size={18} />
             </a>
-            <a href="/Organization-Website/content/about" className="hero-action hero-action--secondary">
+            <a href={appPath("/content/about")} className="hero-action hero-action--secondary">
               About Hyperion
             </a>
           </div>
@@ -191,7 +192,7 @@ export default function Home() {
         <div className="flex items-center justify-between mb-8">
           <SectionHeading title="Latest Updates" icon={<PenTool className="text-purple-500" />} />
           <a
-            href="/Organization-Website/content/posts"
+            href={appPath("/content/posts")}
             className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
           >
             View all <ArrowRight size={14} />
@@ -210,7 +211,7 @@ export default function Home() {
                   <span className="text-blue-600 dark:text-blue-400 font-medium">{post.category}</span>
                 </div>
                 <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  <a href={`/Organization-Website/content/posts/${post.id}`}>{post.title}</a>
+                  <a href={appPath(`/content/posts/${post.id}`)}>{post.title}</a>
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
                 <div className="flex flex-wrap gap-2 items-center justify-between mt-auto">
@@ -222,7 +223,7 @@ export default function Home() {
                     ))}
                   </div>
                   <a
-                    href={`/Organization-Website/content/posts/${post.id}`}
+                    href={appPath(`/content/posts/${post.id}`)}
                     className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                   >
                     Read more <ArrowRight size={14} />
@@ -239,7 +240,7 @@ export default function Home() {
         <div className="flex items-center justify-between mb-8">
           <SectionHeading title="Featured Projects" icon={<Network className="text-blue-500" />} />
           <a
-            href="/Organization-Website/content/projects"
+            href={appPath("/content/projects")}
             className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
           >
             View all projects <ArrowRight size={14} />

@@ -30,7 +30,7 @@ describe('ResearchConstellation', () => {
     await user.click(screen.getByRole('button', { name: /Visual Graph Programming:/ }));
     expect(screen.getByRole('link', { name: /Explore this thread/ })).toHaveAttribute(
       'href',
-      '/Organization-Website/content/projects'
+      '/content/projects'
     );
   });
 });

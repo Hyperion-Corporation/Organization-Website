@@ -3,6 +3,7 @@ import { Gamepad2, Film, BookOpen, Network } from 'lucide-react';
 import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
 import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
 import pageImage from '@/assets/images/knowledge_graph.png';
+import { appPath } from '@/src/utils/paths';
 
 export default function MediaPage() {
   return (
@@ -78,7 +79,7 @@ export default function MediaPage() {
                 author new code modules from that shared understanding.
               </p>
               <a
-                href="/Organization-Website/content/projects"
+                href={appPath("/content/projects")}
                 className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
               >
                 See projects →

@@ -15,8 +15,9 @@ npm install
 npm run dev
 ```
 
-**Open:** [`http://localhost:3000/Organization-Website/`](http://localhost:3000/Organization-Website/)  
-(The `basePath` is required. Opening `/` alone loads HTML without CSS under `/Organization-Website/_next/...`.)
+**Open:** [`http://localhost:3000/`](http://localhost:3000/)  
+
+Local `next dev` uses **no** `basePath` so the site works at the origin. Production builds set `basePath` to `/Organization-Website` for GitHub Pages (override with `NEXT_PUBLIC_BASE_PATH`).
 
 ## Notebooks
 

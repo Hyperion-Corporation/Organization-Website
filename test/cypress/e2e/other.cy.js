@@ -1,7 +1,7 @@
 describe('Other Section', () => {
     it('should navigate to the Other section and load the Math Curriculum', () => {
         // Visit the Other section index with absolute URL
-        cy.visit('http://localhost:3000/Organization-Website/content/other');
+        cy.visit('/content/other');
 
         // Check if the "Mathematics Curriculum" card exists and click it
         cy.contains('Mathematics Curriculum').click();
@@ -27,7 +27,7 @@ describe('Other Section', () => {
     });
 
     it('should switch tabs to Course Explorer', () => {
-        cy.visit('http://localhost:3000/Organization-Website/content/other/math-curriculum');
+        cy.visit('/content/other/math-curriculum');
 
         // Switch to Explorer
         cy.get('#nav-explorer').click();

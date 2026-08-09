@@ -1,6 +1,6 @@
 describe('Navigation', () => {
     it('should navigate to valid pages from the Sidebar/Header', () => {
-        cy.visit('http://localhost:3000/Organization-Website/');
+        cy.visit('/');
 
         // Check for "Other" link in the main navigation
         // Note: Adjust selector based on actual generic sidebar/header implementation
@@ -13,7 +13,7 @@ describe('Navigation', () => {
     });
 
     it('should display the Math Curriculum card on the Other page', () => {
-        cy.visit('http://localhost:3000/Organization-Website/content/other');
+        cy.visit('/content/other');
         cy.contains('Mathematics Curriculum').should('be.visible');
     });
 });

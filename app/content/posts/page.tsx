@@ -4,6 +4,7 @@ import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
 import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
 import Badge from '@/src/frameworks/react/components/ui/Badge';
 import pageImage from '@/assets/icons/Hyperion-Corp-small.png';
+import { appPath } from '@/src/utils/paths';
 
 interface PostData {
   slug: string;
@@ -83,7 +84,7 @@ export default async function PostsPage() {
               </div>
               <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 <a
-                  href={`/Organization-Website/content/posts/${post.slug}`}
+                  href={appPath(`/content/posts/${post.slug}`)}
                   className="hover:underline decoration-blue-500/30 underline-offset-4"
                 >
                   {post.title}
@@ -99,7 +100,7 @@ export default async function PostsPage() {
                   ))}
                 </div>
                 <a
-                  href={`/Organization-Website/content/posts/${post.slug}`}
+                  href={appPath(`/content/posts/${post.slug}`)}
                   className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                 >
                   Read more <ArrowRight size={14} />

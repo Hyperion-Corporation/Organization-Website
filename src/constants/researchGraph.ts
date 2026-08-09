@@ -1,3 +1,4 @@
+import { appPath } from '../utils/paths';
 import type { ResearchGraph } from '../interfaces/visualization';
 
 /** Product and domain map for Hyperion Corporation tooling. */
@@ -20,7 +21,7 @@ export const RESEARCH_GRAPH: ResearchGraph = {
       domain: 'ai',
       x: 25,
       y: 35,
-      href: '/Organization-Website/content/projects',
+      href: appPath("/content/projects"),
     },
     {
       id: 'authoring',
@@ -30,7 +31,7 @@ export const RESEARCH_GRAPH: ResearchGraph = {
       domain: 'optimization',
       x: 75,
       y: 35,
-      href: '/Organization-Website/content/projects',
+      href: appPath("/content/projects"),
     },
     {
       id: 'vgp',
@@ -40,7 +41,7 @@ export const RESEARCH_GRAPH: ResearchGraph = {
       domain: 'application',
       x: 50,
       y: 18,
-      href: '/Organization-Website/content/projects',
+      href: appPath("/content/projects"),
     },
     {
       id: 'games',
@@ -50,7 +51,7 @@ export const RESEARCH_GRAPH: ResearchGraph = {
       domain: 'application',
       x: 20,
       y: 75,
-      href: '/Organization-Website/content/projects',
+      href: appPath("/content/projects"),
     },
     {
       id: 'sims',
@@ -60,7 +61,7 @@ export const RESEARCH_GRAPH: ResearchGraph = {
       domain: 'application',
       x: 50,
       y: 88,
-      href: '/Organization-Website/content/projects',
+      href: appPath("/content/projects"),
     },
     {
       id: 'creative',
@@ -70,7 +71,7 @@ export const RESEARCH_GRAPH: ResearchGraph = {
       domain: 'application',
       x: 80,
       y: 75,
-      href: '/Organization-Website/content/about',
+      href: appPath("/content/about"),
     },
     {
       id: 'devtools',
@@ -80,7 +81,7 @@ export const RESEARCH_GRAPH: ResearchGraph = {
       domain: 'ai',
       x: 15,
       y: 50,
-      href: '/Organization-Website/content/tools',
+      href: appPath("/content/tools"),
     },
   ],
   edges: [

@@ -1,20 +1,25 @@
 /** @type {import('next').NextConfig} */
+
+// GitHub Pages project site path. Production builds use this; local `next dev`
+// omits it so http://localhost:3000/ works. Override with NEXT_PUBLIC_BASE_PATH.
+const REPO_BASE = '/Organization-Website';
+const fromEnv = process.env.NEXT_PUBLIC_BASE_PATH;
+const basePath =
+  fromEnv !== undefined
+    ? fromEnv
+    : process.env.NODE_ENV === 'development'
+      ? ''
+      : REPO_BASE;
+
 const nextConfig = {
-  // Sets the base path for deployment to a subdirectory (e.g., GitHub Pages)
-  basePath: '/Organization-Website',
-  
-  // Required for static exports (e.g., for GitHub Pages deployment)
-  output: 'export', 
-  
-  // For handling image imports and paths correctly in static exports
+  basePath,
+  // Required for static exports (e.g. GitHub Pages)
+  output: 'export',
   images: {
     unoptimized: true,
   },
-
-  // Explicitly set the client-side environment variable to guarantee
-  // that the component can access the basePath on the client.
   env: {
-    NEXT_PUBLIC_BASE_PATH: '/Organization-Website',
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 };
 
