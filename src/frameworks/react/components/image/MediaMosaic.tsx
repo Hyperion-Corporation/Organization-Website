@@ -1,15 +1,13 @@
 import knowledgeGraph from '@/assets/images/knowledge_graph.png';
 import orgLogo from '@/assets/icons/Hyperion-Corp-small.png';
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-
 const media = [
   { src: knowledgeGraph.src, alt: 'Knowledge graph visualization', label: 'Graph structure' },
   { src: orgLogo.src, alt: 'Hyperion Corporation', label: 'Hyperion' },
   {
-    src: `${basePath}/images/workshop_posters/workshop-poster.png`,
-    alt: 'Production and systems reference poster',
-    label: 'Production',
+    src: knowledgeGraph.src,
+    alt: 'Metrics and relationships in a knowledge graph',
+    label: 'Metrics',
   },
 ];
 
@@ -20,9 +18,9 @@ export default function MediaMosaic() {
         Visual references
       </h2>
       <div className="grid grid-cols-3 gap-2">
-        {media.map((item) => (
+        {media.map((item, index) => (
           <figure
-            key={item.src}
+            key={`${item.label}-${index}`}
             className="group relative aspect-square overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800"
           >
             <img

@@ -6,7 +6,7 @@ Goal: make every Hyperion product surface and visual experiment maintainable, re
 | --- | --- | --- | --- | --- |
 | DOC1 | Product research under `docs/moon/research` and market report under `docs/moon/reports` | L | — | ✅ |
 | DOC2 | Architecture Decision Record system under `docs/adr` | S | — | ✅ |
-| DOC3 | Keep development, testing, dependency and troubleshooting guides current | S | — | 🚧 |
+| DOC3 | Keep development, testing, dependency and troubleshooting guides current | S | — | 🔄 |
 | DOC4 | Publish an edited research report on accessible progressive immersion | M | DOC1 | 📋 |
 | DOC5 | Typed content schema for projects/case studies: outcomes, technologies, metrics, media, visualization data and related work | L | UI9 | 📋 |
 | DOC6 | Interactive embed authoring guide with accessibility summaries, loading/fallback slots and asset budgets | M | IF3 | 📋 |

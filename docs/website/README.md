@@ -1,6 +1,6 @@
 # docs/website/
 
-A documentation dashboard for this repository, combining three tools rather than one custom app: [Docusaurus](https://docusaurus.io/) for the docs/guides site itself, [TypeDoc](https://typedoc.org/) for generated API reference, and [Storybook](https://storybook.js.org/) for a live catalogue of the main site's React components.
+A documentation dashboard for the **Hyperion Corporation** Organization-Website repository, combining three tools rather than one custom app: [Docusaurus](https://docusaurus.io/) for the docs/guides site itself, [TypeDoc](https://typedoc.org/) for generated API reference, and [Storybook](https://storybook.js.org/) for a live catalogue of the main site's React components.
 
 The package lives directly in this directory (not a nested `react/` subfolder), matching the flattened layout used by org docs sites such as Project-Mobile-Fortress `docs/website/`. See [`APP.md`](APP.md) for how the three tools are wired; this file covers what the *site* contains and how to extend it.
 

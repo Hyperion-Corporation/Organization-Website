@@ -5,4 +5,4 @@ contact_links:
     about: The deployed site this repository builds.
   - name: 📖 Docs
     url: https://github.com/Hyperion-Corporation/Organization-Website/tree/main/docs
-    about: Research notes and write-ups backing the site's reports/posts.
+    about: Architecture, development guides, and Hyperion product roadmaps under docs/moon/.
