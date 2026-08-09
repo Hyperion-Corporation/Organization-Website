@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { server } from './mocks/server';
 
-// The Sidebar links out to https://github.com/acfharbinger but doesn't
+// The Sidebar links out to https://github.com/Hyperion-Corporation but doesn't
 // fetch anything today. This suite exercises the MSW-backed network layer
 // integration tests run against, using that same endpoint as a realistic
 // stand-in: it proves the default handler resolves, that a test can
@@ -10,21 +10,21 @@ import { server } from './mocks/server';
 
 describe('MSW-backed network layer', () => {
     it('resolves the default handler for the linked GitHub profile', async () => {
-        const response = await fetch('https://api.github.com/users/acfharbinger');
+        const response = await fetch('https://api.github.com/orgs/Hyperion-Corporation');
         const data = await response.json();
 
         expect(response.status).toBe(200);
-        expect(data.login).toBe('acfharbinger');
+        expect(data.login).toBe('hyperion-corporation');
     });
 
     it('allows a test to override a handler for one request', async () => {
         server.use(
-            http.get('https://api.github.com/users/acfharbinger', () => {
-                return HttpResponse.json({ login: 'acfharbinger', followers: 1000 }, { status: 200 });
+            http.get('https://api.github.com/orgs/Hyperion-Corporation', () => {
+                return HttpResponse.json({ login: 'hyperion-corporation', followers: 1000 }, { status: 200 });
             })
         );
 
-        const response = await fetch('https://api.github.com/users/acfharbinger');
+        const response = await fetch('https://api.github.com/orgs/Hyperion-Corporation');
         const data = await response.json();
 
         expect(data.followers).toBe(1000);

@@ -9,7 +9,7 @@ vi.mock('next/image', () => ({
 }));
 
 // Mock asset import
-vi.mock('@/assets/images/23041868.jpeg', () => ({
+vi.mock('@/assets/icons/Hyperion-Corp-small.png', () => ({
     default: {
         src: '/mock-image.jpg',
         height: 100,
@@ -34,12 +34,12 @@ describe('Sidebar', () => {
 
     it('renders profile info when not collapsed', () => {
         render(<Sidebar {...defaultProps} />);
-        expect(screen.getByText('Scientist & Engineer')).toBeInTheDocument();
+        expect(screen.getByText('Creative systems software')).toBeInTheDocument();
     });
 
     it('hides profile info when collapsed', () => {
         render(<Sidebar {...defaultProps} isCollapsed={true} />);
-        expect(screen.queryByText('Scientist & Engineer')).not.toBeInTheDocument();
+        expect(screen.queryByText('Creative systems software')).not.toBeInTheDocument();
     });
 
     it('calls toggleCollapse when button is clicked', () => {

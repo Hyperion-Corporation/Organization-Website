@@ -12,15 +12,17 @@ export default function MediaPage() {
             <div className="relative w-full max-w-2xl aspect-square rounded-2xl overflow-hidden shadow-2xl border border-white/20">
                 <img 
                     src={pageImage.src}
-                    alt="Jinx from Arcane"
+                    alt="Media showcase"
                     className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
                 />
             </div>
         </div>
       
         <div className="text-center mb-12">
-            <h1 className="text-4xl font-display font-bold text-slate-900 dark:text-white">Media Log</h1>
-            <p className="text-slate-600 dark:text-slate-400 mt-2">Tracking what I watch, play, read, and listen to.</p>
+            <h1 className="text-4xl font-display font-bold text-slate-900 dark:text-white">Media</h1>
+            <p className="text-slate-600 dark:text-slate-400 mt-2">
+              Inspiration, references, and media relevant to Hyperion&apos;s games, sims, and creative tooling work.
+            </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">

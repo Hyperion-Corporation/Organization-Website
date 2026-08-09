@@ -1,22 +1,24 @@
 {
-  "name": "acfharbinger-personal-website",
+  "name": "organization-website",
   "version": "1.0.0",
   "private": true,
-  "description": "A personal website and knowledge base built with Next.js, React, and TypeScript.",
-  "author": "ACFHarbinger",
+  "description": "Official Hyperion Corporation website — software that optimizes creative and engineering work for games, simulations, and related tooling. Built with Next.js, React, and TypeScript; deployed to GitHub Pages.",
+  "author": "Hyperion Corporation",
   "keywords": [
     "nextjs",
     "react",
     "typescript",
     "tailwind",
-    "portfolio"
+    "hyperion",
+    "organization",
+    "github-pages"
   ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "benchmark:build": "npm run build",
     "benchmark": "node benchmark/measure.mjs",
-    "postbuild": "ln -sfn . out/github-pages",
+    "postbuild": "ln -sfn . out/Organization-Website",
     "start": "npx serve@latest out",
     "lint": "next lint",
     "deploy": "next build && touch out/.nojekyll",
@@ -37,7 +39,7 @@
     "docs:next:dev": "npm --prefix docs/website run next:dev",
     "docs:next:build": "npm --prefix docs/website run next:build"
   },
-  "homepage": "https://acfharbinger.github.io/github-pages",
+  "homepage": "https://hyperion-corporation.github.io/Organization-Website",
   "dependencies": {
     "@tanstack/react-form": "^1.33.4",
     "astro": "^7.2.0",

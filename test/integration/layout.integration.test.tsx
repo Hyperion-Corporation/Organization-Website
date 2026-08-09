@@ -17,7 +17,7 @@ vi.mock('next/image', () => ({
     default: (props: any) => <img {...props} />,
 }));
 
-vi.mock('@/assets/images/23041868.jpeg', () => ({
+vi.mock('@/assets/icons/Hyperion-Corp-small.png', () => ({
     default: { src: '/mock-image.jpg', height: 100, width: 100 },
 }));
 
@@ -35,7 +35,7 @@ describe('ClientLayoutWrapper integration', () => {
         );
 
         // Header logo, Sidebar nav item, Footer copyright, and children all present.
-        expect(screen.getAllByText('ACF').length).toBeGreaterThan(0);
+        expect(screen.getAllByText('Hyperion').length).toBeGreaterThan(0);
         expect(screen.getByText('Page Content')).toBeInTheDocument();
         expect(screen.getByText(/All rights reserved/)).toBeInTheDocument();
     });

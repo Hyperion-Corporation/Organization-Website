@@ -26,7 +26,7 @@ export default function ToolsPage() {
         <div className="relative w-full max-w-2xl aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl border border-white/20">
           <img
             src={pageImage.src}
-            alt="Jinx with Minigun"
+            alt="Tools and technology stack imagery"
             className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
           />
         </div>
@@ -34,7 +34,9 @@ export default function ToolsPage() {
 
       <div className="text-center mb-12">
         <h1 className="text-4xl font-display font-bold text-slate-900 dark:text-white">Tools & Technologies</h1>
-        <p className="text-slate-600 dark:text-slate-400 mt-2">The arsenal I use to build, design, and deploy.</p>
+        <p className="text-slate-600 dark:text-slate-400 mt-2">
+          Technologies Hyperion uses and evaluates while building creative systems software.
+        </p>
       </div>
 
       <section>

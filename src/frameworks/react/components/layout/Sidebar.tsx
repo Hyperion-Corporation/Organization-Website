@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Home, User, PenTool, Code, Tv, Github, Twitter, Linkedin, Moon, Sun, Wrench, ChevronLeft, FileText, Folder } from 'lucide-react';
 import SidebarItem from './SidebarItem';
-import profilePic from '@/assets/images/23041868.jpeg';
+import orgLogo from '@/assets/icons/Hyperion-Corp-small.png';
 
 interface SidebarProps {
   activeSection: string;
@@ -60,22 +60,22 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className={ptClass}>
         {/* Profile / Header Section */}
         <div>
-          <div className={`relative rounded-full overflow-hidden shadow-lg ring-4 ring-white dark:ring-slate-800 transition-all duration-300 mb-4 bg-slate-200 dark:bg-slate-700 ${isCollapsed ? 'h-12 w-12' : 'h-20 w-20'}`}>
+          <div className={`relative rounded-xl overflow-hidden shadow-lg ring-4 ring-white dark:ring-slate-800 transition-all duration-300 mb-4 bg-slate-200 dark:bg-slate-700 ${isCollapsed ? 'h-12 w-12' : 'h-20 w-20'}`}>
             <img
-              src={profilePic.src}
-              alt="ACFHarbinger"
-              className="h-full w-full object-cover"
+              src={orgLogo.src}
+              alt="Hyperion Corporation"
+              className="h-full w-full object-contain p-1"
             />
           </div>
 
           {!isCollapsed && (
             <>
               <Link href="/" className="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-blue-500">ACF</span>
-                <span>Harbinger</span>
+                <span className="text-blue-500">Hyperion</span>
+                <span>Corp</span>
               </Link>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium dark:text-white">Scientist & Engineer</p>
-              <p className="text-xs text-slate-400 mt-2 uppercase tracking-wider dark:text-white">CSE & Math</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium dark:text-white">Creative systems software</p>
+              <p className="text-xs text-slate-400 mt-2 uppercase tracking-wider dark:text-white">Games · Sims · Tools</p>
             </>
           )}
         </div>
@@ -103,7 +103,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <div className={`${isCollapsed ? 'grid grid-cols-1 gap-y-3 justify-items-center w-full' : 'flex justify-center space-x-4'} text-slate-400`}>
 
           <a
-            href="https://github.com/acfharbinger"
+            href="https://github.com/Hyperion-Corporation"
             target="_blank"
             rel="noopener noreferrer"
             className={`hover:text-slate-900 dark:hover:text-white transition-colors flex items-center justify-center ${isCollapsed ? 'p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800' : 'p-1'}`}

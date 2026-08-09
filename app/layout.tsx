@@ -9,8 +9,9 @@ const inter = Inter({ subsets: ['latin'] });
 const basePath = nextConfig.basePath || ''; 
 
 export const metadata: Metadata = {
-  title: 'ACF | Harbinger',
-  description: 'Personal blog and portfolio.',
+  title: 'Hyperion Corporation',
+  description:
+    'Hyperion Corporation builds software that optimizes the work of developers, artists, and designers for games, simulations, and related computer systems.',
   icons: {
     icon: `${basePath}/favicon.ico`
   }

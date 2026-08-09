@@ -6,7 +6,7 @@ export default defineConfig({
   srcDir: './src/frameworks/astro',
   outDir: './public/astro-island',
   publicDir: './astro-public',
-  base: '/github-pages/astro-island',
+  base: '/Organization-Website/astro-island',
   vite: {
     css: {
       postcss: {},
