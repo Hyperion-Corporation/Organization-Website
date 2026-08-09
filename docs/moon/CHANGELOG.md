@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Hardened sidebar brand mark (square 128px icon + CSS size caps + `width`/`height` attributes) so a missing stylesheet cannot expand the full wordmark across the page; document basePath URL for unstyled-shell failures.
 - Root `tsconfig.json` excludes `docs/website` (and `out/`) so Next typecheck no longer requires Docusaurus deps at the monorepo root.
 - Corrected `ExperienceQuality` import path under `src/libraries/redux/actions/appActions.ts` so `npm run build` succeeds.
 

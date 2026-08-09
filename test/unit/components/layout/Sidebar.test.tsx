@@ -9,11 +9,11 @@ vi.mock('next/image', () => ({
 }));
 
 // Mock asset import
-vi.mock('@/assets/icons/Hyperion-Corp-small.png', () => ({
+vi.mock('@/assets/icons/Hyperion-mark.png', () => ({
     default: {
         src: '/mock-image.jpg',
-        height: 100,
-        width: 100,
+        height: 128,
+        width: 128,
     },
 }));
 

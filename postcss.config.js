@@ -1,7 +1,7 @@
+/** @type {import('postcss-load-config').Config} */
 module.exports = {
-  // Use string names for plugins inside the array.
-  plugins: [
-    'tailwindcss',
-    'autoprefixer',
-  ],
-}
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};

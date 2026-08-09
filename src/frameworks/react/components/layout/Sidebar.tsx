@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Home, User, PenTool, Code, Tv, Github, Twitter, Linkedin, Moon, Sun, Wrench, ChevronLeft, FileText, Folder } from 'lucide-react';
 import SidebarItem from './SidebarItem';
-import orgLogo from '@/assets/icons/Hyperion-Corp-small.png';
+import orgLogo from '@/assets/icons/Hyperion-mark.png';
 
 interface SidebarProps {
   activeSection: string;
@@ -60,11 +60,15 @@ const Sidebar: React.FC<SidebarProps> = ({
       <div className={ptClass}>
         {/* Profile / Header Section */}
         <div>
-          <div className={`relative rounded-xl overflow-hidden shadow-lg ring-4 ring-white dark:ring-slate-800 transition-all duration-300 mb-4 bg-slate-200 dark:bg-slate-700 ${isCollapsed ? 'h-12 w-12' : 'h-20 w-20'}`}>
+          <div
+            className={`sidebar-brand-mark relative overflow-hidden shadow-lg ring-4 ring-white dark:ring-slate-800 transition-all duration-300 mb-4 bg-slate-200 dark:bg-slate-700 ${isCollapsed ? 'sidebar-brand-mark--collapsed' : ''}`}
+          >
             <img
               src={orgLogo.src}
               alt="Hyperion Corporation"
-              className="h-full w-full object-contain p-1"
+              width={80}
+              height={80}
+              decoding="async"
             />
           </div>
 
@@ -72,7 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <>
               <Link href="/" className="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
                 <span className="text-blue-500">Hyperion</span>
-                <span>Corp</span>
+                <span>{' '}Corp</span>
               </Link>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium dark:text-white">Creative systems software</p>
               <p className="text-xs text-slate-400 mt-2 uppercase tracking-wider dark:text-white">Games · Sims · Tools</p>

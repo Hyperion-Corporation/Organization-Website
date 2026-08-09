@@ -18,7 +18,8 @@ interface ClientLayoutWrapperProps {
 const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState<boolean>(true); // Default to true (Dark Mode)
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(true);
+  // Expanded by default so desktop shell has labels; users can still collapse.
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
 
   const pathname = usePathname();
   const dispatch = useAppDispatch();
@@ -111,8 +112,8 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
 
         {/* Main Content Area */}
         {/* h-full works here now because the parent (flex-1) has a constrained height */}
-        <div className="flex-1 h-full overflow-y-auto">
-          <main className="flex-1 p-6 lg:p-12 w-full max-w-4xl mx-auto pt-20 lg:pt-12">
+        <div className="flex-1 min-w-0 h-full overflow-y-auto">
+          <main className="flex-1 p-6 lg:p-12 w-full max-w-5xl mx-auto pt-20 lg:pt-12">
             {children}
 
             <Footer

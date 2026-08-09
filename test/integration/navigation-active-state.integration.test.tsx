@@ -4,9 +4,8 @@ import ClientLayoutWrapper from '@/app/ClientLayoutWrapper';
 
 // Exercises ClientLayoutWrapper's getActiveSection logic together with the
 // Sidebar/SidebarItem it feeds: a pathname change should flow through to
-// the correct nav item being visually marked active. The sidebar starts
-// collapsed (icon-only, no text label), so links are queried by href
-// rather than accessible name.
+// the correct nav item being visually marked active. Query `aside nav a`
+// so the brand home link is not confused with the Home nav item.
 
 let currentPathname = '/';
 vi.mock('next/navigation', () => ({
@@ -18,7 +17,7 @@ vi.mock('next/image', () => ({
     default: (props: any) => <img {...props} />,
 }));
 
-vi.mock('@/assets/icons/Hyperion-Corp-small.png', () => ({
+vi.mock('@/assets/icons/Hyperion-mark.png', () => ({
     default: { src: '/mock-image.jpg', height: 100, width: 100 },
 }));
 
@@ -32,7 +31,7 @@ describe('active section integration', () => {
             </ClientLayoutWrapper>
         );
 
-        const reportsLink = container.querySelector('aside a[href="/content/reports"]');
+        const reportsLink = container.querySelector('aside nav a[href="/content/reports"]');
         expect(reportsLink).toHaveClass('bg-blue-50');
     });
 
@@ -45,10 +44,10 @@ describe('active section integration', () => {
             </ClientLayoutWrapper>
         );
 
-        const homeLink = container.querySelector('aside a[href="/"]');
+        const homeLink = container.querySelector('aside nav a[href="/"]');
         expect(homeLink).toHaveClass('bg-blue-50');
 
-        const reportsLink = container.querySelector('aside a[href="/content/reports"]');
+        const reportsLink = container.querySelector('aside nav a[href="/content/reports"]');
         expect(reportsLink).not.toHaveClass('bg-blue-50');
     });
 });

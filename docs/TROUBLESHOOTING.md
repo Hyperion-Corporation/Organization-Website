@@ -26,3 +26,14 @@ Run `uv sync --extra dev` from inside `notebooks/`, not the repo root — it's a
 ## Site renders but assets 404 on GitHub Pages
 
 Check `next.config.js`'s `basePath`/`NEXT_PUBLIC_BASE_PATH` still match the repository name (`/Organization-Website`) — a repo rename requires updating both.
+
+## Site looks unstyled (plain HTML, huge logo, no layout)
+
+CSS is served under the base path. Open:
+
+- Dev: `http://localhost:3000/Organization-Website/`
+- Static: after `npm run build && npm start`, same path (the `postbuild` symlink makes `/Organization-Website` resolve into `out/`)
+
+If you open `http://localhost:3000/` or an old path like `/github-pages/`, HTML may load while `/Organization-Website/_next/static/css/*.css` returns **404**, which collapses the shell.
+
+In DevTools → Network, confirm the main CSS file is **200**, not 404.

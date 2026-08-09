@@ -17,7 +17,7 @@ vi.mock('next/image', () => ({
     default: (props: any) => <img {...props} />,
 }));
 
-vi.mock('@/assets/icons/Hyperion-Corp-small.png', () => ({
+vi.mock('@/assets/icons/Hyperion-mark.png', () => ({
     default: { src: '/mock-image.jpg', height: 100, width: 100 },
 }));
 
