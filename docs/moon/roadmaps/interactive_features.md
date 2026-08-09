@@ -65,6 +65,10 @@ Goal: make Hyperion’s product ideas tangible through direct manipulation—esp
 
 Product research turns the catalogue into evidence-led packages: RR2 structure/relationship explorer, RR3 metrics comparison, RR4 optional ML replay/model cards, RR5 creative pipeline signals, RR6 market reading room, RR7 games/sims narrative, RR8 360 room, RR9 optional WebGPU aggregation, and RR10 worker replay protocol. Each package must ship a semantic/list fallback, provenance, reduced-motion mode, and performance measurements before it can be marked Done.
 
+## Documentation dashboard application
+
+The Docusaurus dashboard (`docs/website/`) applies the IF3/IF4 contract to the documentation corpus itself: a zoomable, pannable SVG knowledge map whose nodes are focusable buttons, whose selection is announced through a live detail panel, and whose full node set is always rendered as a plain list of links. The hero model deliberately stops short of IF2's renderer — it is 2D canvas maths, not WebGL — so the docs route keeps its budget while still demonstrating the tier policy (static frame under reduced motion, no rendering while the tab is hidden, clamped device pixel ratio). See [UI15](user_interface.md) for the identity it belongs to.
+
 ## Document history
 
 | Date | Revision | Change |

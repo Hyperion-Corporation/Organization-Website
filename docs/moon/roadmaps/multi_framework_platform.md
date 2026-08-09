@@ -99,6 +99,8 @@ src/simulations/  # unchanged ownership; WASM worker is an adapter (MFP13)
 
 **Astro (MFP5).** Today `AstroWrapper` iframes a prebuilt `public/astro-island` asset. Promote to a repeatable build step (`astro build` → `public/astro-island`), document hydration islands (`client:visible`), and ensure `basePath` `/Organization-Website` works.
 
+Docs-site status (2026-08-09): the research-orbit island now uses the observatory palette, a transparent page background, and a reduced-motion-aware orbit animation, so it reads as a native section of the host page instead of an embedded document; the host wrapper points at the island's directory URL because `docusaurus serve` rewrites an explicit `/index.html` into a route that falls through to the SPA. Two constraints still block the promotion: `npm run build:astro` fails in this toolchain (a `cookie` package export error inside Astro's prerenderer), so `docs/website/static/astro-island/index.html` remains a hand-maintained export of `ResearchOrbit.astro`, and that script **deletes its `outDir` before failing** — restore the committed file after any attempt.
+
 **Aurelia (MFP6).** Extend existing mount boundary: inject shared Apollo/simulation services via DI, enforce lazy chunk, and align with SIM4/SIM9 acceptance (static fallback, stop on unmount).
 
 **Parity (MFP7).** One dual-framework story on a tools or experiments route: same scenario seed, same accessible table, keyboard path in both islands.

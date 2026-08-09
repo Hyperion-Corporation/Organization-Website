@@ -6,6 +6,14 @@ import type * as Preset from '@docusaurus/preset-classic';
 // docs/website/ — Docusaurus + TypeDoc + Storybook documentation
 // dashboard for the organization-website repository. See ./APP.md for how the three tools fit together and ./README.md for what's on the site.
 
+// Staged guide file -> its real path in the repository, for "Edit this page"
+// links. Keep in sync with GUIDE_SOURCES in scripts/sync-guides.mjs.
+const GUIDE_SOURCE_PATHS: Record<string, string> = {
+  'README.md': 'README.md',
+  'CONTRIBUTING.md': 'git/CONTRIBUTING.md',
+  'AGENTS.md': '.agent/AGENTS.md',
+};
+
 const config: Config = {
   title: 'Hyperion Docs',
   tagline: 'Hyperion Corporation website — architecture, guides, and component reference',
@@ -112,16 +120,26 @@ const config: Config = {
       '@docusaurus/plugin-content-docs',
       {
         id: 'guides',
-        path: '../../',
+        // Staged copies of the repo's guide documents, written by
+        // `npm run sync:guides` (scripts/sync-guides.mjs) before start/build.
+        // This instance must NOT point at the repository root: Docusaurus
+        // registers one MDX webpack rule per docs-plugin instance keyed on its
+        // content directory, so a root-level instance also matches everything
+        // under docs/ — which the "default" instance owns — and every docs page
+        // then runs through the MDX loader twice and renders its own compiled
+        // module source as prose. The staging directory also has to sit outside
+        // docs/ for the mirror-image reason. See the script's header comment.
+        path: '../../.guides-content',
         routeBasePath: 'guides',
-        include: ['README.md', 'git/CONTRIBUTING.md', '.agent/AGENTS.md'],
-        // Default excludes don't cover /out — `npm run build`'s postbuild
-        // step symlinks out/Organization-Website -> . for GitHub Pages
-        // basePath routing, and that self-reference sends this plugin's
-        // globbing of the repo root into an infinite ELOOP.
-        exclude: [...GlobExcludeDefault, 'out/**'],
+        include: ['*.md'],
+        exclude: [...GlobExcludeDefault],
         sidebarPath: './sidebarsGuides.ts',
-        editUrl: 'https://github.com/Hyperion-Corporation/Organization-Website/tree/main/',
+        // The staged files are build artifacts, so "Edit this page" has to
+        // point back at the real source for each document.
+        editUrl: ({ docPath }) => {
+          const source = GUIDE_SOURCE_PATHS[docPath] ?? docPath;
+          return `https://github.com/Hyperion-Corporation/Organization-Website/tree/main/${source}`;
+        },
       },
     ],
   ],
