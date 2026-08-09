@@ -68,18 +68,18 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
 
 
   return (
-    // FIX 1: Add 'flex flex-col' here. This stacks the Header and Content vertically.
-    <div className={`flex flex-col h-screen overflow-hidden transition-colors duration-300 font-sans ${darkMode ? 'dark bg-slate-900 text-slate-200' : 'bg-slate-50 text-slate-800'}`}>
-
-      {/* Header takes its natural height */}
+    // shell-* classes are backed by critical inline CSS in app/layout.tsx so
+    // the layout survives if the Tailwind bundle is delayed or blocked.
+    <div
+      className={`shell-root flex flex-col h-screen overflow-hidden transition-colors duration-300 font-sans ${
+        darkMode ? 'dark bg-slate-900 text-slate-200' : 'bg-slate-50 text-slate-800'
+      }`}
+    >
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
 
-      {/* FIX 2: Change 'h-full' to 'flex-1 w-full'. This forces the div to fill only the REMAINING space after Header. */}
-      {/* Added 'overflow-hidden' here to ensure inner scrollbars work correctly relative to this container */}
-      <div className="flex flex-1 w-full max-w-7xl mx-auto overflow-hidden">
-
-        {/* Sidebar for Desktop */}
-        <div className="hidden lg:block h-full">
+      <div className="shell-body flex flex-1 w-full max-w-7xl mx-auto overflow-hidden min-h-0">
+        {/* Desktop sidebar */}
+        <div className="shell-sidebar-slot hidden lg:block h-full shrink-0">
           <Sidebar
             activeSection={activeSection}
             darkMode={darkMode}
@@ -89,7 +89,7 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
           />
         </div>
 
-        {/* Sidebar for Mobile */}
+        {/* Mobile drawer */}
         {mobileMenuOpen && (
           <div className="lg:hidden fixed inset-0 z-40 bg-white dark:bg-slate-900 overflow-y-auto">
             <Sidebar
@@ -99,7 +99,6 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
               isCollapsed={false}
               toggleCollapse={toggleSidebarCollapsed}
             />
-
             <button
               onClick={toggleMenu}
               className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors z-50"
@@ -110,16 +109,10 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
           </div>
         )}
 
-        {/* Main Content Area */}
-        {/* h-full works here now because the parent (flex-1) has a constrained height */}
-        <div className="flex-1 min-w-0 h-full overflow-y-auto">
-          <main className="flex-1 p-6 lg:p-12 w-full max-w-5xl mx-auto pt-20 lg:pt-12">
+        <div className="shell-main flex-1 min-w-0 h-full overflow-y-auto">
+          <main className="shell-main-inner flex-1 w-full max-w-5xl mx-auto pt-20 lg:pt-12">
             {children}
-
-            <Footer
-              darkMode={darkMode}
-              toggleTheme={toggleTheme}
-            />
+            <Footer darkMode={darkMode} toggleTheme={toggleTheme} />
           </main>
         </div>
       </div>
