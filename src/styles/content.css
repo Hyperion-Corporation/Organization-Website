@@ -1,0 +1,203 @@
+/* Wrapper class for post content. 
+   This ensures styles only apply to the injected HTML 
+*/
+.post-container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  /* Default text color */
+  width: 100%;
+  max-width: 100%;
+  /* Let the parent container control width */
+  margin: 0 auto;
+}
+
+/* Target the <header> tag inside the HTML file */
+.post-container header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+/* Headings */
+.post-container h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: inherit;
+}
+
+.post-container h2,
+.post-container h3,
+.post-container h4 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: inherit;
+}
+
+/* Meta information (Date, Categories) */
+.post-container .meta {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Links */
+.post-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.post-container a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+.post-container ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 1em;
+}
+
+.post-container li {
+  margin-bottom: 5px;
+}
+
+/* Paragraphs */
+.post-container p {
+  margin-bottom: 1em;
+}
+
+/* Figures and Images */
+.post-container figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2em auto;
+  text-align: center;
+  width: 100%;
+}
+
+.post-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  /* Optional: adds nice rounded corners */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.post-container figcaption {
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: #64748b;
+  /* Slate-500 */
+}
+
+.dark .post-container figcaption {
+  color: #94a3b8;
+  /* Slate-400 */
+}
+
+/* Dark Mode Support (Optional - matches your tailwind dark class) */
+/* Dark Mode Support */
+.dark .post-container {
+  color: #e2e8f0;
+  /* Slate-200 for body text to reduce eye strain vs pure white */
+}
+
+.dark .post-container .meta {
+  color: #94a3b8;
+  /* Slate-400 */
+}
+
+.dark .post-container header {
+  border-bottom-color: #334155;
+}
+
+/* Vibrant Headings */
+.dark .post-container h1 {
+  background: linear-gradient(to right, #22d3ee, #3b82f6);
+  /* Cyan-400 to Blue-500 */
+  background-clip: text;
+  /* Standard property */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #22d3ee;
+  /* Fallback */
+}
+
+.dark .post-container h2 {
+  color: #818cf8;
+  /* Indigo-400 */
+}
+
+.dark .post-container h3 {
+  color: #34d399;
+  /* Emerald-400 */
+}
+
+.dark .post-container h4 {
+  color: #f472b6;
+  /* Pink-400 */
+}
+
+/* Accents */
+.dark .post-container strong,
+.dark .post-container b {
+  color: #38bdf8;
+  /* Sky-400 */
+}
+
+.dark .post-container em,
+.dark .post-container i {
+  color: #c084fc;
+  /* Purple-400 */
+}
+
+.dark .post-container blockquote {
+  border-left: 4px solid #f59e0b;
+  /* Amber-500 */
+  color: #d1d5db;
+  /* Gray-300 */
+  background: rgba(245, 158, 11, 0.1);
+  padding: 0.5em 1em;
+  border-radius: 0.25rem;
+}
+
+/* Links */
+.dark .post-container a {
+  color: #60a5fa;
+  /* Blue-400 */
+  text-decoration: none;
+  border-bottom: 1px dotted #60a5fa;
+  transition: all 0.2s;
+}
+
+.dark .post-container a:hover {
+  color: #93c5fd;
+  /* Blue-300 */
+  border-bottom-style: solid;
+}
+
+/* Lists */
+.dark .post-container li::marker {
+  color: #6366f1;
+  /* Indigo-500 */
+}
+
+/* Equations - Global (Red as requested) */
+.post-container mjx-container,
+.post-container .MathJax,
+.post-container MathJax,
+.post-container .mjx-chtml {
+  color: #ef4444 !important;
+  /* Red-500 */
+  fill: #ef4444 !important;
+}
+
+/* Ensure SVG content inside MathJax also takes the color */
+.post-container mjx-container path,
+.post-container .MathJax path {
+  fill: #ef4444 !important;
+}

@@ -1,0 +1,92 @@
+/* --------------------- */
+/* CUSTOM SYNTAX COLORS */
+/* --------------------- */
+
+/* 1. KEYWORDS (assert, def, while, for, if, etc.) -> PURPLE */
+.hljs-keyword,
+.hljs-doctag,
+.hljs-meta-keyword {
+    color: #800080 !important; /* Purple */
+    font-weight: bold;
+}
+
+/* 2. FUNCTION CALLS (from JS logic) -> BLUE */
+.hljs-custom-func-call {
+    color: #00FFFF !important; /* Cyan */
+}
+
+/* 3. SYMBOLS / OPERATORS -> ORANGE */
+/* This targets the class inserted by JS for operators like =, +, *, (, ), <, > */
+.hljs-symbol-op {
+    color: #FFA500 !important; /* Orange */
+}
+
+/* 4. Literals/Numbers/Types -> GREY (for constants like 0, 1, int, float) */
+.hljs-number,
+.hljs-literal,
+.hljs-symbol {
+    color: #abb2bf !important; /* Grey */
+}
+
+/* 5. Strings (Green) */
+.hljs-string {
+    color: #008000 !important; /* Green */
+}
+
+
+/* --------------------- */
+/* CODE BLOCK STYLES (CRITICAL REVISION) */
+/* --------------------- */
+
+/* Set the default color for unclassed text (variables). 
+   We remove !important to allow the spans to override naturally. */
+pre code {
+    font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    display: block;
+    
+    /* CRITICAL: Base color is set here for variables (Red). */
+    color: #FF0000; /* RED (NO !important) */
+}
+
+/* Container Style */
+pre {
+    background-color: #282c34;
+    color: #abb2bf; /* Inherited by elements not inside the <code> block, usually ignored */
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid #3e4451;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Python Label */
+pre::before {
+    content: "Python";
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #61afef;
+    color: #282c34;
+    padding: 3px 10px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+/* Scrollbar Styling (Webkit browsers like Chrome/Safari) */
+pre::-webkit-scrollbar {
+    height: 8px;
+}
+pre::-webkit-scrollbar-thumb {
+    background: #5c6370;
+    border-radius: 4px;
+}
+pre::-webkit-scrollbar-track {
+    background: #282c34;
+}

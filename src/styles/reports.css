@@ -1,0 +1,170 @@
+/* Common CSS for all Reports 
+   Import or include this file before the specific report styles.
+*/
+
+/* Gradient Text Accent */
+.report-content h1,
+.report-content h2 {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: fit-content;
+    /* Ensure gradient doesn't span full width if not needed */
+}
+
+/* Gradient Borders for Active Cards */
+.report-content .glass-panel.active,
+.report-content .pipeline-card.active,
+.report-content .card-hover.active {
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.2) !important;
+}
+
+
+/* Base Chart Container Structure */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    /* Max-width and margins vary by report type and are defined in specific files */
+}
+
+/* Base Scrollbar Geometry */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* Colors defined in specific files */
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    /* Colors defined in specific files */
+}
+
+/* =========================================
+   THEME OVERRIDES FOR REPORTS
+   ========================================= */
+
+/* --- DARK MODE FORCE --- */
+.dark .report-content {
+    background-color: transparent !important;
+    /* Use parent container background */
+    color: #ffffff !important;
+    /* Pure White (Max Contrast) */
+}
+
+/* Force headings and text to be light in dark mode */
+.dark .report-content h1,
+.dark .report-content h2 {
+    /* Allow gradient to shine through */
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+}
+
+/* .dark .report-content h3,
+.dark .report-content h4,
+.dark .report-content h5,
+.dark .report-content h6,
+.dark .report-content p,
+.dark .report-content li,
+.dark .report-content span,
+.dark .report-content strong,
+.dark .report-content td,
+.dark .report-content th {
+    color: #ffffff !important;
+} */
+
+
+/* Cards & Panels in Dark Mode */
+.dark .glass-panel,
+.dark .pipeline-card,
+.dark .timeline-node .content {
+    background-color: rgba(30, 41, 59, 0.4) !important;
+    /* Slate 800 with opacity */
+    border-color: rgba(148, 163, 184, 0.1) !important;
+    color: #ffffff !important;
+    /* Pure White */
+}
+
+.dark .pipeline-card.active {
+    border-color: #6366f1 !important;
+    /* Indigo 500 */
+    background-color: rgba(49, 46, 129, 0.3) !important;
+    /* Indigo 900 low op */
+}
+
+/* Nodes */
+.dark .pipeline-node {
+    background-color: #1e293b !important;
+    border-color: #475569 !important;
+    color: #cbd5e1 !important;
+    /* Keep node icons slightly softer if needed, or update to f8fafc */
+}
+
+/* Global Chart Logic for Dark Mode (Best Effort) */
+/* Invert generic charts if they don't have specific handling */
+.dark .chart-container canvas,
+.dark .chart-container img {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+
+/* --- LIGHT MODE FORCE --- */
+/* Override reports that are natively "Dark" (like Local_AI_Coding) when in Light Mode */
+html:not(.dark) .report-content {
+    background-color: transparent !important;
+    color: #000000 !important;
+    /* Pure Black (Max Contrast) */
+}
+
+html:not(.dark) .report-content h1,
+html:not(.dark) .report-content h2 {
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+}
+
+html:not(.dark) .report-content h3,
+html:not(.dark) .report-content h4,
+html:not(.dark) .report-content h5,
+html:not(.dark) .report-content h6,
+html:not(.dark) .report-content p,
+html:not(.dark) .report-content li,
+html:not(.dark) .report-content span,
+html:not(.dark) .report-content strong,
+html:not(.dark) .report-content td,
+html:not(.dark) .report-content th {
+    color: #000000 !important;
+    /* Pure Black */
+}
+
+
+/* Cards & Panels in Light Mode */
+html:not(.dark) .glass-panel,
+html:not(.dark) .pipeline-card,
+html:not(.dark) .timeline-node .content {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    /* Slate 300 */
+    color: #000000 !important;
+    /* Pure Black */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+html:not(.dark) .pipeline-card.active {
+    background-color: #eef2ff !important;
+    /* Indigo 50 */
+    border-color: #4f46e5 !important;
+    /* Indigo 600 */
+}
+
+/* For natively dark charts, we might need to invert them back in light mode if they were designed for dark */

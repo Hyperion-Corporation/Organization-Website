@@ -1,0 +1,151 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0f172a;
+    color: #c7d2fe;
+    /* Indigo-200 */
+}
+
+/* Fix White Backgrounds/Nav in Dark Mode */
+.dark .bg-white,
+.dark .bg-white\/90,
+.dark nav,
+.dark .glass-panel {
+    background-color: rgba(30, 41, 59, 0.95) !important;
+    border-color: rgba(56, 189, 248, 0.2) !important;
+    color: #c7d2fe !important;
+}
+
+/* Force Headers to be Colored by Default (Native Dark) */
+h1,
+h2,
+h3,
+h4 {
+    color: #38bdf8 !important;
+    /* Sky-400 */
+}
+
+p,
+li,
+span {
+    color: #c7d2fe;
+    /* Indigo-200 (Default Text) */
+}
+
+/* Specific Overrides for Classes */
+.text-slate-100,
+.text-slate-400 {
+    color: #c7d2fe !important;
+}
+
+/* Light Mode Overrides (Restore Black/Gray) */
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4 {
+    color: #0f172a !important;
+    /* Slate-900 */
+}
+
+html:not(.dark) p,
+html:not(.dark) li,
+html:not(.dark) span {
+    color: #334155 !important;
+    /* Slate-700 */
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-tech {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Custom Scrollbar Colors */
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* Chart Container - Inherits base from reports.css */
+
+.glass-panel {
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(30, 41, 59, 0.8);
+    transform: translateY(-2px);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Module Connector Lines */
+.connector-line {
+    height: 40px;
+    width: 2px;
+    background: #475569;
+    margin: 0 auto;
+}
+
+/* Light Mode Support */
+html:not(.dark) body {
+    background-color: transparent;
+    color: #000000;
+}
+
+
+html:not(.dark) .chart-container canvas {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html:not(.dark) .glass-panel {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+html:not(.dark) .glass-panel:hover {
+    border-color: #38bdf8;
+    background: #f8fafc;
+}
+
+html:not(.dark) .connector-line {
+    background: #cbd5e1;
+}
+
+/* Fix Process Flow Heading Colors in Dark Mode (Override Global White) */
+.dark .text-indigo-400 {
+    color: #818cf8 !important;
+}
+
+.dark .text-sky-400 {
+    color: #38bdf8 !important;
+}
+
+.dark .text-amber-400 {
+    color: #fbbf24 !important;
+}
+
+.dark .text-purple-400 {
+    color: #c084fc !important;
+}
+
+.dark .text-emerald-400 {
+    color: #34d399 !important;
+}
