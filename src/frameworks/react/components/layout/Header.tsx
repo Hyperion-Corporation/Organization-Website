@@ -56,7 +56,7 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
           <div className="flex-shrink-0">
             <Link href="/" className="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2" onClick={closeMobileMenu}>
               <span className="text-blue-500">Hyperion</span>
-              <span>Corp</span>
+              <span className="text-slate-900 dark:text-white">Corp</span>
             </Link>
           </div>
 

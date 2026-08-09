@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Added branded `app/not-found.tsx` so missing routes explain dev vs production basePath instead of a bare Next 404 shell.
+- Downscaled `assets/images/knowledge_graph.png` for web delivery.
 - Local `next dev` no longer uses `basePath`, so `http://localhost:3000/` works; production still deploys under `/Organization-Website`. Replaced hardcoded `/Organization-Website/...` hrefs with `appPath()`.
 - Hardened sidebar brand mark (square 128px icon + CSS size caps + `width`/`height` attributes) so a missing stylesheet cannot expand the full wordmark across the page; document basePath URL for unstyled-shell failures.
 - Content-page heroes use the lighter logo asset with explicit dimensions; dropped the unused multi‑MB full-res logo; MediaMosaic uses the compact mark.
