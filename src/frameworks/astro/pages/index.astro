@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Astro Island</title>
+    <title>Hyperion · Astro island</title>
     <style>
       :root {
         --aurora-gradient: linear-gradient(135deg, #0f172a 0%, #312e81 100%);
@@ -39,16 +39,16 @@
   </head>
   <body>
     <div class="astro-island">
-      <h2>Astro Component</h2>
-      <p>This is a real compiled Astro page running as a micro-frontend inside Next.js!</p>
-      <button id="astro-btn">Click me to run Astro JS</button>
+      <h2>Hyperion Astro island</h2>
+      <p>Static-export-friendly Astro micro-frontend hosted inside the Hyperion Next.js site.</p>
+      <button id="astro-btn">Run island script</button>
     </div>
     
     <script>
       let count = 0;
       document.getElementById('astro-btn')?.addEventListener('click', (e) => {
         count++;
-        e.target.textContent = `Clicked ${count} times (Astro JS running!)`;
+        e.target.textContent = `Clicked ${count} times`;
       });
     </script>
   </body>

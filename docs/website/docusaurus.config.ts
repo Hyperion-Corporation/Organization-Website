@@ -104,7 +104,7 @@ const config: Config = {
       title: 'Hyperion',
       logo: {
         alt: 'Hyperion Corporation logo',
-        src: 'img/logo.svg',
+        src: 'img/hyperion-icon.png',
       },
       items: [
         { type: 'docSidebar', sidebarId: 'docsSidebar', docsPluginId: 'default', position: 'left', label: 'Docs' },

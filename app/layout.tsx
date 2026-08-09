@@ -2,19 +2,44 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import ClientLayoutWrapper from './ClientLayoutWrapper';
-import nextConfig from '../next.config.js'; // Note: This path might need fixing depending on how Next.js handles it
+import nextConfig from '../next.config.js';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const basePath = nextConfig.basePath || ''; 
+const basePath = nextConfig.basePath || '';
 
 export const metadata: Metadata = {
-  title: 'Hyperion Corporation',
+  title: {
+    default: 'Hyperion Corporation',
+    template: '%s · Hyperion Corporation',
+  },
   description:
-    'Hyperion Corporation builds software that optimizes the work of developers, artists, and designers for games, simulations, and related computer systems.',
+    'Hyperion Corporation builds software that optimizes the work of developers, artists, and designers for games, simulations, and related computer systems—including Visual Graph Programming.',
+  applicationName: 'Hyperion Corporation',
+  authors: [{ name: 'Hyperion Corporation', url: 'https://github.com/Hyperion-Corporation' }],
+  keywords: [
+    'Hyperion Corporation',
+    'Visual Graph Programming',
+    'game development tools',
+    'simulation tools',
+    'developer tools',
+  ],
+  openGraph: {
+    title: 'Hyperion Corporation',
+    description:
+      'Software that optimizes creative and engineering work for games, simulations, and related systems.',
+    url: 'https://hyperion-corporation.github.io/Organization-Website/',
+    siteName: 'Hyperion Corporation',
+    type: 'website',
+  },
   icons: {
-    icon: `${basePath}/favicon.ico`
-  }
+    icon: [
+      { url: `${basePath}/favicon.ico` },
+      { url: `${basePath}/icon-192.png`, sizes: '192x192', type: 'image/png' },
+      { url: `${basePath}/icon-512.png`, sizes: '512x512', type: 'image/png' },
+    ],
+    apple: `${basePath}/icon-192.png`,
+  },
 };
 
 export default function RootLayout({
