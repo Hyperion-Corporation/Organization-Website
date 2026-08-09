@@ -18,6 +18,7 @@ Goal: create a distinctive Hyperion product identity—deep-space surfaces, lumi
 | UI12 | Internationalization-ready content/layout primitives and locale-safe dates/numbers without requiring an immediate translation | M | DOC5 | 🔬 |
 | UI13 | Domain component taxonomy under `src/components/{audio,books,canvas,games,graph,image,maps,models,routes,video}` with shared UI primitives and no catch-all interactive folder | M | UI3, DOC5 | 🚧 |
 | UI14 | Redux store for genuinely cross-cutting experience state: theme, quality tier, active simulation and active media; local state remains local | M | UI6, UI13 | 🚧 |
+| UI15 | Documentation dashboard visual identity: observatory tokens, Docusaurus chrome, ambient backdrop, editorial hero, bento/tabs/timeline and the docs knowledge map | M | UI3–UI5 | ✅ |
 
 ## Acceptance criteria
 
@@ -48,6 +49,15 @@ Goal: create a distinctive Hyperion product identity—deep-space surfaces, lumi
 - Each domain directory owns a focused component and tests; components import shared contracts from `src/interfaces` and shared visual primitives from `src/components/ui`.
 - `src/redux` is limited to state that crosses routes or independent interactive surfaces. Simulation cursors, hover state, and form drafts stay in the owning component/controller.
 - Redux actions are discriminated and serializable; the provider is mounted once at the client shell, and persistence is browser-guarded for static export.
+
+### UI15 — documentation dashboard
+
+The Docusaurus dashboard under `docs/website/` is a second surface for the same identity, not a separate brand:
+
+- `docs/website/src/css/observatory.css` owns the tokens and the `hy-` component classes; `custom.css` maps them onto Infima and restyles navbar, sidebar, doc content, code blocks, and footer. Both Docusaurus and Storybook load the same file, so a component looks identical in either host.
+- The homepage composes an ambient particle/constellation backdrop, an editorial hero with a canvas module lattice, a bento grid, an ARIA tabs hub, the zoomable documentation knowledge map, the Astro research-orbit island, and the R0–R8 timeline.
+- The hero model is drawn with plain 2D canvas maths rather than a WebGL renderer: a documentation route must not pay a three.js download for decoration. Continuous animation stops while the document is hidden, device pixel ratio is clamped, and every effect drops to a static frame under `prefers-reduced-motion: reduce`.
+- Every visualization keeps a DOM equivalent — the knowledge map renders the same nodes as a plain list of links, and the timeline's scroll reveal is only armed once its observer attaches.
 
 ## Design QA matrix
 

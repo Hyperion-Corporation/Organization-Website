@@ -90,6 +90,7 @@ flowchart LR
 - Interactive graphics IF1–IF13 marked complete in their workstream; root `benchmark/` harness.
 - Optional self-host: `infra/{docker,nginx,ansible,terraform}/` only. Default deploy remains GitHub Pages.
 - `public/reports/` retained as a technical HTML library; product research lives under `docs/moon/{research,reports}/`.
+- Documentation dashboard (`docs/website/`) carries the Hyperion observatory identity: shared tokens, ambient backdrop, editorial hero, hub tabs, corpus knowledge map, and the R0–R8 timeline (UI15, DOC12).
 
 ### Open risks
 
@@ -213,6 +214,7 @@ React host; Vue/Astro/Aurelia islands; GraphQL fixtures; optional WASM with pure
 
 | Date | Revision | Change |
 | --- | --- | --- |
+| 2026-08-09 | R5.1 | Documentation dashboard adopts the Hyperion visual identity (UI15, DOC12); Astro island restyled and its build hazard recorded. |
 | 2026-08-09 | R5 | Hyperion org-site vision; VGP-centered timeline; research anchors updated to Visual Development Tool + Game Dev Tools market; infra keepers only. |
 | 2026-08-09 | R4 | Multi-framework platform workstream (MFP1–MFP16) and gate G6. |
 | 2026-08-08 | R3 | Implementation playbook and review gates. |

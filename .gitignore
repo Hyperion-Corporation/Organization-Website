@@ -75,3 +75,6 @@ tmp
 benchmark/results
 .vscode
 /**/gatsby-types.d.ts
+
+# Guide documents staged for the Docusaurus "guides" plugin (docs/website/scripts/sync-guides.mjs)
+.guides-content/

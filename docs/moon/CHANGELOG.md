@@ -7,8 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Hyperion observatory identity for the documentation dashboard (UI15, DOC12): `docs/website/src/css/observatory.css` holds the tokens and `hy-` component classes, and `custom.css` maps them onto Infima and restyles the navbar, sidebar, doc content, code blocks, and footer. Lexend/Inter load from the site config with `display=swap`.
+- Composed dashboard homepage: ambient particle/constellation backdrop, editorial hero with a canvas module lattice, bento navigation, ARIA tabs documentation hub, a zoomable/pannable knowledge map of the documentation corpus, the Astro research-orbit island, and the R0–R8 phase timeline.
+- Storybook stories with hand-written prop tables for every new dashboard component, and the Storybook Tailwind entry now loads the same design system stylesheet as Docusaurus.
+
+### Changed
+
+- Dashboard visualizations follow the platform's motion and budget policy: the hero model is plain 2D canvas maths instead of a WebGL renderer, continuous animation stops while the tab is hidden, device pixel ratio is clamped, and reduced motion renders a static frame. The knowledge map and timeline keep DOM equivalents (a plain link list; a reveal that is only armed once its observer attaches).
+- Astro research-orbit island restyled to the observatory palette with a transparent background and reduced-motion-aware orbit rings; the host wrapper now points at the island's directory URL, since `docusaurus serve` rewrites an explicit `/index.html` into a route that falls through to the SPA.
+
 ### Fixed
 
+- Docs-site pages rendered their own compiled MDX module source as prose (`export const frontMatter = {} …`) instead of the document. The "guides" docs-plugin instance pointed at the repository root, and Docusaurus registers one MDX webpack rule per plugin instance keyed on its content directory — so that rule also matched everything under `docs/`, which the "default" instance owns, and each page went through the MDX loader twice. `npm run sync:guides` (`docs/website/scripts/sync-guides.mjs`) now stages the three guide documents into a `.guides-content/` directory at the repository root, keeping the two instances' content trees disjoint; `prestart`/`prebuild` run it, and "Edit this page" maps each staged file back to its real source.
 - Added branded `app/not-found.tsx` so missing routes explain dev vs production basePath instead of a bare Next 404 shell.
 - Downscaled `assets/images/knowledge_graph.png` for web delivery.
 - Local `next dev` no longer uses `basePath`, so `http://localhost:3000/` works; production still deploys under `/Organization-Website`. Replaced hardcoded `/Organization-Website/...` hrefs with `appPath()`.

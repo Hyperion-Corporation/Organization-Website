@@ -6,7 +6,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Repository Guides',
       collapsed: false,
-      items: ['README', 'git/CONTRIBUTING', '.agent/AGENTS'],
+      items: ['README', 'CONTRIBUTING', 'AGENTS'],
     },
   ],
 };
