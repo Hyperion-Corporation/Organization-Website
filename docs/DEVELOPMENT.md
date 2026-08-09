@@ -15,7 +15,8 @@ npm install
 npm run dev
 ```
 
-The dev server runs at `http://localhost:3000/Organization-Website` (the `basePath` matches the GitHub Pages deployment path).
+**Open:** [`http://localhost:3000/Organization-Website/`](http://localhost:3000/Organization-Website/)  
+(The `basePath` is required. Opening `/` alone loads HTML without CSS under `/Organization-Website/_next/...`.)
 
 ## Notebooks
 

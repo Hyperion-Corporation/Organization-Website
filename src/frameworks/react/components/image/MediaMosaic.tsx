@@ -1,13 +1,14 @@
 import knowledgeGraph from '@/assets/images/knowledge_graph.png';
-import orgLogo from '@/assets/icons/Hyperion-Corp-small.png';
+import orgLogo from '@/assets/icons/Hyperion-mark.png';
 
 const media = [
-  { src: knowledgeGraph.src, alt: 'Knowledge graph visualization', label: 'Graph structure' },
-  { src: orgLogo.src, alt: 'Hyperion Corporation', label: 'Hyperion' },
+  { src: knowledgeGraph.src, alt: 'Knowledge graph visualization', label: 'Graph structure', fit: 'cover' as const },
+  { src: orgLogo.src, alt: 'Hyperion Corporation', label: 'Hyperion', fit: 'contain' as const },
   {
     src: knowledgeGraph.src,
     alt: 'Metrics and relationships in a knowledge graph',
     label: 'Metrics',
+    fit: 'cover' as const,
   },
 ];
 
@@ -21,12 +22,16 @@ export default function MediaMosaic() {
         {media.map((item, index) => (
           <figure
             key={`${item.label}-${index}`}
-            className="group relative aspect-square overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800"
+            className="group relative aspect-square overflow-hidden rounded-xl bg-slate-900/80 dark:bg-slate-800"
           >
             <img
               src={item.src}
               alt={item.alt}
-              className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+              width={400}
+              height={400}
+              className={`h-full w-full transition duration-500 group-hover:scale-110 ${
+                item.fit === 'contain' ? 'object-contain p-4' : 'object-cover'
+              }`}
             />
             <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 p-2 text-[.65rem] font-bold text-white">
               {item.label}

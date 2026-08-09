@@ -2,16 +2,18 @@ import React from 'react';
 import { Briefcase, Target, Heart, Building2, Network } from 'lucide-react';
 import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
 import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
-import orgLogo from '@/assets/icons/Hyperion-Corp.png';
+import orgLogo from '@/assets/icons/Hyperion-Corp-small.png';
 
 export default function AboutPage() {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-100 dark:bg-slate-800 flex items-center justify-center p-8">
+        <div className="relative w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 flex items-center justify-center p-8">
           <img
             src={orgLogo.src}
             alt="Hyperion Corporation logo"
+            width={720}
+            height={400}
             className="object-contain w-full h-full max-h-64"
           />
         </div>

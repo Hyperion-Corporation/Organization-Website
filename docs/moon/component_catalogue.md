@@ -125,7 +125,7 @@ This document serves as the registry for all interactive components across the r
 
 ### `MediaMosaic` (`src/frameworks/react/components/image/MediaMosaic.tsx`)
 *   **Input Contract**: None (built-in Hyperion / knowledge-graph references).
-*   **Data Source**: `assets/images/knowledge_graph.png` and `assets/icons/Hyperion-Corp-small.png`.
+*   **Data Source**: `assets/images/knowledge_graph.png` and `assets/icons/Hyperion-mark.png`.
 *   **Accessibility Equivalent**: `alt` tags and a linear reading order for screen readers.
 *   **Loading Behavior**: Immediate img decode.
 *   **Resource Ownership**: None.

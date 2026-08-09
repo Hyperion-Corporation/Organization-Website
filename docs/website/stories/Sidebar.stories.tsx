@@ -2,9 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import Sidebar from '../../../src/frameworks/react/components/layout/Sidebar';
 
-// Sidebar imports next/image and a static asset (@/assets/icons/Hyperion-Corp-small.png)
-// — both aliased to shims in .storybook/main.ts (the asset shim is a small
-// inline placeholder avatar, not the real photo).
+// Sidebar imports the Hyperion mark (@/assets/icons/Hyperion-mark.png),
+// aliased to a shim in .storybook/main.ts.
 const meta = {
     title: 'Layout/Sidebar',
     component: Sidebar,

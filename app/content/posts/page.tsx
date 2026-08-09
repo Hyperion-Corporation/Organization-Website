@@ -55,8 +55,14 @@ export default async function PostsPage() {
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-md aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-100 dark:bg-slate-800 flex items-center justify-center p-6">
-          <img src={pageImage.src} alt="Hyperion Corporation" className="object-contain w-full h-full max-h-40" />
+        <div className="relative w-full max-w-md aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 flex items-center justify-center p-6">
+          <img
+            src={pageImage.src}
+            alt="Hyperion Corporation"
+            width={640}
+            height={360}
+            className="object-contain w-full h-full max-h-40"
+          />
         </div>
       </div>
 

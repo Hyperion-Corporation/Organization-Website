@@ -4,7 +4,7 @@ import { Network, Code, Layers, Gamepad2, FileText } from 'lucide-react';
 import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
 import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
 import Badge from '@/src/frameworks/react/components/ui/Badge';
-import pageImage from '@/assets/icons/Hyperion-Corp.png';
+import pageImage from '@/assets/icons/Hyperion-Corp-small.png';
 
 const linkStyles =
   'inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors';
@@ -13,10 +13,12 @@ export default function ProjectsPage() {
   return (
     <div className="space-y-10 animate-in fade-in duration-500 max-w-4xl mx-auto pb-16">
       <div className="flex justify-center mb-8">
-        <div className="relative w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl border border-white/20 dark:border-slate-700/50 bg-slate-100 dark:bg-slate-800 flex items-center justify-center p-6">
+        <div className="relative w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl border border-white/20 dark:border-slate-700/50 bg-slate-900 flex items-center justify-center p-6">
           <img
             src={pageImage.src}
             alt="Hyperion Corporation"
+            width={960}
+            height={411}
             className="object-contain w-full h-full max-h-48"
           />
         </div>
