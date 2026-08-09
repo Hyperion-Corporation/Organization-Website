@@ -40,19 +40,19 @@ This document serves as the registry for all interactive components across the r
 *   **Loading Behavior**: Dynamically checks user preferences before rendering the Canvas.
 *   **Resource Ownership**: Owns an HTML `<canvas>` and a `requestAnimationFrame` loop.
 
-### `FleetRouteCanvas` (`src/frameworks/react/components/canvas/FleetRouteCanvas.tsx`)
-*   **Input Contract**: `routeData` array of vehicle paths.
-*   **Data Source**: Computed optimization outputs from the backend/mock data.
-*   **Accessibility Equivalent**: Semantic data table of route coordinates and vehicle assignments.
-*   **Loading Behavior**: Loaded via Intersection Observer when scrolled into view.
-*   **Resource Ownership**: Owns a 2D `<canvas>` context for high-performance rendering.
+### `StructureCanvas` (`src/frameworks/react/components/canvas/StructureCanvas.tsx`)
+*   **Input Contract**: None (illustrative polylines).
+*   **Data Source**: Deterministic fixture paths representing module↔asset relationships.
+*   **Accessibility Equivalent**: Figcaption describing graph edges; pair with a table in full VGP UI.
+*   **Loading Behavior**: Client canvas draw on mount/resize.
+*   **Resource Ownership**: Owns a 2D `<canvas>` context.
 
 ---
 
 ## 4. Graph Domain
 
 ### `ResearchConstellation` (`src/frameworks/react/components/graph/ResearchConstellation.tsx`)
-*   **Input Contract**: `nodes` and `links` arrays.
+*   **Input Contract**: Graph from `RESEARCH_GRAPH` (Hyperion product domains).
 *   **Data Source**: `src/constants/researchGraph.ts`.
 *   **Accessibility Equivalent**: Keyboard-roving list of nodes with ARIA live announcements for selection. 
 *   **Loading Behavior**: Immediately rendered SVG elements.
@@ -62,9 +62,16 @@ This document serves as the registry for all interactive components across the r
 
 ## 5. Maps Domain
 
+### `StructureMap` (`src/frameworks/react/components/maps/StructureMap.tsx`)
+*   **Input Contract**: None (illustrative nodes).
+*   **Data Source**: Static fixtures for core modules, assets, storyboards, tooling.
+*   **Accessibility Equivalent**: Selected-node live region; full product would use a data table.
+*   **Loading Behavior**: Immediate SVG + button map.
+*   **Resource Ownership**: None beyond DOM/SVG.
+
 ### `GeospatialRenderer` (`src/frameworks/react/components/maps/GeospatialRenderer.tsx`)
 *   **Input Contract**: `nodes` (features), `links` (edges), and a threshold limit.
-*   **Data Source**: Geographic or structure datasets (fixtures; illustrative routing demos).
+*   **Data Source**: Geographic or structure datasets (fixtures).
 *   **Accessibility Equivalent**: Data table summary of locations and distances.
 *   **Loading Behavior**: Progressively enhanced based on node count (see ADR 0003).
 *   **Resource Ownership**: Owns a `<canvas>` for datasets > 500 points, or purely SVG for smaller datasets.

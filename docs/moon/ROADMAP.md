@@ -93,7 +93,7 @@ flowchart LR
 
 ### Open risks
 
-- Homepage demos retain template component filenames (`FleetRoute*`) but visitor copy is VGP-oriented; further rename/cleanup is optional.
+- Homepage structure demos renamed to `StructureMap` / `StructureCanvas` with VGP-oriented copy; deeper VGP fixtures still planned (RR2).
 - Vue 3 dual-runtime cost and Next App Router loader conflicts unproven.
 - GraphQL/Apollo must stay static-export safe.
 - WASM OOM / main-thread jank without workers, memory gates, and pure-TS fallbacks.

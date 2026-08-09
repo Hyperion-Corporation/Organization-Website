@@ -9,10 +9,10 @@ import ResearchConstellation from '../src/frameworks/react/components/graph/Rese
 import ConvergenceSimulation from '../src/frameworks/react/components/routes/ConvergenceSimulation';
 import AudioSpectrum from '../src/frameworks/react/components/audio/AudioSpectrum';
 import ResearchShelf from '../src/frameworks/react/components/books/ResearchShelf';
-import FleetRouteCanvas from '../src/frameworks/react/components/canvas/FleetRouteCanvas';
+import StructureCanvas from '../src/frameworks/react/components/canvas/StructureCanvas';
 import PrototypeCard from '../src/frameworks/react/components/games/PrototypeCard';
 import MediaMosaic from '../src/frameworks/react/components/image/MediaMosaic';
-import FleetRouteMap from '../src/frameworks/react/components/maps/FleetRouteMap';
+import StructureMap from '../src/frameworks/react/components/maps/StructureMap';
 import MediaReel from '../src/frameworks/react/components/video/MediaReel';
 import { StarfieldWrapper } from '../src/frameworks/astro/components/StarfieldWrapper';
 import { AureliaWrapper } from '../src/frameworks/aurelia/components/AureliaWrapper';
@@ -159,8 +159,8 @@ export default function Home() {
           </h2>
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
-          <FleetRouteMap />
-          <FleetRouteCanvas />
+          <StructureMap />
+          <StructureCanvas />
           <AudioSpectrum />
           <PrototypeCard />
           <ResearchShelf />

@@ -10,7 +10,7 @@ const nodes = [
   { id: 'tools', label: 'Tooling', x: 65, y: 78 },
 ];
 
-export default function FleetRouteMap() {
+export default function StructureMap() {
   const [selected, setSelected] = useState('core');
   const current = nodes.find((node) => node.id === selected) ?? nodes[0];
 

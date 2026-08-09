@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { setActiveMedia, setActiveSimulation, setExperienceQuality, setTheme } from '../../../src/redux/actions/appActions';
-import { appReducer } from '../../../src/redux/reducers/appReducer';
-import { initialAppState } from '../../../src/redux/state/appState';
+import { setActiveMedia, setActiveSimulation, setExperienceQuality, setTheme } from '../../../src/libraries/redux/actions/appActions';
+import { appReducer } from '../../../src/libraries/redux/reducers/appReducer';
+import { initialAppState } from '../../../src/libraries/redux/state/appState';
 import { ExperienceQuality } from '../../../src/enums/ExperienceQuality';
 
 describe('appReducer', () => {

@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react';
  * Canvas sketch of relationship paths between modules and assets.
  * Filename retained for import stability; copy is VGP-oriented.
  */
-export default function FleetRouteCanvas() {
+export default function StructureCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

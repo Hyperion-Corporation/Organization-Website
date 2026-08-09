@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import ConvergenceSimulation from '../../../../src/frameworks/react/components/routes/ConvergenceSimulation';
-import ReduxProvider from '../../../../src/redux/store/ReduxProvider';
+import ReduxProvider from '../../../../src/libraries/redux/store/ReduxProvider';
 
 describe('ConvergenceSimulation', () => {
   it('exposes the initial metrics as accessible text', () => {

@@ -71,7 +71,7 @@ gantt
 
 | Risk | Decision |
 | --- | --- |
-| Template fleet/lab demos dilute Hyperion | Prefer VGP language; remove or relabel legacy demos |
+| Template demos dilute Hyperion | Prefer VGP language; StructureMap/StructureCanvas renamed; continue RR2 fixtures |
 | Market report read as Hyperion metrics | Always attribute third-party research |
 | Graph overload | Progressive disclosure; table equivalent first |
 
