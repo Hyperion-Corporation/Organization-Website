@@ -13,7 +13,7 @@ Delete `node_modules` and re-run `npm ci` (not `npm install`) to get the exact l
 
 ## Cypress can't reach the site
 
-`test/cypress/cypress.config.js` points `baseUrl` at `http://localhost:3000/Organization-Website` — the `basePath` is part of the URL. Make sure `npm run dev`, or `npm start` after `npm run build`, is actually running before `npm run cypress:run`/`npm run cypress:smoke`. Note `npm start` alone (serving `out/` with `serve`) won't respond under `/Organization-Website` unless `npm run build` has run first — its `postbuild` script creates a self-referencing `out/Organization-Website` symlink so the static export answers at that path locally, matching how GitHub Pages serves it.
+`test/cypress/cypress.config.js` uses `http://localhost:3000` for local dev and `http://localhost:3000/Organization-Website` when `CI=true` (production export). Start `npm run dev` for local Cypress, or `npm run build && npm start` for CI-like runs. The production export only answers under `/Organization-Website` (see `postbuild` symlink).
 
 ## Cypress reports "no spec files were found"
 

@@ -71,4 +71,4 @@ Content routes live under `app/content/<section>/`. `notebooks/` is an optional 
 
 - The site is a fully static export (`output: 'export'`) — no server-side code, API routes, or runtime environment variables beyond the build-time `NEXT_PUBLIC_BASE_PATH`.
 - `notebooks/` is exploratory/research tooling, not covered by the main CI build; it has its own lint/test story via `uv`.
-- GitHub Pages project site base path is `/Organization-Website` (repository name). A rename requires updating `basePath`, `NEXT_PUBLIC_BASE_PATH`, `postbuild` symlink, Cypress `baseUrl`, and CI wait-on URLs.
+- Production `basePath` is `/Organization-Website` (GitHub Pages project site). Local `next dev` uses an empty basePath so `http://localhost:3000/` works. Override with `NEXT_PUBLIC_BASE_PATH`. A rename requires updating `stack/next/next.config.js`, `postbuild` symlink, Astro `base`, Cypress/CI wait-on URLs, and `appPath()` consumers.

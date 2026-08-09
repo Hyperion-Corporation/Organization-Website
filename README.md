@@ -99,7 +99,7 @@ npm install
 npm run dev
 ```
 
-The dev server runs at `http://localhost:3000/Organization-Website` (the `basePath` matches the GitHub Pages deployment path).
+The dev server runs at `http://localhost:3000/` (no `basePath` in development). Production builds use `basePath: /Organization-Website` for GitHub Pages.
 
 ### Building
 
@@ -174,14 +174,14 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000/Organization-Website/`. The `/Organization-Website` base path mirrors the public deployment URL. For the production export:
+Open `http://localhost:3000/` for local development. For a production-like static export (with `/Organization-Website` base path):
 
 ```bash
 npm run build
 npm start
 ```
 
-Open `http://localhost:3000/Organization-Website/`. The `postbuild` script creates `out/Organization-Website -> .` so local static serving reproduces GitHub Pages path resolution.
+After `npm run build && npm start`, open `http://localhost:3000/Organization-Website/`. The `postbuild` script creates `out/Organization-Website -> .` so static serving matches GitHub Pages.
 
 ### Documentation routes
 
