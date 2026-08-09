@@ -144,9 +144,9 @@ export function AudioExhibit() {
   return (
     <div className="flex flex-col items-center gap-6 p-6 border border-gray-800 rounded-xl bg-gray-950 text-white shadow-2xl max-w-3xl mx-auto">
       <div className="text-center">
-        <h2 className="text-2xl font-bold tracking-tight mb-2">Audio Reactive Signal</h2>
+        <h2 className="text-2xl font-bold tracking-tight mb-2">Creative pipeline audio</h2>
         <p className="text-gray-400 text-sm max-w-md mx-auto">
-          Visualize audio frequencies using the Web Audio API. Upload local media or try the synthetic non-audio demo.
+          Visualize frequencies with the Web Audio API—useful for media-aware production tools. Upload local media or try the synthetic demo.
         </p>
       </div>
 

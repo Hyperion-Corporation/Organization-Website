@@ -32,7 +32,7 @@ This document describes the executable architecture of `Organization-Website`, H
 2. Make research claims inspectable through citations, units, assumptions, provenance, and data equivalents.
 3. Keep route code, domain components, simulation engines, and cross-route state independently testable.
 4. Ship a small static export first, then hydrate optional visual islands after intent or visibility.
-5. Keep experiments relevant to waste-fleet optimization, machine learning, game development, media, and technical/political history.
+5. Keep experiments relevant to Hyperion’s mission: creative/engineering work tools, Visual Graph Programming, games, simulations, and related systems.
 
 ### Non-goals
 

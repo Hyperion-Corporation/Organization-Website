@@ -29,6 +29,6 @@ Preserve the static site unless representative educational instances cannot fini
 
 ## R2 research integration
 
-RR2 supplies deterministic fleet playback; RR3 adds baseline/heuristic/best-known comparisons, Pareto frontiers, capacity and time-window toggles, and provenance. Google OR-Tools remains a reference implementation, not a promise of optimality: the UI must show bounds/gaps when available and say “best known” otherwise. RR10 moves long work to a cancellable worker and exports a replay.
+RR2 supplies deterministic structure/relationship playback for VGP-style graphs; RR3 adds baseline/heuristic/best-known comparisons, frontiers, toggles, and provenance. Solver libraries (e.g. OR-Tools) remain reference implementations, not promises of optimality: the UI must show bounds/gaps when available and say “best known” otherwise. RR10 moves long work to a cancellable worker and exports a replay.
 
 **Acceptance:** feasible and infeasible fixtures, timeout/cancellation tests, a downloadable metrics table, URL-shareable seeded scenarios, and a measured main-thread budget.

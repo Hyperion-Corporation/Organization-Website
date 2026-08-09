@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Reframed homepage structure/metrics demos (map, canvas, audio pulse, convergence, hero model) to Visual Graph Programming language; updated README route table, ARCHITECTURE goals, glossary, and docs lore stories.
 - Rebranded the site from the personal `github-pages` template to **Hyperion Corporation** / **Organization-Website** (identity, `basePath`, product copy, agent docs, CI paths).
 - Product framing now centers software that optimizes work for developers, artists, and designers (games, simulations, related systems), with **Visual Graph Programming (VGP)** as the flagship direction.
 - Flattened optional self-host layout to `infra/{docker,nginx,ansible,terraform}/` only; removed cloud, k8s, helm, private experiments, and Envoy.

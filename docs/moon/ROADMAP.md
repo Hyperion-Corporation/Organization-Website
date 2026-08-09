@@ -93,7 +93,7 @@ flowchart LR
 
 ### Open risks
 
-- Some homepage demos still use fleet/audio/lab metaphors from the template; reframe or replace with VGP-oriented stories.
+- Homepage demos retain template component filenames (`FleetRoute*`) but visitor copy is VGP-oriented; further rename/cleanup is optional.
 - Vue 3 dual-runtime cost and Next App Router loader conflicts unproven.
 - GraphQL/Apollo must stay static-export safe.
 - WASM OOM / main-thread jank without workers, memory gates, and pure-TS fallbacks.
@@ -177,7 +177,7 @@ React host; Vue/Astro/Aurelia islands; GraphQL fixtures; optional WASM with pure
 | --- | --- | --- |
 | X1 | Visualization semantics drift | typed scales/palettes/legend contract |
 | X2 | Overclaiming product readiness | label prototypes; separate market research |
-| X3 | Template demos confuse Hyperion story | reframe or remove fleet/lab copy |
+| X3 | Template demos confuse Hyperion story | reframe visitor copy to VGP; optional file renames later |
 | X4 | WebGL context/VRAM growth | disposal, visibility suspension, reduced tier |
 | X5 | Main-thread jank | workers, event-driven SVG, progressive chunks |
 | X6 | Accessibility gap | DOM summary/table, keyboard path |

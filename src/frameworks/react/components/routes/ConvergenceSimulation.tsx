@@ -39,7 +39,7 @@ export default function ConvergenceSimulation() {
   return (
     <section className="simulation-panel" aria-labelledby="simulation-title">
       <div className="simulation-header">
-        <div><p className="eyebrow">Interactive simulation · deterministic demo</p><h2 id="simulation-title">Watch an optimizer converge.</h2><p>Compare the improving incumbent solution with its mathematical lower bound.</p></div>
+        <div><p className="eyebrow">Interactive simulation · deterministic demo</p><h2 id="simulation-title">Watch structure metrics refine.</h2><p>Illustrative convergence of a search process—incumbent quality versus a lower bound—as a stand-in for how tooling can surface progress on hard structure problems.</p></div>
         <label>Search strategy<select value={scenarioId} onChange={(event) => setScenarioId(event.target.value)}>{SIMULATION_SCENARIOS.map((scenario) => <option key={scenario.id} value={scenario.id}>{scenario.name}</option>)}</select></label>
       </div>
       <div className="simulation-chart">

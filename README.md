@@ -187,14 +187,14 @@ Open `http://localhost:3000/Organization-Website/`. The `postbuild` script creat
 
 | URL | Purpose | Source |
 | --- | --- | --- |
-| `/content/posts/` | Short technical notes | `app/content/posts/` |
-| `/content/reports/` | Long-form research reports | `app/content/reports/` |
-| `/content/projects/` | Project case studies | `app/content/projects/` |
-| `/content/tools/` | Tool and workflow notes | `app/content/tools/` |
-| `/content/media/` | Anime, film, and television notes | `app/content/media/` |
-| `/content/about/` | Biography and contact context | `app/content/about/` |
-| `/content/other/` | Miscellaneous essays | `app/content/other/` |
-| `/` | Interactive research observatory | `app/page.tsx` |
+| `/content/posts/` | Organization updates | `app/content/posts/` |
+| `/content/reports/` | Long-form technical reports | `app/content/reports/` |
+| `/content/projects/` | Products and initiatives (e.g. VGP) | `app/content/projects/` |
+| `/content/tools/` | Stack and workflow notes | `app/content/tools/` |
+| `/content/media/` | Domain media and references | `app/content/media/` |
+| `/content/about/` | Hyperion mission and presence | `app/content/about/` |
+| `/content/other/` | Supplementary explorers | `app/content/other/` |
+| `/` | Hyperion product surface + demos | `app/page.tsx` |
 
 ### Authoring a report
 

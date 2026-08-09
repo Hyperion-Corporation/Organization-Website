@@ -63,7 +63,7 @@ Goal: make Hyperion’s product ideas tangible through direct manipulation—esp
 
 ## R2 research-derived backlog
 
-The research report turns the catalogue into evidence-led packages: RR2 fleet playback, RR3 solver/Pareto comparison, RR4 ML replay/model cards, RR5 audio explanation, RR6 media/reading timeline, RR7 game prototype, RR8 360 room, RR9 optional WebGPU aggregation, and RR10 worker replay protocol. Each package must ship a semantic/list fallback, provenance, reduced-motion mode, and performance measurements before it can be marked Done.
+Product research turns the catalogue into evidence-led packages: RR2 structure/relationship explorer, RR3 metrics comparison, RR4 optional ML replay/model cards, RR5 creative pipeline signals, RR6 market reading room, RR7 games/sims narrative, RR8 360 room, RR9 optional WebGPU aggregation, and RR10 worker replay protocol. Each package must ship a semantic/list fallback, provenance, reduced-motion mode, and performance measurements before it can be marked Done.
 
 ## Document history
 

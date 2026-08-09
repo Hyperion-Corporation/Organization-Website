@@ -166,7 +166,7 @@ export default function HeroModel() {
       {supported ? <canvas
         ref={canvasRef}
         tabIndex={0}
-        aria-label="Interactive faceted research model. Drag to inspect or use the arrow keys to rotate."
+        aria-label="Interactive faceted product model. Drag to inspect or use the arrow keys to rotate."
         onPointerDown={(event) => {
           dragRef.current = { x: event.clientX, y: event.clientY };
           event.currentTarget.setPointerCapture(event.pointerId);
@@ -182,8 +182,8 @@ export default function HeroModel() {
           event.currentTarget.releasePointerCapture(event.pointerId);
         }}
         onPointerCancel={() => { dragRef.current = null; }}
-      /> : <div className="hero-model__fallback" role="img" aria-label="Faceted research model static preview">◇</div>}
-      <div className="hero-model__label"><span /> Live research object</div>
+      /> : <div className="hero-model__fallback" role="img" aria-label="Faceted product model static preview">◇</div>}
+      <div className="hero-model__label"><span /> Live product object</div>
       <div className="hero-model__controls">
         <button type="button" onClick={() => setPaused((value) => !value)} aria-label={paused ? 'Resume model rotation' : 'Pause model rotation'}>{paused ? <Play size={15} /> : <Pause size={15} />}</button>
         <button type="button" onClick={reset} aria-label="Reset model rotation"><RotateCcw size={15} /></button>
