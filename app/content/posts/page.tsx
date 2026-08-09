@@ -14,10 +14,7 @@ interface PostData {
   excerpt: string;
 }
 
-/**
- * Placeholder org updates. Static HTML under public/posts/ still reflects the prior
- * personal-template articles until those assets are replaced or removed.
- */
+/** Organization updates; HTML bodies live under public/posts/. */
 const POSTS_DATA: PostData[] = [
   {
     slug: 'Notes_on_RL_an_Introduction',

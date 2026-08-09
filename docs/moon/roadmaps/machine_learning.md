@@ -1,6 +1,6 @@
 # Client-side Machine Learning Roadmap
 
-Goal: demonstrate meaningful ML expertise through small, private, reproducible browser experiments—not through a heavyweight model that obscures the portfolio.
+Goal: demonstrate meaningful ML expertise through small, private, reproducible browser experiments—not through a heavyweight model that obscures the product story.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |

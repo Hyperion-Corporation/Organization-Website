@@ -2,7 +2,7 @@
 
 **IDs:** MFP1–MFP16 · **Status:** 🔄 Partial foundation · **Evidence base:** [`Next.js Multi-Framework Architecture.md`](../research/Next.js%20Multi-Framework%20Architecture.md), [`React Hosting Vue Micro-Frontends.md`](../research/React%20Hosting%20Vue%20Micro-Frontends.md), [`Advanced Web Portfolio Architecture Research.md`](../research/Advanced%20Web%20Portfolio%20Architecture%20Research.md), [`Global Interactive Portfolio Website Architecture.md`](../research/Global%20Interactive%20Portfolio%20Website%20Architecture.md)
 
-Goal: make the static portfolio a **polyglot island host** where React owns the Next.js shell, while Vue 3, Astro, and Aurelia 2 can present specialized UI islands that share **framework-neutral data contracts**, a **single GraphQL/Apollo cache**, and **optional WASM workers**—without breaking static export, accessibility, or route budgets.
+Goal: make the static organization site a **polyglot island host** where React owns the Next.js shell, while Vue 3, Astro, and Aurelia 2 can present specialized UI islands that share **framework-neutral data contracts**, a **single GraphQL/Apollo cache**, and **optional WASM workers**—without breaking static export, accessibility, or route budgets.
 
 ## Current codebase baseline (2026-08-09)
 
@@ -29,7 +29,7 @@ Goal: make the static portfolio a **polyglot island host** where React owns the 
 | MFP5 | Astro island promotion: replace iframe-only path with documented build of `astro-island` assets + typed React host, or Container API evaluation under static export | M | MFP1, MFP3 | 🔄 |
 | MFP6 | Aurelia island hardening: DI registration of shared services, unmount guarantees, lazy chunk, same simulation contract as React (extends SIM4/SIM9) | M | MFP3, SIM2 | 🔄 |
 | MFP7 | Cross-framework visual parity kit: one visitor question rendered in React + second framework with identical a11y summary/table | M | MFP4 or MFP6, IF3 | ⬜ |
-| MFP8 | GraphQL schema v1 for portfolio content graph (posts, reports, projects, media nodes, edges) replacing the `_empty` placeholder | M | DOC/UI data model | ⬜ |
+| MFP8 | GraphQL schema v1 for organization content graph (posts, reports, projects, media nodes, edges) replacing the `_empty` placeholder | M | DOC/UI data model | ⬜ |
 | MFP9 | Apollo Client singleton module (framework-agnostic): InMemoryCache policies, type policies, no React imports in core | M | MFP8 | ⬜ |
 | MFP10 | Framework Apollo adapters: React (`@apollo/client` hooks), Vue (vue-apollo or composition helper), Aurelia DI registration, Astro client script consumer | L | MFP9, MFP4–MFP6 | ⬜ |
 | MFP11 | Static-export GraphQL strategy: build-time fixture generation and/or MSW mock server for tests; document “no live endpoint” default and optional backend fork | M | MFP8, MFP9, IT2 | ⬜ |
@@ -111,7 +111,7 @@ src/simulations/  # unchanged ownership; WASM worker is an adapter (MFP13)
 type Query { _empty: String }
 ```
 
-with a **static portfolio content graph** (ContentItem, Publication, Project, MediaAsset, Topic, edges). Prefer build-time generation from Markdown front matter over a live server.
+with a **static organization site content graph** (ContentItem, Publication, Project, MediaAsset, Topic, edges). Prefer build-time generation from Markdown front matter over a live server.
 
 **Client (MFP9–MFP10).** `createApolloClient()` lives under `src/libraries/apollo` with **zero React imports**. React uses `ApolloProvider` only at island/host boundaries that need it. Vue/Aurelia adapt via thin wrappers that call the same cache.
 

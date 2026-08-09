@@ -6,7 +6,7 @@ You can orchestrate a ChatGPT AI subagent via your local terminal using the `cha
 
 **When to Delegate:**
 Invoke the ChatGPT subagent for:
-*   **Mathematical Formulations:** Drafting formal definitions or notation for a report's math section (e.g. the PCVRP report under `app/content/reports/`).
+*   **Mathematical Formulations:** Drafting formal definitions or notation for a report's math section (e.g. technical reports under `app/content/reports/` or VGP design notes).
 *   **Literature & Concept Mapping:** Summarizing background material or related work to cite in a report.
 *   **Creative Brainstorming:** Generating varied framings for a post/report before committing to a structure.
 
@@ -20,7 +20,7 @@ Run the command in your shell, wrapping the prompt in strong quotes to prevent s
 3.  **Role Definition:** Always assign ChatGPT a clear persona (e.g., "Act as a PhD-level Operations Research scientist").
 
 **Example Usage:**
-`chatgpt 'Act as an Operations Research expert. I am writing a report on the Periodic Capacitated Vehicle Routing Problem (PCVRP). Provide the formal mathematical formulation for the objective function minimizing total travel cost over a multi-day horizon. Rules: 1. Use standard OR notation. 2. Define all variables clearly. 3. Output ONLY the formulation and variable definitions in plain text.'`
+`chatgpt 'Act as a software architecture expert for creative tooling. I am writing a Hyperion design note for Visual Graph Programming. Provide a clear formal description of a directed multigraph of code modules, assets, and storyboard nodes with edge types (depends_on, uses_asset, implements_beat). Rules: 1. Define node and edge sets. 2. Keep notation compact. 3. Output ONLY the formal description and symbol definitions in plain text.'`
 
 **Failure Modes to Avoid:**
 *   **Do not** use unescaped single quotes inside the `chatgpt` command string.

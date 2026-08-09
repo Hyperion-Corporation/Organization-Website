@@ -9,7 +9,7 @@ describe('Navigation', () => {
 
         // Verify we are on the correct page
         cy.url().should('include', '/content/other');
-        cy.contains('Other Projects').should('be.visible');
+        cy.contains('Other Resources').should('be.visible');
     });
 
     it('should display the Math Curriculum card on the Other page', () => {

@@ -361,4 +361,4 @@ Copy this template into an issue before implementation:
 
 - 2026-08-09 — R4: multi-framework platform (React/Vue/Astro/Aurelia + GraphQL/Apollo + WASM) workstream and gate G6.
 - 2026-08-08 — R2: added research-derived RR1–RR10 index, phase gates, risk register, Image-Toolkit-style timeline/status conventions, and explicit current-state accounting.
-- 2026-08-08 — R1: established the immersive portfolio vision and initial feature workstreams.
+- 2026-08-08 — R1: established the immersive organization site vision and initial feature workstreams.

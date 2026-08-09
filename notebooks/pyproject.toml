@@ -1,7 +1,7 @@
 [project]
-name = "github-pages-notebooks"
+name = "organization-website-notebooks"
 version = "0.1.0"
-description = "Notebooks for my github-pages website."
+description = "Notebooks for Hyperion Corporation Organization-Website research and tooling."
 requires-python = ">=3.11"
 dependencies = [
     "ipykernel",

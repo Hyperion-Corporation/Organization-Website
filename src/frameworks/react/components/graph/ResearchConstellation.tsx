@@ -21,14 +21,14 @@ const domainClasses: Record<ResearchDomain, string> = {
 };
 
 const LEGEND_ITEMS = [
-  { key: 'core', label: 'Core' },
-  { key: 'ai', label: 'Artificial Intelligence' },
-  { key: 'optimization', label: 'Optimization' },
-  { key: 'application', label: 'Application' },
+  { key: 'core', label: 'Organization' },
+  { key: 'ai', label: 'Visualization & tools' },
+  { key: 'optimization', label: 'Authoring' },
+  { key: 'application', label: 'Product domains' },
 ];
 
 export default function ResearchConstellation() {
-  const [selectedId, setSelectedId] = useSelection('research', true);
+  const [selectedId, setSelectedId] = useSelection('hyperion', true);
   const containerRef = useKeyboardRoving<HTMLDivElement>('.constellation-node');
   
   const selectedNode = selectedId ? getNodeById(RESEARCH_GRAPH.nodes, selectedId) : undefined;
@@ -38,12 +38,12 @@ export default function ResearchConstellation() {
   return (
     <section className="constellation-panel" aria-labelledby="constellation-title">
       <div className="constellation-copy">
-        <div className="eyebrow"><Network aria-hidden="true" size={15} /> Interactive knowledge map</div>
-        <h2 id="constellation-title">Research is a connected system.</h2>
-        <p>Select a node to trace how learning, optimization, and real-world applications reinforce one another.</p>
+        <div className="eyebrow"><Network aria-hidden="true" size={15} /> Interactive product map</div>
+        <h2 id="constellation-title">Hyperion work is a connected system.</h2>
+        <p>Select a node to see how visualization, graph programming, and product domains reinforce one another.</p>
         
         <Legend
-          title="Research Domains"
+          title="Domain map"
           palette={DEFAULT_DOMAIN_PALETTE}
           items={LEGEND_ITEMS}
           selectedKey={selectedNode?.domain}
@@ -52,20 +52,20 @@ export default function ResearchConstellation() {
 
         <div className="constellation-detail" aria-live="polite">
           <span>{selectedNode?.shortLabel ?? 'Explore'}</span>
-          <p>{selectedNode?.description ?? 'Choose a research domain to learn more.'}</p>
+          <p>{selectedNode?.description ?? 'Choose a domain to learn more.'}</p>
           {selectedNode?.href && <a href={selectedNode.href}>Explore this thread <ArrowUpRight size={15} aria-hidden="true" /></a>}
         </div>
       </div>
 
       <A11ySummary
         id="constellation-a11y-summary"
-        summary="An interactive node-link diagram showing connections between research domains."
+        summary="An interactive node-link diagram showing connections between Hyperion product domains."
         selectionAnnouncement={selectedNode ? `Selected: ${selectedNode.label}. ${selectedNode.description}` : 'No node selected.'}
       />
       
       <A11yTable
         id="constellation-a11y-table"
-        caption="Research nodes and their domains"
+        caption="Product and domain nodes"
         data={RESEARCH_GRAPH.nodes}
         columns={[
           { key: 'label', header: 'Topic' },
@@ -74,8 +74,8 @@ export default function ResearchConstellation() {
         ]}
       />
 
-      <div className="constellation-map" aria-label="Interactive map of research themes" ref={containerRef}>
-        <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Connections between six research themes">
+      <div className="constellation-map" aria-label="Interactive map of Hyperion product domains" ref={containerRef}>
+        <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label="Connections between Hyperion product domains">
           <defs>
             <linearGradient id="constellation-line" x1="0" x2="1">
               <stop offset="0" stopColor="#38bdf8" />

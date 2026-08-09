@@ -1,6 +1,6 @@
 # Documentation and Content Roadmap
 
-Goal: make every visual experiment maintainable, reproducible and understandable as both a portfolio story and an engineering system.
+Goal: make every visual experiment maintainable, reproducible and understandable as both a product story and an engineering system.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
