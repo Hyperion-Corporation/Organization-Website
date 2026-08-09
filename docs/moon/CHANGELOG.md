@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Root `tsconfig.json` excludes `docs/website` (and `out/`) so Next typecheck no longer requires Docusaurus deps at the monorepo root.
+- Corrected `ExperienceQuality` import path under `src/libraries/redux/actions/appActions.ts` so `npm run build` succeeds.
+
 ### Changed
 
 - Regenerated Astro islands from sources; replaced docs-site “AH” monogram with Hyperion “H”; added Open Graph social image (`og-image.jpg`); nav label Posts → Updates.

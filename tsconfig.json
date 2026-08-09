@@ -43,6 +43,9 @@
   ],
   "exclude": [
     "node_modules",
-    "docs/website/react"
+    "docs/website",
+    "out",
+    "benchmark/results",
+    "infra"
   ]
 }

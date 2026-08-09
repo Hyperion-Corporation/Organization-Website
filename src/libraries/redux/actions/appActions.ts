@@ -1,4 +1,4 @@
-import { ExperienceQuality } from '../../enums/ExperienceQuality';
+import { ExperienceQuality } from '../../../enums/ExperienceQuality';
 import { SET_ACTIVE_MEDIA, SET_ACTIVE_SIMULATION, SET_EXPERIENCE_QUALITY, SET_THEME } from './actionTypes';
 
 export const setTheme = (theme: 'light' | 'dark') => ({ type: SET_THEME, payload: theme } as const);

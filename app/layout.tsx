@@ -9,6 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 const basePath = nextConfig.basePath || '';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hyperion-corporation.github.io/Organization-Website'),
   title: {
     default: 'Hyperion Corporation',
     template: '%s · Hyperion Corporation',
@@ -28,12 +29,12 @@ export const metadata: Metadata = {
     title: 'Hyperion Corporation',
     description:
       'Software that optimizes creative and engineering work for games, simulations, and related systems.',
-    url: 'https://hyperion-corporation.github.io/Organization-Website/',
+    url: '/',
     siteName: 'Hyperion Corporation',
     type: 'website',
     images: [
       {
-        url: `${basePath}/og-image.jpg`,
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Hyperion Corporation',
@@ -45,15 +46,15 @@ export const metadata: Metadata = {
     title: 'Hyperion Corporation',
     description:
       'Software that optimizes creative and engineering work for games, simulations, and related systems.',
-    images: [`${basePath}/og-image.jpg`],
+    images: ['/og-image.jpg'],
   },
   icons: {
     icon: [
-      { url: `${basePath}/favicon.ico` },
-      { url: `${basePath}/icon-192.png`, sizes: '192x192', type: 'image/png' },
-      { url: `${basePath}/icon-512.png`, sizes: '512x512', type: 'image/png' },
+      { url: '/favicon.ico' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: `${basePath}/icon-192.png`,
+    apple: '/icon-192.png',
   },
 };
 

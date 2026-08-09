@@ -102,16 +102,15 @@ The fallback is the product. Hydration improves direct manipulation; it must not
 ```text
 app/
   layout.tsx                 # document metadata and static shell boundary
-  page.tsx                   # observatory landing page
+  page.tsx                   # Hyperion product landing page
   content/<section>/         # route pages and content indexes
 src/
-  aurelia/                   # optional Aurelia islands; never required globally
-  components/
-    audio/ books/ canvas/ games/ graph/ image/
-    maps/ models/ routes/ video/  # focused domain components
-    layout/ ui/                      # shell and shared presentation primitives
+  frameworks/
+    react/components/        # domain UI (audio, books, canvas, games, graph, …)
+    astro/                   # Astro islands + wrappers
+    aurelia/                 # optional Aurelia islands
   configs/ constants/ enums/ hooks/ interfaces/
-  context/ redux/ routes/ types/ utils/
+  libraries/redux/           # cross-route experience preferences
   simulations/
     repository/              # contracts, serializable types, dataset lookup
     scenarios/               # immutable presets and fixtures
