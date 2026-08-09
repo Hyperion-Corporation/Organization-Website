@@ -17,7 +17,7 @@ For what the site contains and how to extend content, see [`README.md`](README.m
 
 ```bash
 npm install
-npm start          # Docusaurus: http://localhost:3000/github-pages/docs-site/
+npm start          # Docusaurus: http://localhost:3000/Organization-Website/docs-site/
 npm run storybook  # Storybook: http://localhost:6006
 ```
 

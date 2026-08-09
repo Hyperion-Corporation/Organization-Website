@@ -97,7 +97,7 @@ src/simulations/  # unchanged ownership; WASM worker is an adapter (MFP13)
 
 **Vue (MFP4).** Spike Veaury vs `defineCustomElement`; pick one for the first demo. Implement a small research widget (e.g. filterable citation list or constraint toggles) that mirrors a React control’s visitor question. Prove unmount does not leak Vue app instances (heap snapshot protocol in IT10 spirit).
 
-**Astro (MFP5).** Today `AstroWrapper` iframes a prebuilt `public/astro-island` asset. Promote to a repeatable build step (`astro build` → `public/astro-island`), document hydration islands (`client:visible`), and ensure `basePath` `/github-pages` works.
+**Astro (MFP5).** Today `AstroWrapper` iframes a prebuilt `public/astro-island` asset. Promote to a repeatable build step (`astro build` → `public/astro-island`), document hydration islands (`client:visible`), and ensure `basePath` `/Organization-Website` works.
 
 **Aurelia (MFP6).** Extend existing mount boundary: inject shared Apollo/simulation services via DI, enforce lazy chunk, and align with SIM4/SIM9 acceptance (static fallback, stop on unmount).
 

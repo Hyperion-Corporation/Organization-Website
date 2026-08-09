@@ -3,11 +3,11 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // docs/website/ — Docusaurus + TypeDoc + Storybook documentation
-// dashboard for the github-pages repository. See ./APP.md for how the three tools fit together and ./README.md for what's on the site.
+// dashboard for the organization-website repository. See ./APP.md for how the three tools fit together and ./README.md for what's on the site.
 
 const config: Config = {
-  title: 'github-pages Docs',
-  tagline: "ACFHarbinger's personal site — architecture, guides, and component reference",
+  title: 'Hyperion Docs',
+  tagline: 'Hyperion Corporation website — architecture, guides, and component reference',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -17,11 +17,11 @@ const config: Config = {
   // Deployed alongside the main site under a /docs-site/ subpath so it
   // doesn't collide with the primary Next.js static export's gh-pages
   // deployment — see ../README.md for the deployment note.
-  url: 'https://acfharbinger.github.io',
-  baseUrl: '/github-pages/docs-site/',
+  url: 'https://hyperion-corporation.github.io',
+  baseUrl: '/Organization-Website/docs-site/',
 
-  organizationName: 'ACFHarbinger',
-  projectName: 'github-pages',
+  organizationName: 'Hyperion-Corporation',
+  projectName: 'Organization-Website',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -70,7 +70,7 @@ const config: Config = {
             'website/api-docs/**/*.md',
           ],
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/ACFHarbinger/github-pages/tree/main/docs/',
+          editUrl: 'https://github.com/Hyperion-Corporation/Organization-Website/tree/main/docs/',
         },
         blog: false,
         theme: {
@@ -89,7 +89,7 @@ const config: Config = {
         routeBasePath: 'guides',
         include: ['README.md', 'git/CONTRIBUTING.md', '.agent/AGENTS.md'],
         sidebarPath: './sidebarsGuides.ts',
-        editUrl: 'https://github.com/ACFHarbinger/github-pages/tree/main/',
+        editUrl: 'https://github.com/Hyperion-Corporation/Organization-Website/tree/main/',
       },
     ],
   ],
@@ -101,9 +101,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'github-pages',
+      title: 'Hyperion',
       logo: {
-        alt: 'github-pages logo',
+        alt: 'Hyperion Corporation logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -112,12 +112,12 @@ const config: Config = {
         { type: 'docSidebar', sidebarId: 'apiSidebar', docsPluginId: 'default', position: 'left', label: 'API Reference' },
         { to: '/storybook/index.html', label: 'Storybook', position: 'left' },
         {
-          href: 'https://github.com/ACFHarbinger/github-pages',
+          href: 'https://github.com/Hyperion-Corporation/Organization-Website',
           label: 'GitHub',
           position: 'right',
         },
         {
-          href: 'https://acfharbinger.github.io/github-pages/',
+          href: 'https://hyperion-corporation.github.io/Organization-Website/',
           label: 'Live Site ↗',
           position: 'right',
         },
@@ -145,12 +145,12 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            { label: 'Live Site', href: 'https://acfharbinger.github.io/github-pages/' },
-            { label: 'GitHub', href: 'https://github.com/ACFHarbinger/github-pages' },
+            { label: 'Live Site', href: 'https://hyperion-corporation.github.io/Organization-Website/' },
+            { label: 'GitHub', href: 'https://github.com/Hyperion-Corporation/Organization-Website' },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} ACFHarbinger. Built with Docusaurus, TypeDoc, and Storybook.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Hyperion Corporation. Built with Docusaurus, TypeDoc, and Storybook.`,
     },
     prism: {
       theme: prismThemes.github,

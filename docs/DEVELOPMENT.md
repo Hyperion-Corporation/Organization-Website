@@ -9,13 +9,13 @@
 ## Local Setup
 
 ```bash
-git clone https://github.com/ACFHarbinger/github-pages.git
-cd github-pages
+git clone https://github.com/Hyperion-Corporation/Organization-Website.git
+cd Organization-Website
 npm install
 npm run dev
 ```
 
-The dev server runs at `http://localhost:3000/github-pages` (the `basePath` matches the GitHub Pages deployment path).
+The dev server runs at `http://localhost:3000/Organization-Website` (the `basePath` matches the GitHub Pages deployment path).
 
 ## Notebooks
 
@@ -44,7 +44,7 @@ Default deployment is GitHub Pages. Alternative container/cloud tooling lives un
 | --- | --- |
 | Docker Compose (nginx serving `out/`) | `docker compose -f infra/global/docker/docker-compose.yml up --build` |
 | Kubernetes (dev overlay) | `kubectl apply -k infra/global/k8s/overlays/dev` |
-| Helm install | `helm install github-pages infra/global/helm/github-pages -f infra/global/helm/github-pages/values.yaml` |
+| Helm install | `helm install organization-website infra/global/helm/organization-website -f infra/global/helm/organization-website/values.yaml` |
 | Terraform (ECR) | `cd infra/global/terraform && terraform init && terraform plan -var-file=environments/dev.tfvars` |
 | Ansible (plain host) | `cd infra/global/ansible && ansible-playbook -i inventory/hosts.ini playbook.yml` |
 | Serverless (S3 static) | `npm run build && npx serverless client deploy --config infra/cloud/serverless/serverless.yml` |

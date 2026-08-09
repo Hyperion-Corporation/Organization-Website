@@ -12,8 +12,8 @@ project:
   # GitHub Project (V2) number as shown in the project URL, e.g.
   # https://github.com/users/<owner>/projects/<number>
   number: 16
-  owner: "ACFHarbinger"
-  owner_type: "user"        # "user" | "org"
+  owner: "Hyperion-Corporation"
+  owner_type: "org"         # "user" | "org"
 
 sync:
   # Files the agent is allowed to read as its source of truth for tickets.
@@ -58,4 +58,4 @@ commit_ref:
 notifications:
   # Where agent:needs-human escalations get an extra nudge, beyond the label itself.
   comment_on_issue: true
-  mention_users: []   # e.g. ["ACFHarbinger"]
+  mention_users: []   # e.g. ["your-github-handle"]

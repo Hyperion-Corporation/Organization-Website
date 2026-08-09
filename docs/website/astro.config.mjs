@@ -5,7 +5,7 @@ export default defineConfig({
   srcDir: './src/frameworks/astro',
   outDir: './static/astro-island',
   publicDir: './astro-public',
-  base: '/github-pages/docs-site/astro-island',
+  base: '/Organization-Website/docs-site/astro-island',
   build: {
     format: 'directory',
   },

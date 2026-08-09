@@ -1,5 +1,5 @@
 {
-    "name": "github-pages Dev Environment",
+    "name": "Organization-Website Dev Environment",
     "build": {
         "dockerfile": "Dockerfile",
         "context": ".."

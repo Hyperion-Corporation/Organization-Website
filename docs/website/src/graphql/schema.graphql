@@ -1,4 +1,4 @@
-# Docs/content graph for the github-pages documentation site (static-export friendly).
+# Docs/content graph for the Organization-Website documentation site (static-export friendly).
 
 type LoreStory {
   id: ID!

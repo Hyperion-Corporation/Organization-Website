@@ -17,7 +17,7 @@ The package lives directly in this directory (not a nested `react/` subfolder), 
 ```bash
 cd docs/website
 npm install
-npm start          # http://localhost:3000/github-pages/docs-site/
+npm start          # http://localhost:3000/Organization-Website/docs-site/
 npm run storybook  # http://localhost:6006, separately
 ```
 

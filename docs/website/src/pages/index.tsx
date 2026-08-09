@@ -58,7 +58,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={siteConfig.title}
-      description="Documentation, guides, API reference, and a live component library for ACFHarbinger's personal site."
+      description="Documentation, guides, API reference, and a live component library for Hyperion Corporation's organization site."
     >
       <HomepageHeader />
       <main>

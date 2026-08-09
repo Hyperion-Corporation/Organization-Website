@@ -20,7 +20,7 @@ npm run benchmark
 
 ## What is measured
 
-- HTTP status and response time for `/github-pages/` and representative content routes.
+- HTTP status and response time for `/Organization-Website/` and representative content routes.
 - Response bytes and compressed bytes when the server provides them.
 - Total export bytes and file count.
 - JavaScript and CSS payload totals.

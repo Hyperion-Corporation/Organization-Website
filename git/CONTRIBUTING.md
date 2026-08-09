@@ -1,9 +1,9 @@
-# Contributing to github-pages
+# Contributing to organization-website
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776ab?logo=python&logoColor=white)](https://www.python.org/)
-[![CI](https://github.com/ACFHarbinger/github-pages/actions/workflows/ci.yml/badge.svg)](https://github.com/ACFHarbinger/github-pages/actions/workflows/ci.yml)
+[![CI](https://github.com/Hyperion-Corporation/Organization-Website/actions/workflows/ci.yml/badge.svg)](https://github.com/Hyperion-Corporation/Organization-Website/actions/workflows/ci.yml)
 
 Thank you for your interest in contributing! This document covers setup, style, and the PR process for this repository.
 
@@ -32,8 +32,8 @@ Thank you for your interest in contributing! This document covers setup, style, 
 ### 1.2 Clone and bootstrap
 
 ```bash
-git clone https://github.com/ACFHarbinger/github-pages.git
-cd github-pages
+git clone https://github.com/Hyperion-Corporation/Organization-Website.git
+cd Organization-Website
 npm install
 npm run dev
 ```

@@ -1,12 +1,12 @@
 <div align="center">
 
-# 📓 GitHub Pages — Personal Site & Knowledge Base
+# Hyperion Corporation — Organization Website
 
-**ACFHarbinger's personal blog and knowledge base: posts, reports, project write-ups, and tool notes, statically exported and deployed to GitHub Pages.**
+**Official Hyperion Corporation site: software that optimizes the work of developers, artists, and designers for games, simulations, and related systems—statically exported and deployed to GitHub Pages.**
 
-<a href="https://acfharbinger.github.io/github-pages/"><img alt="Live Site" src="https://img.shields.io/badge/live%20site-acfharbinger.github.io-2ea44f?logo=github&logoColor=white"></a>
-<a href="https://github.com/ACFHarbinger/github-pages/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ACFHarbinger/github-pages/actions/workflows/ci.yml/badge.svg"></a>
-<a href="https://github.com/ACFHarbinger/github-pages/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/ACFHarbinger/github-pages/actions/workflows/deploy.yml/badge.svg"></a>
+<a href="https://hyperion-corporation.github.io/Organization-Website/"><img alt="Live Site" src="https://img.shields.io/badge/live%20site-hyperion--corporation.github.io-2ea44f?logo=github&logoColor=white"></a>
+<a href="https://github.com/Hyperion-Corporation/Organization-Website/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Hyperion-Corporation/Organization-Website/actions/workflows/ci.yml/badge.svg"></a>
+<a href="https://github.com/Hyperion-Corporation/Organization-Website/actions/workflows/deploy.yml"><img alt="Deploy" src="https://github.com/Hyperion-Corporation/Organization-Website/actions/workflows/deploy.yml/badge.svg"></a>
 <a href="https://www.gnu.org/licenses/agpl-3.0"><img alt="License: AGPL v3" src="https://img.shields.io/badge/License-AGPL_v3-blue.svg"></a>
 
 <br>
@@ -34,18 +34,18 @@
 
 ## Overview
 
-This repository builds [acfharbinger.github.io/github-pages](https://acfharbinger.github.io/github-pages/) — a personal site combining a blog with a small knowledge base:
+This repository builds [hyperion-corporation.github.io/Organization-Website](https://hyperion-corporation.github.io/Organization-Website/) — the public website for **Hyperion Corporation**.
+
+Hyperion creates software to optimize human work for developers, artists, and designers in **games, simulations/simulators**, and related computer systems. A flagship direction is **Visual Graph Programming (VGP)**: graph and metrics visualization (2D/3D) so teams can understand how code modules, assets, and storyboards relate, and author new modules from that model.
 
 | Section | What lives there |
 | --- | --- |
-| **Posts** | Shorter-form writing |
-| **Reports** | Longer, structured write-ups (e.g. audio signal processing, the PCVRP report) |
-| **Projects** | Write-ups of things I've built |
-| **Tools** | Notes on tools/utilities |
-| **Media** | Media-focused content |
-| **About / Other** | Everything else |
+| **Projects** | Product and initiative write-ups (e.g. VGP) |
+| **About** | Mission, audience, and organization presence |
+| **Posts / Reports** | Shorter updates and longer technical write-ups |
+| **Tools / Media / Other** | Stack notes, media references, and miscellaneous content |
 
-It's a fully static [Next.js](https://nextjs.org/) export (`output: 'export'`) — no server, no API routes, no database. Content is authored as Markdown and rendered at build time.
+It's a fully static [Next.js](https://nextjs.org/) export (`output: 'export'`) — no server, no API routes, no database. Content is authored in the App Router and Markdown helpers and rendered at build time.
 
 ## Tech Stack
 
@@ -93,13 +93,13 @@ It's a fully static [Next.js](https://nextjs.org/) export (`output: 'export'`) �
 Prerequisites: [Node.js](https://nodejs.org/) 20+ and npm.
 
 ```bash
-git clone https://github.com/ACFHarbinger/github-pages.git
-cd github-pages
+git clone https://github.com/Hyperion-Corporation/Organization-Website.git
+cd Organization-Website
 npm install
 npm run dev
 ```
 
-The dev server runs at `http://localhost:3000/github-pages` (the `basePath` matches the GitHub Pages deployment path).
+The dev server runs at `http://localhost:3000/Organization-Website` (the `basePath` matches the GitHub Pages deployment path).
 
 ### Building
 
@@ -124,7 +124,7 @@ npm run cypress:e2e      # Cypress: test/cypress/e2e/ only
 npm run cypress:smoke    # Cypress: test/cypress/smoke/ only
 ```
 
-Cypress runs against a served build, so run `npm run build && npm start` (or `npm run dev`) in another terminal first — see `test/cypress/cypress.config.js` for the `baseUrl`. `npm run build`'s `postbuild` step symlinks `out/github-pages -> .` so `npm start` (a plain static file server) answers under `/github-pages`, matching how GitHub Pages actually serves the site.
+Cypress runs against a served build, so run `npm run build && npm start` (or `npm run dev`) in another terminal first — see `test/cypress/cypress.config.js` for the `baseUrl`. `npm run build`'s `postbuild` step symlinks `out/Organization-Website -> .` so `npm start` (a plain static file server) answers under `/Organization-Website`, matching how GitHub Pages actually serves the site.
 
 ## Notebooks
 
@@ -163,7 +163,7 @@ docker compose -f infra/global/docker/docker-compose.yml up --build
 
 ---
 
-Get help: [GitHub Discussions](https://github.com/orgs/skills/discussions/categories/github-pages) &bull; [GitHub Status](https://www.githubstatus.com/)
+Get help: [GitHub Discussions](https://github.com/orgs/skills/discussions/categories/Organization-Website) &bull; [GitHub Status](https://www.githubstatus.com/)
 
 ## Documentation website
 
@@ -176,14 +176,14 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000/github-pages/`. The `/github-pages` base path mirrors the public deployment URL. For the production export:
+Open `http://localhost:3000/Organization-Website/`. The `/Organization-Website` base path mirrors the public deployment URL. For the production export:
 
 ```bash
 npm run build
 npm start
 ```
 
-Open `http://localhost:3000/github-pages/`. The `postbuild` script creates `out/github-pages -> .` so local static serving reproduces GitHub Pages path resolution.
+Open `http://localhost:3000/Organization-Website/`. The `postbuild` script creates `out/Organization-Website -> .` so local static serving reproduces GitHub Pages path resolution.
 
 ### Documentation routes
 
@@ -350,7 +350,7 @@ The site supports keyboard navigation, visible focus, semantic landmarks, reduce
 
 | Symptom | Likely cause | Fix |
 | --- | --- | --- |
-| `/` is blank in dev | Base path omitted | Open `/github-pages/`. |
+| `/` is blank in dev | Base path omitted | Open `/Organization-Website/`. |
 | `npm start` cannot find export | Build has not run | Run `npm run build`. |
 | Benchmark says `out/` missing | No production export | Run `npm run benchmark:build`. |
 | TypeScript sees stale paths | Simulation directory moved | Check `repository` and `scenarios`. |
@@ -386,7 +386,7 @@ The site supports keyboard navigation, visible focus, semantic landmarks, reduce
 
 ## Why this structure is explicit
 
-This is a personal site and a public notebook for engineering work. Explicit boundaries show a beautiful result without hiding assumptions, costs, or limitations. A new route story can begin as Markdown and SVG, grow into a focused React island, and only then become a 3D, audio, map, or GPU experiment if evidence and budgets justify it.
+This is a organization site and a public notebook for engineering work. Explicit boundaries show a beautiful result without hiding assumptions, costs, or limitations. A new route story can begin as Markdown and SVG, grow into a focused React island, and only then become a 3D, audio, map, or GPU experiment if evidence and budgets justify it.
 
 That progression protects readers on older devices, keeps GitHub Pages reliable, and makes research claims easier to audit. It gives collaborators a predictable place to add work: contracts in interfaces, behavior in the owning domain, computation in simulations/workers, and evidence in reports and roadmaps.
 

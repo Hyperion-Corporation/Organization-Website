@@ -1,4 +1,4 @@
-# github-pages — Immersive Research Portfolio Master Roadmap
+# organization-website — Hyperion Organization Website Master Roadmap
 
 **Last updated:** 2026-08-09 · **Roadmap session:** R4 · **Delivery model:** static-first progressive enhancement
 

@@ -4,6 +4,6 @@ import { ExperienceQuality } from '../enums/ExperienceQuality';
 export const DOCS_EXPERIENCE = {
   defaultQuality: ExperienceQuality.Full,
   storybookPath: '/storybook/index.html',
-  liveSiteHref: 'https://acfharbinger.github.io/github-pages/',
+  liveSiteHref: 'https://hyperion-corporation.github.io/Organization-Website/',
   researchOrbitHeight: '380px',
 } as const;

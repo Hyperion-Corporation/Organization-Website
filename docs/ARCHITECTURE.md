@@ -2,7 +2,7 @@
 
 **Status:** Active · **Revision:** R3 · **Updated:** 2026-08-08
 
-This document describes the executable architecture of `github-pages`, ACFHarbinger's static personal website and research observatory. It is intentionally implementation-oriented: a contributor should be able to locate a module, understand its ownership, run the relevant test, and choose the correct progressive-enhancement boundary without consulting tribal knowledge.
+This document describes the executable architecture of `Organization-Website`, Hyperion Corporation's static organization site and interactive product surface. It is intentionally implementation-oriented: a contributor should be able to locate a module, understand its ownership, run the relevant test, and choose the correct progressive-enhancement boundary without consulting tribal knowledge.
 
 ## Contents
 
@@ -76,7 +76,7 @@ sequenceDiagram
   L-->>A: typed front matter + HTML
   A->>Next: render pages and layouts
   Next->>O: write static HTML/CSS/JS/assets
-  N->>O: postbuild creates out/github-pages symlink
+  N->>O: postbuild creates out/Organization-Website symlink
 ```
 
 ### Browser navigation

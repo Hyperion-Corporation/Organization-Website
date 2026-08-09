@@ -19,29 +19,33 @@
 
 ## 1. Project Overview
 
-This is ACFHarbinger's personal website: a statically-exported Next.js blog/knowledge base covering posts, longer-form reports, project write-ups, tool notes, and media, deployed to GitHub Pages at
-[acfharbinger.github.io/github-pages](https://acfharbinger.github.io/github-pages/). Content lives as Markdown under `app/content/<section>/` and is rendered through the App Router; `notebooks/` is a small, separate Python/uv workspace used to run the analysis behind some reports (e.g. audio signal processing, PCVRP) before writing them up.
+This is the **Hyperion Corporation** organization website: a statically exported Next.js site for Hyperion’s public presence, product messaging, and technical content. Hyperion builds software that optimizes the human work of developers, artists, and designers for games, simulations/simulators, and related computer systems—including graph and metrics visualization tools such as Visual Graph Programming (VGP).
+
+Deployed to GitHub Pages at
+[hyperion-corporation.github.io/Organization-Website](https://hyperion-corporation.github.io/Organization-Website/).
+Content routes live under `app/content/<section>/`. `notebooks/` is an optional separate Python/uv workspace for exploratory analysis behind some reports.
 
 ## 2. Technical Stack
 
 | Component | Specification | Notes |
 | --- | --- | --- |
-| Next.js | 14 (App Router, `output: 'export'`) | Static export deployed to GitHub Pages, `basePath: /github-pages` |
+| Next.js | 14 (App Router, `output: 'export'`) | Static export deployed to GitHub Pages, `basePath: /Organization-Website` |
 | React / TypeScript | 18 / 5 | `strict: true` in `tsconfig.json` |
 | Styling | Tailwind CSS 3 | Config in `tailwind.config.js` |
-| Content | Markdown + `gray-matter` / `remark` | Parsed at build time from `app/content/<section>/` |
-| Unit tests | Vitest + Testing Library | `test/unit/`, mirroring `src/components/` |
+| Content | Markdown + `gray-matter` / `remark` | Parsed at build time from content under `app/` / `lib/` |
+| Unit tests | Vitest + Testing Library | `test/unit/`, mirroring `src/` components |
 | Integration tests | Vitest + Testing Library + MSW | `test/integration/` |
 | E2E / smoke tests | Cypress | `test/cypress/e2e/`, `test/cypress/smoke/` |
 | Notebooks | Python 3.11+, managed via `uv` | `notebooks/`, workspace member of the root `pyproject.toml` |
 
 ## 3. Module Boundaries
 
-- `app/` — Next.js App Router: routes, layouts, and Markdown content under `app/content/<section>/` (`posts`, `reports`, `projects`, `tools`, `media`, `about`, `other`).
-- `src/components/` — presentational and layout React components consumed by `app/`. Business logic (content loading/parsing) belongs in `lib/`, not inline in components.
+- `app/` — Next.js App Router: routes, layouts, and section pages under `app/content/<section>/` (`posts`, `reports`, `projects`, `tools`, `media`, `about`, `other`).
+- `src/` — React components, frameworks (React/Astro/Aurelia islands), libraries, configs, and utilities consumed by `app/`. Business logic for content loading/parsing belongs in `lib/`, not inline in components.
 - `lib/` — server-side helpers (Markdown loading/parsing, front-matter handling) used by `app/` at build time.
-- `notebooks/` — independent Python/uv workspace for exploratory analysis backing written reports. Not part of the Next.js build; never imported from `src/`/`app/`.
+- `notebooks/` — independent Python/uv workspace for exploratory analysis. Not part of the Next.js build; never imported from `src/`/`app/`.
 - `public/` — static assets served as-is.
+- `assets/` — build-time assets (icons, images) imported from source.
 - `infra/global/` — optional external/public-facing deploy and host tooling (docker, k8s, helm, terraform, ansible). Not used by the default GitHub Pages workflow.
 - `infra/cloud/` — managed cloud static-host configs (AWS, Azure Pipelines, Firebase, Serverless).
 - `infra/server/` — standalone nginx and Envoy reverse-proxy configs.
@@ -64,8 +68,10 @@ This is ACFHarbinger's personal website: a statically-exported Next.js blog/know
 - Prefer small, reviewable diffs. Do not reformat files unrelated to the change.
 - New components get a Vitest unit test in `test/unit/`; multi-component interactions get an integration test in `test/integration/` (mock any network calls with MSW); new user-facing flows get a Cypress spec in `test/cypress/e2e/`.
 - Never commit secrets. This site has no runtime secrets today — flag it clearly if a change would introduce one.
+- Branding and copy should refer to **Hyperion Corporation** / **Hyperion**, not personal portfolio language from the prior template.
 
 ## 6. Known Constraints
 
 - The site is a fully static export (`output: 'export'`) — no server-side code, API routes, or runtime environment variables beyond the build-time `NEXT_PUBLIC_BASE_PATH`.
 - `notebooks/` is exploratory/research tooling, not covered by the main CI build; it has its own lint/test story via `uv`.
+- GitHub Pages project site base path is `/Organization-Website` (repository name). A rename requires updating `basePath`, `NEXT_PUBLIC_BASE_PATH`, `postbuild` symlink, Cypress `baseUrl`, and CI wait-on URLs.
