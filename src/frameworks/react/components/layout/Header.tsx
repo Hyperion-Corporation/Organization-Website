@@ -25,7 +25,7 @@ const NAV_ITEMS = [
   { label: 'Projects', href: '/content/projects', icon: Code },
   { label: 'Reports', href: '/content/reports', icon: FileText },
   { label: 'Tools', href: '/content/tools', icon: Wrench },
-  { label: 'Posts', href: '/content/posts', icon: PenTool },
+  { label: 'Updates', href: '/content/posts', icon: PenTool },
   { label: 'Media', href: '/content/media', icon: Tv },
   { label: 'Other', href: '/content/other', icon: Folder },
 ];

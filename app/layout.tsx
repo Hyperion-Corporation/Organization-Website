@@ -31,6 +31,21 @@ export const metadata: Metadata = {
     url: 'https://hyperion-corporation.github.io/Organization-Website/',
     siteName: 'Hyperion Corporation',
     type: 'website',
+    images: [
+      {
+        url: `${basePath}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Hyperion Corporation',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hyperion Corporation',
+    description:
+      'Software that optimizes creative and engineering work for games, simulations, and related systems.',
+    images: [`${basePath}/og-image.jpg`],
   },
   icons: {
     icon: [

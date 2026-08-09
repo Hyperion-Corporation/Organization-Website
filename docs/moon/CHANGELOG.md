@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Regenerated Astro islands from sources; replaced docs-site “AH” monogram with Hyperion “H”; added Open Graph social image (`og-image.jpg`); nav label Posts → Updates.
 - Replaced default favicon with Hyperion-derived icons (`favicon.ico`, `icon-192.png`, `icon-512.png`); expanded site metadata (Open Graph, keywords); branded Astro island/starfield copy.
 - Media mosaic uses only Hyperion logo + knowledge graph assets; removed unused `public/images` literature/workshop poster files; documented `public/reports/` as a retained template-era library.
 - Renamed homepage `FleetRouteMap` / `FleetRouteCanvas` to `StructureMap` / `StructureCanvas`; fixed unit-test import paths for Redux and Post/Report wrappers (full Vitest suite green).
