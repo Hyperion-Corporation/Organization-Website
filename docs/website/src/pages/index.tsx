@@ -1,28 +1,49 @@
 import type { ReactNode } from 'react';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
-import Heading from '@theme/Heading';
+import Head from 'next/head';
+import Link from 'next/link';
 
 import styles from './index.module.css';
 import { HOME_NAV_CARDS } from '../constants/navCards';
-import ResearchOrbitWrapper from '../frameworks/astro/components/ResearchOrbitWrapper';
+import ResearchOrbitWrapperNext from '../frameworks/astro/components/ResearchOrbitWrapperNext';
+
+const SITE_TITLE = 'Hyperion Docs';
+const SITE_TAGLINE = 'Hyperion Corporation website — architecture, guides, and component reference';
+
+// /storybook/index.html only exists after `npm run build-storybook` (copied
+// in by Docusaurus's `postbuild` step) — neither `next dev` nor
+// `docusaurus start` has it. Point at the live Storybook dev server instead
+// while developing; `npm run storybook` serves it on :6006.
+const STORYBOOK_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:6006' : '/storybook/index.html';
+
+// /docs/* and /guides/* are rendered by Docusaurus's own content-docs
+// plugin, not this Next.js preview — they don't exist as Next routes.
+// Point at the live Docusaurus dev server instead while developing;
+// `npm run start` serves it on :3100, under the baseUrl configured in
+// docusaurus.config.ts (see package.json).
+const DOCUSAURUS_DEV_URL = 'http://localhost:3100/Organization-Website/docs-site';
+
+function resolveNavLink(to: string): string {
+  if (to === '/storybook/index.html') {
+    return STORYBOOK_URL;
+  }
+  if (process.env.NODE_ENV === 'development' && (to.startsWith('/docs') || to.startsWith('/guides'))) {
+    return `${DOCUSAURUS_DEV_URL}${to}`;
+  }
+  return to;
+}
 
 function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={styles.heroBanner}>
       <div className={styles.heroGlow} aria-hidden="true" />
-      <div className="container">
-        <Heading as="h1" className={styles.heroTitle}>
-          {siteConfig.title}
-        </Heading>
-        <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
+      <div className={styles.container}>
+        <h1 className={styles.heroTitle}>{SITE_TITLE}</h1>
+        <p className={styles.heroSubtitle}>{SITE_TAGLINE}</p>
         <div className={styles.buttons}>
-          <Link className={styles.primaryButton} to="/docs/ARCHITECTURE">
+          <Link className={styles.primaryButton} href={resolveNavLink('/docs/ARCHITECTURE')}>
             Read the Docs
           </Link>
-          <Link className={styles.secondaryButton} to="/storybook/index.html">
+          <Link className={styles.secondaryButton} href={resolveNavLink('/storybook/index.html')}>
             Open Storybook
           </Link>
         </div>
@@ -34,16 +55,14 @@ function HomepageHeader() {
 function Cards() {
   return (
     <section className={styles.cardsSection}>
-      <div className="container">
+      <div className={styles.container}>
         <div className={styles.cardGrid}>
           {HOME_NAV_CARDS.map((card) => (
-            <Link key={card.title} to={card.to} className={styles.card}>
+            <Link key={card.title} href={resolveNavLink(card.to)} className={styles.card}>
               <span className={styles.cardIcon} aria-hidden="true">
                 {card.icon}
               </span>
-              <Heading as="h3" className={styles.cardTitle}>
-                {card.title}
-              </Heading>
+              <h3 className={styles.cardTitle}>{card.title}</h3>
               <p className={styles.cardDescription}>{card.description}</p>
             </Link>
           ))}
@@ -54,19 +73,19 @@ function Cards() {
 }
 
 export default function Home(): ReactNode {
-  const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={siteConfig.title}
-      description="Documentation, guides, API reference, and a live component library for Hyperion Corporation's organization site."
-    >
+    <>
+      <Head>
+        <title>{SITE_TITLE}</title>
+        <meta name="description" content="Documentation, guides, API reference, and a live component library for Hyperion Corporation's organization site." />
+      </Head>
       <HomepageHeader />
       <main>
         <Cards />
-        <div className="container">
-          <ResearchOrbitWrapper />
+        <div className={styles.container}>
+          <ResearchOrbitWrapperNext />
         </div>
       </main>
-    </Layout>
+    </>
   );
 }

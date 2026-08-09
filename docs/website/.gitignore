@@ -28,3 +28,7 @@ yarn-error.log*
 
 # Astro generated
 .astro/
+
+# Next.js generated
+/.next/
+next-env.d.ts

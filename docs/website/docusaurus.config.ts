@@ -1,4 +1,5 @@
 import { themes as prismThemes } from 'prism-react-renderer';
+import { GlobExcludeDefault } from '@docusaurus/utils';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
@@ -45,6 +46,13 @@ const config: Config = {
     [
       'classic',
       {
+        pages: {
+          // Kept out of src/pages/ so that directory is free for the
+          // Next.js "next:dev"/"next:build" multi-framework preview (see
+          // ../stack/next/README.md) without colliding with Docusaurus's
+          // own homepage route.
+          path: 'src/docusaurus-pages',
+        },
         docs: {
           id: 'default',
           path: '../',
@@ -88,6 +96,11 @@ const config: Config = {
         path: '../../',
         routeBasePath: 'guides',
         include: ['README.md', 'git/CONTRIBUTING.md', '.agent/AGENTS.md'],
+        // Default excludes don't cover /out — `npm run build`'s postbuild
+        // step symlinks out/Organization-Website -> . for GitHub Pages
+        // basePath routing, and that self-reference sends this plugin's
+        // globbing of the repo root into an infinite ELOOP.
+        exclude: [...GlobExcludeDefault, 'out/**'],
         sidebarPath: './sidebarsGuides.ts',
         editUrl: 'https://github.com/Hyperion-Corporation/Organization-Website/tree/main/',
       },

@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "gen:api": "typedoc && node scripts/fix-api-links.mjs",
     "prestart": "npm run gen:api",
-    "start": "docusaurus start",
+    "start": "docusaurus start --port 3100",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-dist",
     "prebuild": "npm run gen:api && npm run build-storybook",

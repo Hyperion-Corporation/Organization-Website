@@ -1,0 +1,19 @@
+// Next.js's own tsconfig — kept separate from tsconfig.json (used by
+// Docusaurus/Storybook's "typecheck" script) so that "next dev"/"next build"
+// don't rewrite the shared config with Pages-Router-specific defaults.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "noEmit": true,
+    "esModuleInterop": true
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".docusaurus", "build", "api-docs"]
+}
