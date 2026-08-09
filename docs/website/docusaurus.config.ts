@@ -136,7 +136,7 @@ const config: Config = {
         sidebarPath: './sidebarsGuides.ts',
         // The staged files are build artifacts, so "Edit this page" has to
         // point back at the real source for each document.
-        editUrl: ({ docPath }) => {
+        editUrl: ({ docPath }: { docPath: string }) => {
           const source = GUIDE_SOURCE_PATHS[docPath] ?? docPath;
           return `https://github.com/Hyperion-Corporation/Organization-Website/tree/main/${source}`;
         },

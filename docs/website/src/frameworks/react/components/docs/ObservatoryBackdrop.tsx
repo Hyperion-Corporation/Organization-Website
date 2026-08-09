@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useReducedMotion } from '../../../../hooks/useReducedMotion';
+import { currentPalette, observeTheme } from './theme';
 
 export interface ObservatoryBackdropProps {
   /** Particles per megapixel of viewport — the density knob for quality tiers. */
@@ -18,8 +19,6 @@ interface Particle {
   r: number;
   hue: 0 | 1;
 }
-
-const HUES = ['56, 189, 248', '139, 92, 246'] as const;
 
 /**
  * Ambient "observatory" field: slow-drifting luminous particles joined by
@@ -80,13 +79,15 @@ export function ObservatoryBackdrop({
 
     function draw() {
       const ctx = context!;
+      const palette = currentPalette();
+      const hues = [palette.accent, palette.accentAlt] as const;
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i += 1) {
         const p = particles[i];
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${HUES[p.hue]}, 0.5)`;
+        ctx.fillStyle = `rgba(${hues[p.hue]}, ${0.5 * palette.intensity})`;
         ctx.fill();
 
         for (let j = i + 1; j < particles.length; j += 1) {
@@ -98,7 +99,7 @@ export function ObservatoryBackdrop({
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = `rgba(${HUES[p.hue]}, ${0.12 * (1 - distance / linkDistance)})`;
+          ctx.strokeStyle = `rgba(${hues[p.hue]}, ${0.12 * palette.intensity * (1 - distance / linkDistance)})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -146,9 +147,11 @@ export function ObservatoryBackdrop({
 
     window.addEventListener('resize', onResize);
     document.addEventListener('visibilitychange', onVisibility);
+    const unobserveTheme = observeTheme(draw);
 
     return () => {
       stop();
+      unobserveTheme();
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);
     };

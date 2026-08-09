@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from '../../../../hooks/useReducedMotion';
+import { currentPalette, observeTheme } from './theme';
 
 export interface ModuleLatticeProps {
   /** Drawing height in CSS pixels. */
@@ -128,6 +129,7 @@ export function ModuleLattice({ height = 400, spin = 0.0028, maxDpr = 2 }: Modul
 
     function render() {
       const ctx = context!;
+      const palette = currentPalette();
       const { x: rx, y: ry } = rotationRef.current;
       ctx.clearRect(0, 0, width, height);
 
@@ -139,7 +141,7 @@ export function ModuleLattice({ height = 400, spin = 0.0028, maxDpr = 2 }: Modul
         const alpha = Math.max(0.06, Math.min(0.6, (p.depth - 0.7) * 0.9));
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.4 * p.depth, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(139, 92, 246, ${alpha})`;
+        ctx.fillStyle = `rgba(${palette.accentAlt}, ${alpha * palette.intensity})`;
         ctx.fill();
       }
 
@@ -150,7 +152,7 @@ export function ModuleLattice({ height = 400, spin = 0.0028, maxDpr = 2 }: Modul
         ctx.beginPath();
         ctx.moveTo(from.x, from.y);
         ctx.lineTo(to.x, to.y);
-        ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+        ctx.strokeStyle = `rgba(${palette.accent}, ${alpha * palette.intensity})`;
         ctx.lineWidth = 1.1;
         ctx.stroke();
       }
@@ -159,8 +161,8 @@ export function ModuleLattice({ height = 400, spin = 0.0028, maxDpr = 2 }: Modul
         const alpha = Math.max(0.25, Math.min(1, (p.depth - 0.65) * 1.4));
         ctx.beginPath();
         ctx.arc(p.x, p.y, 3.4 * p.depth, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(103, 232, 249, ${alpha})`;
-        ctx.shadowColor = 'rgba(56, 189, 248, 0.85)';
+        ctx.fillStyle = `rgba(${palette.accent}, ${alpha})`;
+        ctx.shadowColor = `rgba(${palette.accent}, 0.85)`;
         ctx.shadowBlur = 12 * p.depth;
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -202,9 +204,11 @@ export function ModuleLattice({ height = 400, spin = 0.0028, maxDpr = 2 }: Modul
 
     window.addEventListener('resize', onResize);
     document.addEventListener('visibilitychange', onVisibility);
+    const unobserveTheme = observeTheme(render);
 
     return () => {
       stop();
+      unobserveTheme();
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);
     };
