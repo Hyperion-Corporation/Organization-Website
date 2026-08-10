@@ -28,7 +28,7 @@ describe('ResearchConstellation', () => {
     const user = userEvent.setup();
     render(<ResearchConstellation />);
     await user.click(screen.getByRole('button', { name: /Visual Graph Programming:/ }));
-    expect(screen.getByRole('link', { name: /Explore this thread/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /Open surface/ })).toHaveAttribute(
       'href',
       '/content/projects'
     );

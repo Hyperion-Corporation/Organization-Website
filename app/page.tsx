@@ -6,12 +6,10 @@ import {
   Gamepad2,
   Cpu,
   PenTool,
-  Calendar,
   Star,
   Sparkles,
   ExternalLink,
 } from 'lucide-react';
-import GlassCard from '../src/frameworks/react/components/ui/GlassCard';
 import Badge from '../src/frameworks/react/components/ui/Badge';
 import { BlogPost, Project } from '../src/interfaces/types';
 import HeroModel from '../src/frameworks/react/components/models/HeroModel';
@@ -245,97 +243,101 @@ export default function Home() {
         <ResearchConstellation />
       </section>
 
-      {/* 5 · Convergence as proof panel inside a band */}
+      {/* 5 · Metrics board (own chrome — not portfolio simulation slab + outer title) */}
       <section className="forge-section" aria-label="Simulation proof">
-        <div className="forge-section-head">
-          <p className="forge-kicker">Explainable interaction</p>
-          <h2 className="forge-section-title">Metrics and structure, not black boxes.</h2>
-          <p className="forge-section-lead">
-            Interactive demos stay progressive enhancements over clear product language.
-          </p>
-        </div>
         <ConvergenceSimulation />
       </section>
 
-      {/* 6 · Tabbed lab (not personal field-notes grid) */}
+      {/* 6 · Workbench bays */}
       <div className="forge-section">
         <LabShowcase />
       </div>
 
-      {/* 7 · Updates as card grid (not stacked full-width list) */}
+      {/* 7 · Signal feed — spine timeline, not GlassCard list/grid clone */}
       <section className="forge-section" aria-labelledby="updates-title">
-        <div className="forge-section-head forge-section-head--row">
-          <div>
+        <div className="forge-feed">
+          <div className="forge-feed__side">
             <p className="forge-kicker">
-              <PenTool size={14} aria-hidden className="inline mr-1" /> Updates
+              <PenTool size={14} aria-hidden className="inline" /> Signal
             </p>
-            <h2 id="updates-title" className="forge-section-title">
-              Latest from Hyperion
+            <h2 id="updates-title" className="forge-feed__title">
+              Dispatch
             </h2>
+            <p className="forge-feed__lede">
+              Product and engineering notes as a vertical signal rail—not a blog index clone.
+            </p>
+            <a href={appPath('/content/posts')} className="forge-btn forge-btn--ghost">
+              Full archive <ArrowRight size={16} aria-hidden />
+            </a>
           </div>
-          <a href={appPath('/content/posts')} className="forge-text-link">
-            View all <ArrowRight size={14} aria-hidden />
-          </a>
-        </div>
-        <div className="forge-update-grid">
-          {BLOG_POSTS.map((post) => (
-            <GlassCard key={post.id} className="forge-update-card group">
-              <div className="p-5 flex flex-col h-full">
-                <div className="flex items-center gap-2 text-xs text-stone-500 dark:text-slate-400 mb-3">
-                  <Calendar size={12} aria-hidden />
-                  {post.date}
-                  <span className="text-amber-700 dark:text-amber-300 font-semibold">{post.category}</span>
+          <ol className="forge-feed__spine">
+            {BLOG_POSTS.map((post, index) => (
+              <li key={post.id} className="forge-feed__item">
+                <div className="forge-feed__marker" aria-hidden>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
                 </div>
-                <h3 className="text-lg font-bold font-display text-stone-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
-                  <a href={appPath(`/content/posts/${post.id}`)}>{post.title}</a>
-                </h3>
-                <p className="text-sm text-stone-600 dark:text-slate-400 mt-2 line-clamp-3 flex-1">
-                  {post.excerpt}
-                </p>
-                <div className="flex flex-wrap gap-1.5 mt-4">
-                  {post.tags.map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-xs">
-                      {tag}
+                <article className="forge-feed__card">
+                  <div className="forge-feed__meta">
+                    <time>{post.date}</time>
+                    <Badge variant="outline" className="text-xs">
+                      {post.category}
                     </Badge>
-                  ))}
-                </div>
-              </div>
-            </GlassCard>
-          ))}
+                  </div>
+                  <h3 className="forge-feed__headline">
+                    <a href={appPath(`/content/posts/${post.id}`)}>{post.title}</a>
+                  </h3>
+                  <p className="forge-feed__excerpt">{post.excerpt}</p>
+                  <div className="forge-feed__tags">
+                    {post.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                </article>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* 8 · Projects as horizontal feature strip */}
+      {/* 8 · Project bento — asymmetric, not equal project cards */}
       <section className="forge-section" aria-labelledby="projects-title">
-        <div className="forge-section-head forge-section-head--row">
+        <div className="forge-bento-head">
           <div>
-            <p className="forge-kicker">Portfolio</p>
+            <p className="forge-kicker">Build board</p>
             <h2 id="projects-title" className="forge-section-title">
-              Featured projects
+              Active builds
             </h2>
           </div>
           <a href={appPath('/content/projects')} className="forge-text-link">
-            View all projects <ArrowRight size={14} aria-hidden />
+            All projects <ArrowRight size={14} aria-hidden />
           </a>
         </div>
-        <div className="forge-project-rail">
-          {PROJECTS.map((project) => (
-            <article key={project.id} className="forge-project-card">
-              <div className="forge-project-card__top">
-                <h3 className="forge-project-card__title">{project.title}</h3>
-                {project.stats && (
-                  <span className="forge-project-card__badge">
-                    <Star size={10} fill="currentColor" aria-hidden /> {project.stats}
-                  </span>
-                )}
+        <div className="forge-bento">
+          {PROJECTS.map((project, index) => (
+            <article
+              key={project.id}
+              className={`forge-bento__cell ${index === 0 ? 'forge-bento__cell--hero' : ''}`}
+            >
+              <div className="forge-bento__index" aria-hidden>
+                {String(index + 1).padStart(2, '0')}
               </div>
-              <p className="forge-project-card__body">{project.description}</p>
-              <div className="forge-project-card__links">
-                {project.links?.map((link, idx) => (
-                  <a key={idx} href={link.url} className="forge-text-link">
-                    {link.icon} {link.label}
-                  </a>
-                ))}
+              <div className="forge-bento__body">
+                <div className="forge-bento__topline">
+                  <h3 className="forge-bento__title">{project.title}</h3>
+                  {project.stats && (
+                    <span className="forge-bento__stat">
+                      <Star size={10} fill="currentColor" aria-hidden /> {project.stats}
+                    </span>
+                  )}
+                </div>
+                <p className="forge-bento__copy">{project.description}</p>
+                <div className="forge-bento__actions">
+                  {project.links?.map((link, idx) => (
+                    <a key={idx} href={link.url} className="forge-bento__link">
+                      {link.icon} {link.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             </article>
           ))}

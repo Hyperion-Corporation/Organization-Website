@@ -7,9 +7,13 @@ import { useReducedMotion } from '../../../../hooks/useReducedMotion';
 
 type ThreeModule = typeof import('three');
 
+/**
+ * Helios product stage — a solar-network assembly (torus core + orbital nodes),
+ * not the personal-site faceted icosahedron with cyan/violet materials.
+ */
 export default function HeroModel() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rotationRef = useRef({ x: 0.35, y: -0.5 });
+  const rotationRef = useRef({ x: 0.28, y: -0.35 });
   const pausedRef = useRef(false);
   const dragRef = useRef<{ x: number; y: number } | null>(null);
   const [paused, setPaused] = useState(false);
@@ -25,7 +29,7 @@ export default function HeroModel() {
   }, []);
 
   const reset = useCallback(() => {
-    rotationRef.current = { x: 0.35, y: -0.5 };
+    rotationRef.current = { x: 0.28, y: -0.35 };
   }, []);
 
   useEffect(() => {
@@ -34,29 +38,17 @@ export default function HeroModel() {
     const targetCanvas: HTMLCanvasElement = canvasElement;
     let disposed = false;
     let frame = 0;
-    
+
     const handleContextLost = (e: Event) => {
       e.preventDefault();
-      console.warn('WebGL context lost');
-    };
-    
-    const handleContextRestored = () => {
-      console.log('WebGL context restored');
     };
 
     targetCanvas.addEventListener('webglcontextlost', handleContextLost, false);
-    targetCanvas.addEventListener('webglcontextrestored', handleContextRestored, false);
 
     let renderer: import('three').WebGLRenderer | undefined;
-    let geometry: import('three').BufferGeometry | undefined;
-    let material: import('three').Material | undefined;
-    let wireGeometry: import('three').BufferGeometry | undefined;
-    let wireMaterial: import('three').Material | undefined;
+    let disposables: Array<{ dispose: () => void }> = [];
     let observer: ResizeObserver | undefined;
     let intersectionObserver: IntersectionObserver | undefined;
-
-    let frames = 0;
-    let lastTime = performance.now();
     let isVisible = false;
 
     async function mount() {
@@ -64,32 +56,117 @@ export default function HeroModel() {
       try {
         THREE = await import('three');
         if (disposed) return;
-        renderer = new THREE.WebGLRenderer({ canvas: targetCanvas, alpha: true, antialias: true, powerPreference: 'high-performance' });
+        renderer = new THREE.WebGLRenderer({
+          canvas: targetCanvas,
+          alpha: true,
+          antialias: true,
+          powerPreference: 'high-performance',
+        });
       } catch {
         setSupported(false);
         return;
       }
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
-      camera.position.set(0, 0, 6.2);
-      geometry = new THREE.IcosahedronGeometry(1.65, 2);
-      material = new THREE.MeshPhysicalMaterial({ color: '#7dd3fc', emissive: '#312e81', emissiveIntensity: 0.7, metalness: 0.32, roughness: 0.18, transmission: 0.14, clearcoat: 1, flatShading: true });
-      const mesh = new THREE.Mesh(geometry, material);
-      wireGeometry = new THREE.WireframeGeometry(geometry);
-      wireMaterial = new THREE.LineBasicMaterial({ color: '#c4b5fd', transparent: true, opacity: 0.35 });
-      const wireframe = new THREE.LineSegments(wireGeometry, wireMaterial);
-      mesh.add(wireframe);
-      scene.add(mesh);
-      scene.add(new THREE.HemisphereLight('#e0f2fe', '#312e81', 2.2));
-      const light = new THREE.PointLight('#f0abfc', 35, 12);
-      light.position.set(3, 2, 4);
-      scene.add(light);
+      const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+      camera.position.set(0, 0.35, 7.2);
+
+      const root = new THREE.Group();
+      scene.add(root);
+
+      // Core: gold torus knot — “forge ring”, not an icosahedron.
+      const coreGeo = new THREE.TorusKnotGeometry(1.05, 0.28, 128, 16, 2, 3);
+      const coreMat = new THREE.MeshPhysicalMaterial({
+        color: '#f59e0b',
+        emissive: '#92400e',
+        emissiveIntensity: 0.45,
+        metalness: 0.72,
+        roughness: 0.28,
+        clearcoat: 0.85,
+        clearcoatRoughness: 0.2,
+      });
+      const core = new THREE.Mesh(coreGeo, coreMat);
+      root.add(core);
+      disposables.push(coreGeo, coreMat);
+
+      // Cobalt equatorial ring
+      const ringGeo = new THREE.TorusGeometry(1.95, 0.035, 12, 96);
+      const ringMat = new THREE.MeshStandardMaterial({
+        color: '#2563eb',
+        emissive: '#1e3a8a',
+        emissiveIntensity: 0.55,
+        metalness: 0.5,
+        roughness: 0.35,
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2.4;
+      root.add(ring);
+      disposables.push(ringGeo, ringMat);
+
+      // Teal second ring (tilted)
+      const ring2Geo = new THREE.TorusGeometry(1.55, 0.028, 10, 80);
+      const ring2Mat = new THREE.MeshStandardMaterial({
+        color: '#14b8a6',
+        emissive: '#115e59',
+        emissiveIntensity: 0.5,
+        metalness: 0.45,
+        roughness: 0.4,
+      });
+      const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
+      ring2.rotation.x = Math.PI / 1.7;
+      ring2.rotation.y = 0.6;
+      root.add(ring2);
+      disposables.push(ring2Geo, ring2Mat);
+
+      // Orbital graph nodes
+      const nodeColors = ['#fbbf24', '#2dd4bf', '#60a5fa', '#ea580c', '#f59e0b', '#14b8a6'];
+      const nodeGeo = new THREE.SphereGeometry(0.12, 16, 16);
+      disposables.push(nodeGeo);
+      const nodes: import('three').Mesh[] = [];
+      nodeColors.forEach((color, i) => {
+        const mat = new THREE.MeshStandardMaterial({
+          color,
+          emissive: color,
+          emissiveIntensity: 0.35,
+          metalness: 0.3,
+          roughness: 0.4,
+        });
+        const node = new THREE.Mesh(nodeGeo, mat);
+        const angle = (i / nodeColors.length) * Math.PI * 2;
+        const r = 2.35;
+        node.position.set(Math.cos(angle) * r, Math.sin(angle * 1.3) * 0.55, Math.sin(angle) * r);
+        root.add(node);
+        nodes.push(node);
+        disposables.push(mat);
+      });
+
+      // Thin link segments between consecutive nodes
+      const linkMat = new THREE.LineBasicMaterial({ color: '#fbbf24', transparent: true, opacity: 0.35 });
+      disposables.push(linkMat);
+      for (let i = 0; i < nodes.length; i += 1) {
+        const a = nodes[i].position;
+        const b = nodes[(i + 1) % nodes.length].position;
+        const pts = [a.clone(), b.clone()];
+        const geo = new THREE.BufferGeometry().setFromPoints(pts);
+        root.add(new THREE.Line(geo, linkMat));
+        disposables.push(geo);
+      }
+
+      scene.add(new THREE.HemisphereLight('#fff7ed', '#0a1220', 1.6));
+      const key = new THREE.PointLight('#fbbf24', 28, 16);
+      key.position.set(3.2, 2.4, 3.5);
+      scene.add(key);
+      const fill = new THREE.PointLight('#14b8a6', 18, 14);
+      fill.position.set(-2.8, -1.2, 2.5);
+      scene.add(fill);
 
       const resize = () => {
         if (!renderer) return;
         const { clientWidth, clientHeight } = targetCanvas;
-        const dpr = Math.min(window.devicePixelRatio, reducedMotion ? VISUAL_EXPERIENCE.reducedDevicePixelRatio : VISUAL_EXPERIENCE.maxDevicePixelRatio);
+        const dpr = Math.min(
+          window.devicePixelRatio,
+          reducedMotion ? VISUAL_EXPERIENCE.reducedDevicePixelRatio : VISUAL_EXPERIENCE.maxDevicePixelRatio
+        );
         renderer.setPixelRatio(dpr);
         renderer.setSize(clientWidth, clientHeight, false);
         camera.aspect = clientWidth / Math.max(clientHeight, 1);
@@ -99,26 +176,27 @@ export default function HeroModel() {
       observer = new ResizeObserver(resize);
       observer.observe(targetCanvas);
 
+      let t = 0;
       const render = () => {
         if (disposed || !renderer) return;
-        
         if (isVisible && document.visibilityState === 'visible') {
-            mesh.rotation.x = rotationRef.current.x;
-            mesh.rotation.y = rotationRef.current.y;
-            if (!pausedRef.current && !reducedMotion) rotationRef.current.y += 0.0025;
-            renderer.render(scene, camera);
-            
-            frames++;
-            const now = performance.now();
-            if (now - lastTime >= 1000) {
-              const fps = Math.round((frames * 1000) / (now - lastTime));
-              const memory = renderer.info.memory;
-              console.debug(`[HeroModel] FPS: ${fps} | Geometries: ${memory.geometries} | Textures: ${memory.textures}`);
-              frames = 0;
-              lastTime = now;
-            }
+          root.rotation.x = rotationRef.current.x;
+          root.rotation.y = rotationRef.current.y;
+          if (!pausedRef.current && !reducedMotion) {
+            rotationRef.current.y += 0.003;
+            t += 0.012;
+            nodes.forEach((node, i) => {
+              const base = (i / nodes.length) * Math.PI * 2;
+              const r = 2.35 + Math.sin(t + i) * 0.08;
+              node.position.set(
+                Math.cos(base + t * 0.15) * r,
+                Math.sin(base * 1.3 + t * 0.2) * 0.55,
+                Math.sin(base + t * 0.15) * r
+              );
+            });
+          }
+          renderer.render(scene, camera);
         }
-        
         frame = window.requestAnimationFrame(render);
       };
       render();
@@ -129,15 +207,18 @@ export default function HeroModel() {
     }
 
     let disconnect: (() => void) | undefined;
-    
-    intersectionObserver = new IntersectionObserver((entries) => {
+    intersectionObserver = new IntersectionObserver(
+      (entries) => {
         const entry = entries[0];
         isVisible = entry.isIntersecting;
         if (isVisible && !renderer && !disposed) {
-            mount().then((cleanup) => { disconnect = cleanup; });
+          mount().then((cleanup) => {
+            disconnect = cleanup;
+          });
         }
-    }, { rootMargin: '50px' });
-    
+      },
+      { rootMargin: '50px' }
+    );
     intersectionObserver.observe(targetCanvas);
 
     return () => {
@@ -145,48 +226,76 @@ export default function HeroModel() {
       disconnect?.();
       intersectionObserver?.disconnect();
       targetCanvas.removeEventListener('webglcontextlost', handleContextLost);
-      targetCanvas.removeEventListener('webglcontextrestored', handleContextRestored);
       window.cancelAnimationFrame(frame);
-      geometry?.dispose();
-      material?.dispose();
-      wireGeometry?.dispose();
-      wireMaterial?.dispose();
+      disposables.forEach((d) => d.dispose());
       renderer?.dispose();
     };
   }, [reducedMotion]);
 
   return (
-    <div className="hero-model" onKeyDown={(event) => {
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        event.preventDefault();
-        rotate(event.key === 'ArrowLeft' ? -VISUAL_EXPERIENCE.modelRotationStep : VISUAL_EXPERIENCE.modelRotationStep);
-      }
-    }}>
-      <div className="hero-model__halo" aria-hidden="true" />
-      {supported ? <canvas
-        ref={canvasRef}
-        tabIndex={0}
-        aria-label="Interactive faceted product model. Drag to inspect or use the arrow keys to rotate."
-        onPointerDown={(event) => {
-          dragRef.current = { x: event.clientX, y: event.clientY };
-          event.currentTarget.setPointerCapture(event.pointerId);
-        }}
-        onPointerMove={(event) => {
-          if (!dragRef.current) return;
-          rotationRef.current.y += (event.clientX - dragRef.current.x) * 0.008;
-          rotationRef.current.x += (event.clientY - dragRef.current.y) * 0.008;
-          dragRef.current = { x: event.clientX, y: event.clientY };
-        }}
-        onPointerUp={(event) => {
-          dragRef.current = null;
-          event.currentTarget.releasePointerCapture(event.pointerId);
-        }}
-        onPointerCancel={() => { dragRef.current = null; }}
-      /> : <div className="hero-model__fallback" role="img" aria-label="Faceted product model static preview">◇</div>}
-      <div className="hero-model__label"><span /> Live product object</div>
-      <div className="hero-model__controls">
-        <button type="button" onClick={() => setPaused((value) => !value)} aria-label={paused ? 'Resume model rotation' : 'Pause model rotation'}>{paused ? <Play size={15} /> : <Pause size={15} />}</button>
-        <button type="button" onClick={reset} aria-label="Reset model rotation"><RotateCcw size={15} /></button>
+    <div
+      className="forge-stage"
+      onKeyDown={(event) => {
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          rotate(
+            event.key === 'ArrowLeft'
+              ? -VISUAL_EXPERIENCE.modelRotationStep
+              : VISUAL_EXPERIENCE.modelRotationStep
+          );
+        }
+      }}
+    >
+      <div className="forge-stage__frame" aria-hidden="true">
+        <span className="forge-stage__corner forge-stage__corner--tl" />
+        <span className="forge-stage__corner forge-stage__corner--tr" />
+        <span className="forge-stage__corner forge-stage__corner--bl" />
+        <span className="forge-stage__corner forge-stage__corner--br" />
+      </div>
+      <div className="forge-stage__scan" aria-hidden="true" />
+      {supported ? (
+        <canvas
+          ref={canvasRef}
+          tabIndex={0}
+          aria-label="Interactive Helios network model. Drag to inspect or use the arrow keys to rotate."
+          onPointerDown={(event) => {
+            dragRef.current = { x: event.clientX, y: event.clientY };
+            event.currentTarget.setPointerCapture(event.pointerId);
+          }}
+          onPointerMove={(event) => {
+            if (!dragRef.current) return;
+            rotationRef.current.y += (event.clientX - dragRef.current.x) * 0.008;
+            rotationRef.current.x += (event.clientY - dragRef.current.y) * 0.008;
+            dragRef.current = { x: event.clientX, y: event.clientY };
+          }}
+          onPointerUp={(event) => {
+            dragRef.current = null;
+            event.currentTarget.releasePointerCapture(event.pointerId);
+          }}
+          onPointerCancel={() => {
+            dragRef.current = null;
+          }}
+        />
+      ) : (
+        <div className="forge-stage__fallback" role="img" aria-label="Helios network model static preview">
+          ◎
+        </div>
+      )}
+      <div className="forge-stage__hud">
+        <p className="forge-stage__hud-label">Helios network · live</p>
+        <p className="forge-stage__hud-meta">Drag · ← → · pause</p>
+      </div>
+      <div className="forge-stage__controls">
+        <button
+          type="button"
+          onClick={() => setPaused((value) => !value)}
+          aria-label={paused ? 'Resume model rotation' : 'Pause model rotation'}
+        >
+          {paused ? <Play size={15} /> : <Pause size={15} />}
+        </button>
+        <button type="button" onClick={reset} aria-label="Reset model rotation">
+          <RotateCcw size={15} />
+        </button>
       </div>
     </div>
   );

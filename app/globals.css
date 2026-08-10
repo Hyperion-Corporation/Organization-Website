@@ -735,13 +735,8 @@ html.dark .forge-stat-rail strong,
   position: relative;
 }
 
-.forge-hero__stage .hero-model {
-  border-radius: 1.5rem 1.5rem 1.5rem 0.5rem;
-  border-color: color-mix(in srgb, var(--helios-gold) 35%, var(--helios-border));
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.08),
-    0 30px 80px rgb(0 0 0 / 0.35),
-    0 0 0 1px rgb(245 158 11 / 0.12);
+.forge-hero__stage .forge-stage {
+  border-radius: 1.35rem 1.35rem 1.35rem 0.45rem;
 }
 
 /* Pillars */
@@ -1228,11 +1223,6 @@ html.dark .forge-footer__theme:hover,
   opacity: 0.85;
 }
 
-/* Constellation panel inside product page: slightly tighter */
-.forge-section--map .constellation-panel {
-  margin-bottom: 0;
-}
-
 /* Content routes inherit wider product column */
 .forge-shell__content > section,
 .forge-shell__content > .mb-8,
@@ -1240,6 +1230,1181 @@ html.dark .forge-footer__theme:hover,
 .forge-shell__content > .mb-16 {
   max-width: none;
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===================================================================
+   Forge stage (3D) — instrument frame, not hero-model glass card
+   =================================================================== */
+
+.forge-stage {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 50% 40%, rgb(245 158 11 / 0.12), transparent 45%),
+    linear-gradient(165deg, #0a1220 0%, #070b14 55%, #0c1f24 100%);
+  border: 1px solid rgb(245 158 11 / 0.28);
+  box-shadow:
+    0 0 0 1px rgb(37 99 235 / 0.12),
+    0 32px 80px rgb(0 0 0 / 0.45);
+  isolation: isolate;
+}
+
+.forge-stage canvas {
+  display: block;
+  width: 100%;
+  height: 420px;
+  cursor: grab;
+}
+
+.forge-stage canvas:active {
+  cursor: grabbing;
+}
+
+.forge-stage__frame {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.forge-stage__corner {
+  position: absolute;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 2px solid rgb(245 158 11 / 0.75);
+}
+
+.forge-stage__corner--tl {
+  top: 0.75rem;
+  left: 0.75rem;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.forge-stage__corner--tr {
+  top: 0.75rem;
+  right: 0.75rem;
+  border-left: 0;
+  border-bottom: 0;
+  border-color: rgb(20 184 166 / 0.8);
+}
+
+.forge-stage__corner--bl {
+  bottom: 0.75rem;
+  left: 0.75rem;
+  border-right: 0;
+  border-top: 0;
+  border-color: rgb(37 99 235 / 0.75);
+}
+
+.forge-stage__corner--br {
+  bottom: 0.75rem;
+  right: 0.75rem;
+  border-left: 0;
+  border-top: 0;
+}
+
+.forge-stage__scan {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgb(255 255 255 / 0.02) 3px,
+    rgb(255 255 255 / 0.02) 4px
+  );
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.forge-stage__hud {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 3;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.45rem;
+  border: 1px solid rgb(245 158 11 / 0.35);
+  background: rgb(7 11 20 / 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.forge-stage__hud-label {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fbbf24;
+}
+
+.forge-stage__hud-meta {
+  margin: 0.2rem 0 0;
+  font-size: 0.68rem;
+  color: #94a3b8;
+}
+
+.forge-stage__controls {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.forge-stage__controls button {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(245 158 11 / 0.35);
+  background: rgb(7 11 20 / 0.8);
+  color: #fde68a;
+  cursor: pointer;
+}
+
+.forge-stage__fallback {
+  display: grid;
+  height: 420px;
+  place-items: center;
+  color: #f59e0b;
+  font-size: 6rem;
+}
+
+.forge-hero__stage .forge-stage {
+  min-height: 420px;
+}
+
+/* ===================================================================
+   System map — map-first + inspector (not constellation-panel)
+   =================================================================== */
+
+.forge-sysmap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.forge-sysmap__header {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .forge-sysmap__header {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: end;
+  }
+}
+
+.forge-sysmap__title {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #1c1917;
+}
+
+html.dark .forge-sysmap__title,
+.dark .forge-sysmap__title {
+  color: #f8fafc;
+}
+
+.forge-sysmap__lede {
+  margin: 0;
+  color: #57534e;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+html.dark .forge-sysmap__lede,
+.dark .forge-sysmap__lede {
+  color: #94a3b8;
+}
+
+.forge-sysmap__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.forge-sysmap__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--helios-border);
+  background: var(--helios-panel);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #57534e;
+}
+
+html.dark .forge-sysmap__legend-item,
+.dark .forge-sysmap__legend-item {
+  color: #cbd5e1;
+}
+
+.forge-sysmap__legend-item.is-active {
+  border-color: rgb(245 158 11 / 0.45);
+  box-shadow: 0 0 0 1px rgb(245 158 11 / 0.2);
+  color: #b45309;
+}
+
+html.dark .forge-sysmap__legend-item.is-active,
+.dark .forge-sysmap__legend-item.is-active {
+  color: #fbbf24;
+}
+
+.forge-sysmap__stage {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .forge-sysmap__stage {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+    align-items: stretch;
+  }
+}
+
+.forge-sysmap__field {
+  position: relative;
+  min-height: 340px;
+  aspect-ratio: 16 / 10;
+  border-radius: 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--helios-gold) 25%, var(--helios-border));
+  background:
+    radial-gradient(circle at 50% 50%, rgb(37 99 235 / 0.08), transparent 55%),
+    linear-gradient(160deg, rgb(255 252 247 / 0.9), rgb(255 247 237 / 0.5));
+  overflow: hidden;
+}
+
+html.dark .forge-sysmap__field,
+.dark .forge-sysmap__field {
+  background:
+    radial-gradient(circle at 50% 50%, rgb(245 158 11 / 0.08), transparent 55%),
+    linear-gradient(160deg, #0a1220, #070b14 70%);
+}
+
+.forge-sysmap__edges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.forge-sysmap__edges line {
+  stroke: #a8a29e;
+  stroke-width: 1.2;
+  opacity: 0.18;
+  transition: opacity 0.25s, stroke-width 0.25s;
+}
+
+html.dark .forge-sysmap__edges line,
+.dark .forge-sysmap__edges line {
+  stroke: #64748b;
+}
+
+.forge-sysmap__edges line.is-active {
+  stroke: url(#forge-sysmap-line);
+  stroke-width: 2.2;
+  opacity: 0.9;
+  stroke-dasharray: 4 6;
+  animation: constellation-flow 7s linear infinite;
+}
+
+.forge-sysmap__chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transform: translate(-50%, -50%);
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--helios-border);
+  background: rgb(255 252 247 / 0.94);
+  box-shadow: 0 10px 28px rgb(28 25 23 / 0.12);
+  font-size: clamp(0.68rem, 1.2vw, 0.8rem);
+  font-weight: 750;
+  color: #1c1917;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+html.dark .forge-sysmap__chip,
+.dark .forge-sysmap__chip {
+  color: #fef3c7;
+  background: rgb(10 16 28 / 0.92);
+  border-color: rgb(148 163 184 / 0.2);
+}
+
+.forge-sysmap__chip:hover,
+.forge-sysmap__chip.is-selected {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow: 0 12px 36px rgb(245 158 11 / 0.28);
+  border-color: rgb(245 158 11 / 0.45);
+}
+
+.forge-sysmap__chip.is-muted {
+  opacity: 0.32;
+}
+
+.forge-sysmap__chip--core {
+  border-left: 3px solid #fbbf24;
+}
+.forge-sysmap__chip--ai {
+  border-left: 3px solid #f59e0b;
+}
+.forge-sysmap__chip--optimization {
+  border-left: 3px solid #2563eb;
+}
+.forge-sysmap__chip--application {
+  border-left: 3px solid #14b8a6;
+}
+
+.forge-sysmap__inspector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.25rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--helios-border);
+  background:
+    linear-gradient(165deg, rgb(245 158 11 / 0.1), transparent 50%),
+    var(--helios-panel);
+  backdrop-filter: blur(16px);
+}
+
+.forge-sysmap__inspector-kicker {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b45309;
+}
+
+html.dark .forge-sysmap__inspector-kicker,
+.dark .forge-sysmap__inspector-kicker {
+  color: #fbbf24;
+}
+
+.forge-sysmap__inspector-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.forge-sysmap__inspector-body {
+  margin: 0;
+  flex: 1;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #57534e;
+}
+
+html.dark .forge-sysmap__inspector-body,
+.dark .forge-sysmap__inspector-body {
+  color: #94a3b8;
+}
+
+.forge-sysmap__inspector-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #0f766e;
+  text-decoration: none;
+}
+
+html.dark .forge-sysmap__inspector-link,
+.dark .forge-sysmap__inspector-link {
+  color: #2dd4bf;
+}
+
+/* ===================================================================
+   Metrics board — dials + chart (not simulation-panel)
+   =================================================================== */
+
+.forge-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.forge-metrics__title {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #1c1917;
+}
+
+html.dark .forge-metrics__title,
+.dark .forge-metrics__title {
+  color: #f8fafc;
+}
+
+.forge-metrics__lede {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+  color: #57534e;
+  line-height: 1.65;
+}
+
+html.dark .forge-metrics__lede,
+.dark .forge-metrics__lede {
+  color: #94a3b8;
+}
+
+.forge-metrics__board {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+  border-radius: 1.35rem;
+  border: 1px solid var(--helios-border);
+  background:
+    linear-gradient(135deg, rgb(245 158 11 / 0.06), transparent 40%),
+    var(--helios-panel);
+  backdrop-filter: blur(18px);
+}
+
+@media (min-width: 900px) {
+  .forge-metrics__board {
+    grid-template-columns: minmax(200px, 0.38fr) minmax(0, 1fr);
+    padding: 1.25rem;
+  }
+}
+
+.forge-metrics__dials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  align-content: start;
+}
+
+.forge-metrics__dial {
+  padding: 0.85rem;
+  border-radius: 0.85rem;
+  border: 1px solid var(--helios-border);
+  background: rgb(255 252 247 / 0.75);
+}
+
+html.dark .forge-metrics__dial,
+.dark .forge-metrics__dial {
+  background: rgb(7 11 20 / 0.55);
+}
+
+.forge-metrics__dial--gold {
+  border-color: rgb(245 158 11 / 0.35);
+}
+.forge-metrics__dial--teal {
+  border-color: rgb(20 184 166 / 0.35);
+}
+.forge-metrics__dial--gap {
+  grid-column: 1 / -1;
+}
+
+.forge-metrics__dial-label {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a8a29e;
+}
+
+.forge-metrics__dial-value {
+  display: block;
+  margin-top: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  color: #1c1917;
+}
+
+html.dark .forge-metrics__dial-value,
+.dark .forge-metrics__dial-value {
+  color: #f8fafc;
+}
+
+.forge-metrics__dial-value span {
+  font-size: 0.85rem;
+  font-weight: 650;
+  opacity: 0.65;
+}
+
+.forge-metrics__gap-bar {
+  margin-top: 0.55rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: rgb(148 163 184 / 0.2);
+  overflow: hidden;
+}
+
+.forge-metrics__gap-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f59e0b, #14b8a6);
+}
+
+.forge-metrics__strategy {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a8a29e;
+}
+
+.forge-metrics__strategy select {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--helios-border);
+  background: rgb(255 252 247 / 0.9);
+  color: #1c1917;
+  font-size: 0.85rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+html.dark .forge-metrics__strategy select,
+.dark .forge-metrics__strategy select {
+  background: rgb(7 11 20 / 0.85);
+  color: #e2e8f0;
+}
+
+.forge-metrics__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.forge-metrics__run,
+.forge-metrics__reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.65rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+  border: 1px solid var(--helios-border);
+  background: transparent;
+  color: inherit;
+}
+
+.forge-metrics__run {
+  flex: 1;
+  justify-content: center;
+  border: 0;
+  color: #1c1917;
+  background: #fbbf24;
+}
+
+.forge-metrics__chart-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  border: 1px solid var(--helios-border);
+  background: rgb(7 11 20 / 0.04);
+}
+
+html.dark .forge-metrics__chart-wrap,
+.dark .forge-metrics__chart-wrap {
+  background: rgb(2 6 23 / 0.45);
+}
+
+.forge-metrics__chart-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #78716c;
+}
+
+.forge-metrics__swatch {
+  width: 0.7rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  margin-right: 0.55rem;
+}
+
+.forge-metrics__swatch--gold {
+  background: #fbbf24;
+}
+.forge-metrics__swatch--teal {
+  background: #2dd4bf;
+}
+
+.forge-metrics__chart {
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  background: rgb(2 6 23 / 0.06);
+}
+
+html.dark .forge-metrics__chart,
+.dark .forge-metrics__chart {
+  background: rgb(2 6 23 / 0.4);
+}
+
+.forge-metrics__chart svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.forge-metrics__grid {
+  stroke: #64748b;
+  stroke-width: 1;
+  opacity: 0.2;
+}
+
+.forge-metrics__line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+.forge-metrics__line--incumbent {
+  color: #fbbf24;
+  stroke: #fbbf24;
+}
+
+.forge-metrics__line--bound {
+  color: #2dd4bf;
+  stroke: #2dd4bf;
+  stroke-width: 2.5;
+  stroke-dasharray: 7 6;
+}
+
+/* ===================================================================
+   Workbench — vertical bay rail
+   =================================================================== */
+
+.forge-workbench__title {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #1c1917;
+}
+
+html.dark .forge-workbench__title,
+.dark .forge-workbench__title {
+  color: #f8fafc;
+}
+
+.forge-workbench__lede {
+  margin: 0.75rem 0 0;
+  max-width: 38rem;
+  color: #57534e;
+  line-height: 1.65;
+}
+
+html.dark .forge-workbench__lede,
+.dark .forge-workbench__lede {
+  color: #94a3b8;
+}
+
+.forge-workbench__body {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .forge-workbench__body {
+    grid-template-columns: 11rem minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.forge-workbench__rail {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.35rem;
+  border-radius: 1rem;
+  border: 1px solid var(--helios-border);
+  background: var(--helios-panel);
+}
+
+@media (min-width: 860px) {
+  .forge-workbench__rail {
+    flex-direction: column;
+    overflow: visible;
+    position: sticky;
+    top: 5.5rem;
+  }
+}
+
+.forge-workbench__bay {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 7rem;
+  padding: 0.75rem 0.85rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: #57534e;
+}
+
+html.dark .forge-workbench__bay,
+.dark .forge-workbench__bay {
+  color: #94a3b8;
+}
+
+.forge-workbench__bay.is-active {
+  background: linear-gradient(115deg, rgb(245 158 11 / 0.22), rgb(37 99 235 / 0.12));
+  color: #1c1917;
+  box-shadow: inset 3px 0 0 var(--helios-gold);
+}
+
+html.dark .forge-workbench__bay.is-active,
+.dark .forge-workbench__bay.is-active {
+  color: #fef3c7;
+}
+
+.forge-workbench__bay-index {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  opacity: 0.55;
+  font-variant-numeric: tabular-nums;
+}
+
+.forge-workbench__bay-label {
+  font-weight: 750;
+  font-size: 0.88rem;
+}
+
+.forge-workbench__viewport {
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--helios-gold) 22%, var(--helios-border));
+  background:
+    linear-gradient(180deg, rgb(245 158 11 / 0.05), transparent 30%),
+    var(--helios-panel);
+  backdrop-filter: blur(14px);
+}
+
+.forge-workbench__viewport-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--helios-border);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #78716c;
+}
+
+.forge-workbench__viewport-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #14b8a6;
+  box-shadow: 0 0 10px #14b8a6;
+}
+
+.forge-workbench__blurb {
+  margin: 0 0 1.1rem;
+  color: #57534e;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  max-width: 42rem;
+}
+
+html.dark .forge-workbench__blurb,
+.dark .forge-workbench__blurb {
+  color: #94a3b8;
+}
+
+.forge-workbench__canvas-grid {
+  display: grid;
+  gap: 1.1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .forge-workbench__canvas-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.forge-workbench__canvas-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ===================================================================
+   Signal feed + project bento
+   =================================================================== */
+
+.forge-feed {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .forge-feed {
+    grid-template-columns: minmax(200px, 0.4fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.forge-feed__title {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.8vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #1c1917;
+}
+
+html.dark .forge-feed__title,
+.dark .forge-feed__title {
+  color: #f8fafc;
+}
+
+.forge-feed__lede {
+  margin: 0.75rem 0 1.25rem;
+  color: #57534e;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+html.dark .forge-feed__lede,
+.dark .forge-feed__lede {
+  color: #94a3b8;
+}
+
+.forge-feed__spine {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 2px solid color-mix(in srgb, var(--helios-gold) 45%, transparent);
+}
+
+.forge-feed__item {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.75rem;
+  padding: 0 0 1.5rem 0.25rem;
+  position: relative;
+}
+
+.forge-feed__marker {
+  position: relative;
+  left: -1.05rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.55rem;
+  border: 1px solid rgb(245 158 11 / 0.4);
+  background: var(--helios-panel);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #b45309;
+  box-shadow: 0 6px 16px rgb(28 25 23 / 0.08);
+}
+
+html.dark .forge-feed__marker,
+.dark .forge-feed__marker {
+  color: #fbbf24;
+}
+
+.forge-feed__card {
+  padding: 1rem 1.15rem;
+  border-radius: 0 1rem 1rem 0.35rem;
+  border: 1px solid var(--helios-border);
+  border-left: 3px solid var(--helios-gold);
+  background: var(--helios-panel);
+  backdrop-filter: blur(12px);
+}
+
+.forge-feed__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.75rem;
+  color: #78716c;
+}
+
+.forge-feed__headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.forge-feed__headline a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.forge-feed__headline a:hover {
+  color: #b45309;
+}
+
+html.dark .forge-feed__headline a:hover,
+.dark .forge-feed__headline a:hover {
+  color: #fbbf24;
+}
+
+.forge-feed__excerpt {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #57534e;
+}
+
+html.dark .forge-feed__excerpt,
+.dark .forge-feed__excerpt {
+  color: #94a3b8;
+}
+
+.forge-feed__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+.forge-feed__tags span {
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0f766e;
+  background: rgb(20 184 166 / 0.12);
+}
+
+html.dark .forge-feed__tags span,
+.dark .forge-feed__tags span {
+  color: #2dd4bf;
+}
+
+.forge-bento-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.forge-bento {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 800px) {
+  .forge-bento {
+    grid-template-columns: 1.35fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .forge-bento__cell--hero {
+    grid-row: 1 / span 2;
+  }
+}
+
+.forge-bento__cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 11rem;
+  padding: 1.35rem;
+  border-radius: 1.2rem;
+  border: 1px solid var(--helios-border);
+  background: var(--helios-panel);
+  overflow: hidden;
+}
+
+.forge-bento__cell--hero {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 100% 0%, rgb(245 158 11 / 0.18), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgb(37 99 235 / 0.12), transparent 40%),
+    linear-gradient(155deg, #0a1220, #101a32 60%, #0c1f24);
+  border-color: rgb(148 163 184 / 0.2);
+  color: #e2e8f0;
+}
+
+.forge-bento__cell--hero .forge-bento__copy {
+  color: #94a3b8;
+}
+
+.forge-bento__cell--hero .forge-bento__title {
+  color: #fff;
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+}
+
+.forge-bento__cell--hero .forge-bento__link {
+  color: #fbbf24;
+}
+
+.forge-bento__index {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  opacity: 0.12;
+  position: absolute;
+  right: 0.85rem;
+  top: 0.5rem;
+}
+
+.forge-bento__cell--hero .forge-bento__index {
+  opacity: 0.18;
+  color: #fbbf24;
+}
+
+.forge-bento__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.forge-bento__topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.forge-bento__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.forge-bento__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 750;
+  color: #b45309;
+  background: rgb(245 158 11 / 0.12);
+  border: 1px solid rgb(245 158 11 / 0.25);
+}
+
+.forge-bento__cell--hero .forge-bento__stat {
+  color: #fbbf24;
+  background: rgb(245 158 11 / 0.15);
+  border-color: rgb(245 158 11 / 0.35);
+}
+
+.forge-bento__copy {
+  margin: 0;
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #57534e;
+}
+
+.forge-bento__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.forge-bento__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #0f766e;
+  text-decoration: none;
+}
+
+html.dark .forge-bento__link,
+.dark .forge-bento__link {
+  color: #2dd4bf;
+}
+
 
 
 /* ===================================================================
