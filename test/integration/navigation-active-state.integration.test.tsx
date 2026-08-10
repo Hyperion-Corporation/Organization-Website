@@ -2,9 +2,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import ClientLayoutWrapper from '@/app/ClientLayoutWrapper';
 
-// Product top-nav: active section should mark the matching header link.
-// Query primary nav links (not mobile-only) via aria-current.
-
 let currentPathname = '/';
 vi.mock('next/navigation', () => ({
   usePathname: () => currentPathname,
@@ -20,21 +17,21 @@ vi.mock('@/assets/icons/Hyperion-mark.png', () => ({
 }));
 
 describe('active section integration', () => {
-  it('marks the Reports nav item active when the pathname is /content/reports', () => {
-    currentPathname = '/content/reports';
+  it('marks the Products nav item active when the pathname is /content/products', () => {
+    currentPathname = '/content/products';
 
     const { container } = render(
       <ClientLayoutWrapper>
-        <div>Reports Page</div>
+        <div>Products Page</div>
       </ClientLayoutWrapper>
     );
 
-    const reportsLink = container.querySelector('nav.forge-nav a[href="/content/reports"]');
-    expect(reportsLink).toHaveClass('is-active');
-    expect(reportsLink).toHaveAttribute('aria-current', 'page');
+    const productsLink = container.querySelector('nav.forge-nav a[href="/content/products"]');
+    expect(productsLink).toHaveClass('is-active');
+    expect(productsLink).toHaveAttribute('aria-current', 'page');
   });
 
-  it('marks the Home nav item active at the root path', () => {
+  it('does not mark Products active at the root path', () => {
     currentPathname = '/';
 
     const { container } = render(
@@ -43,8 +40,8 @@ describe('active section integration', () => {
       </ClientLayoutWrapper>
     );
 
-    const homeLink = container.querySelector('nav.forge-nav a[href="/"]');
-    expect(homeLink).toHaveClass('is-active');
+    const productsLink = container.querySelector('nav.forge-nav a[href="/content/products"]');
+    expect(productsLink).not.toHaveClass('is-active');
 
     const reportsLink = container.querySelector('nav.forge-nav a[href="/content/reports"]');
     expect(reportsLink).not.toHaveClass('is-active');

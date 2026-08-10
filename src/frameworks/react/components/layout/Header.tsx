@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Sun, Moon, Github } from 'lucide-react';
-import { PRIMARY_NAV, sectionFromPath } from '../../../../constants/siteNav';
+import { PRIMARY_NAV, NAV_CTA, sectionFromPath } from '../../../../constants/siteNav';
 import orgLogo from '@/assets/icons/Hyperion-mark.png';
 
 interface HeaderProps {
@@ -13,8 +13,8 @@ interface HeaderProps {
 }
 
 /**
- * Product-site top navigation (Helios Forge).
- * Replaces the personal-portfolio pattern of sticky left sidebar + sparse header.
+ * Sparse product top bar — few links + one CTA.
+ * Pattern: HydraDB / Cerebrium clarity; anti-pattern: infinite pill menus.
  */
 export default function Header({ darkMode, toggleTheme }: HeaderProps) {
   const pathname = usePathname();
@@ -48,7 +48,7 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
         </Link>
 
         <nav className="forge-nav" aria-label="Primary">
-          {PRIMARY_NAV.map((item) => {
+          {PRIMARY_NAV.filter((item) => item.slug !== 'home').map((item) => {
             const isActive = active === item.slug;
             return (
               <Link
@@ -81,6 +81,9 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+          <Link href={NAV_CTA.href} className="forge-nav-cta">
+            {NAV_CTA.label}
+          </Link>
           <button
             type="button"
             className="forge-icon-btn forge-topbar__menu-btn"
@@ -113,6 +116,13 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
                 </Link>
               );
             })}
+            <Link
+              href={NAV_CTA.href}
+              className="forge-nav-cta forge-nav-cta--block"
+              onClick={() => setMobileOpen(false)}
+            >
+              {NAV_CTA.label}
+            </Link>
           </nav>
         </div>
       )}

@@ -1,6 +1,8 @@
 /**
  * Corporate site navigation for Hyperion Corporation.
- * Product org IA — not a personal portfolio sidebar clone.
+ *
+ * Inspired by sparse product navs (HydraDB / Cerebrium): few top-level links,
+ * primary CTA separate, secondary destinations in the footer—not a tag wall.
  */
 import type { LucideIcon } from 'lucide-react';
 import {
@@ -23,25 +25,28 @@ export interface SiteNavItem {
   shortLabel?: string;
 }
 
-/** Primary chrome (top nav) — keep dense labels short. */
+/** Sparse primary rail — avoid Neuromantix-style overcrowding. */
 export const PRIMARY_NAV: SiteNavItem[] = [
   { href: '/', label: 'Home', slug: 'home', icon: Home },
   { href: '/content/about', label: 'About', slug: 'about', icon: Building2 },
   { href: '/content/products', label: 'Products', slug: 'products', icon: Package },
   { href: '/content/projects', label: 'Projects', slug: 'projects', icon: FolderKanban },
-  { href: '/content/reports', label: 'Research', slug: 'reports', icon: FileText, shortLabel: 'Research' },
+  { href: '/content/reports', label: 'Research', slug: 'reports', icon: FileText },
   { href: '/content/posts', label: 'News', slug: 'posts', icon: Newspaper },
-  { href: '/content/faq', label: 'FAQ', slug: 'faq', icon: HelpCircle },
-  { href: '/content/contact', label: 'Contact', slug: 'contact', icon: Mail },
 ];
 
-/**
- * Extra destinations linked from footer / in-page.
- * Careers is intentionally omitted until a real opening exists.
- */
+/** Footer / secondary only. */
 export const SECONDARY_NAV: SiteNavItem[] = [
+  { href: '/content/faq', label: 'FAQ', slug: 'faq', icon: HelpCircle },
+  { href: '/content/contact', label: 'Contact', slug: 'contact', icon: Mail },
   { href: '/content/press', label: 'Press kit', slug: 'press', icon: Megaphone },
 ];
+
+/** Header primary CTA (Cerebrium-style action, not another nav link). */
+export const NAV_CTA = {
+  href: '/content/products',
+  label: 'See products',
+} as const;
 
 export function sectionFromPath(path: string | null): string {
   if (!path || path === '/') return 'home';

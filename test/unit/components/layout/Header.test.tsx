@@ -17,8 +17,8 @@ describe('Header', () => {
     render(<Header darkMode={false} toggleTheme={mockToggleTheme} />);
     expect(screen.getByText('Hyperion')).toBeInTheDocument();
     expect(screen.getByText('Corporation')).toBeInTheDocument();
-    // Desktop nav + brand may share labels; at least one Home link
-    expect(screen.getAllByRole('link', { name: /home/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: /products/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole('link', { name: /see products/i }).length).toBeGreaterThan(0);
   });
 
   it('opens the mobile menu and exposes navigation', () => {

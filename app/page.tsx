@@ -1,365 +1,114 @@
 import React from 'react';
-import {
-  ArrowRight,
-  Network,
-  Layers,
-  Gamepad2,
-  Cpu,
-  PenTool,
-  Star,
-  Sparkles,
-  ExternalLink,
-} from 'lucide-react';
-import Badge from '../src/frameworks/react/components/ui/Badge';
-import { BlogPost, Project } from '../src/interfaces/types';
+import { ArrowRight } from 'lucide-react';
 import HeroModel from '../src/frameworks/react/components/models/HeroModel';
-import ResearchConstellation from '../src/frameworks/react/components/graph/ResearchConstellation';
-import ConvergenceSimulation from '../src/frameworks/react/components/routes/ConvergenceSimulation';
-import LabShowcase from '../src/frameworks/react/components/home/LabShowcase';
+import VgpStructureDemo from '../src/frameworks/react/components/products/VgpStructureDemo';
 import { appPath } from '../src/utils/paths';
 
 /**
- * Product-site homepage composition (Helios Forge).
- * Intentionally not the github-pages personal stack:
- * hero → constellation → convergence → field-notes dump → posts list → projects.
+ * Marketing homepage — sparse product aesthetics (HydraDB / Cerebrium lessons):
+ * one hero statement, one primary visual, one interactive, one CTA close.
+ * Anti-pattern avoided: simultaneous lab dump + charts + tag clouds + metrics walls.
  */
-
-const PILLARS = [
-  {
-    icon: Network,
-    title: 'Visual Graph Programming',
-    body: 'See how modules, assets, and storyboards relate—then author new structure from that shared model.',
-    href: appPath('/content/projects'),
-    cta: 'Flagship direction',
-  },
-  {
-    icon: Gamepad2,
-    title: 'Games & simulations',
-    body: 'Tools aimed at creative and technical teams shipping interactive worlds, not another personal portfolio grid.',
-    href: appPath('/content/about'),
-    cta: 'Domains we serve',
-  },
-  {
-    icon: Cpu,
-    title: 'Workflow optimization',
-    body: 'Reduce friction between art, design, and engineering with structure, metrics, and clear relationships.',
-    href: appPath('/content/products'),
-    cta: 'Product lineup',
-  },
-];
-
-const BLOG_POSTS: BlogPost[] = [
-  {
-    id: 'Notes_on_RL_an_Introduction',
-    date: 'Coming soon',
-    category: 'Product',
-    title: 'Visual Graph Programming: mapping modules, assets, and storyboards',
-    excerpt:
-      'How Hyperion is building graph and metrics visualization so teams can see how code modules, assets, and narrative boards relate—and create new modules from that understanding.',
-    tags: ['VGP', 'Visualization'],
-  },
-  {
-    id: 'Attention_Learn_to_Solve_Routing_Problem',
-    date: 'Coming soon',
-    category: 'Engineering',
-    title: 'Optimizing creative and engineering workflows',
-    excerpt:
-      'Our approach to reducing friction for developers, artists, and designers working on games, simulations, and other complex interactive systems.',
-    tags: ['Tools', 'Workflows'],
-  },
-  {
-    id: 'Combinatorial_Optimization_an_Introduction',
-    date: 'Coming soon',
-    category: 'Research',
-    title: 'From static sites to interactive product surfaces',
-    excerpt:
-      'Why this organization site is a static Next.js export on GitHub Pages—and how interactive islands support demos without a heavy runtime.',
-    tags: ['Web', 'Architecture'],
-  },
-];
-
-const PROJECTS: Project[] = [
-  {
-    id: 'p1',
-    title: 'Visual Graph Programming',
-    description:
-      'In-progress platform that augments programmers and designers with graph and metrics visualization in 2D/3D. Explore how code modules, assets, and storyboards connect—and author new modules from that shared model.',
-    links: [
-      {
-        label: 'GitHub Organization',
-        url: 'https://github.com/Hyperion-Corporation',
-        icon: <ExternalLink size={14} className="w-4 h-4 mr-1" />,
-      },
-    ],
-    stats: 'Flagship',
-    icon: undefined,
-    iconColorClass: '',
-  },
-  {
-    id: 'p2',
-    title: 'Creative pipeline tooling',
-    description:
-      'Software aimed at games, simulations/simulators, and related computer work—helping teams keep technical systems and creative production in sync.',
-    links: [
-      {
-        label: 'About Hyperion',
-        url: appPath('/content/about'),
-        icon: <Layers size={14} className="w-4 h-4 mr-1" />,
-      },
-    ],
-    stats: 'Focus',
-    icon: undefined,
-    iconColorClass: '',
-  },
-  {
-    id: 'p3',
-    title: 'Organization Website',
-    description:
-      'This site: the public face of Hyperion Corporation on GitHub Pages. Built with Next.js, React, and Tailwind CSS as a fully static export.',
-    links: [
-      {
-        label: 'Repository',
-        url: 'https://github.com/Hyperion-Corporation/Organization-Website',
-        icon: <ExternalLink size={14} className="w-4 h-4 mr-1" />,
-      },
-    ],
-    stats: 'Next.js',
-    icon: undefined,
-    iconColorClass: '',
-  },
-];
-
 export default function Home() {
   return (
-    <div className="forge-home">
-      {/* 1 · Full-bleed product hero (not personal observatory 2-col copy+model only) */}
-      <section className="forge-hero" aria-labelledby="hero-title">
-        <div className="forge-hero__glow" aria-hidden="true" />
-        <div className="forge-hero__grid">
-          <div className="forge-hero__copy">
-            <Badge variant="default" className="bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200">
-              <span className="status-pulse" aria-hidden="true" /> Building tools for makers
-            </Badge>
-            <p className="forge-kicker">Hyperion Corporation · Helios Forge</p>
-            <h1 id="hero-title" className="forge-hero__title">
-              Software that optimizes <span>human creative work.</span>
-            </h1>
-            <p className="forge-hero__summary">
-              We build for <strong>developers, artists, and designers</strong> shipping{' '}
-              <strong>games, simulations, and complex interactive systems</strong>—so teams can
-              understand structure, metrics, and relationships with less friction.
-            </p>
-            <div className="forge-hero__actions">
-              <a href={appPath('/content/projects')} className="forge-btn forge-btn--primary">
-                Explore projects <ArrowRight size={18} aria-hidden />
-              </a>
-              <a href={appPath('/content/about')} className="forge-btn forge-btn--ghost">
-                About Hyperion
-              </a>
-            </div>
-            <ul className="forge-stat-rail" aria-label="Organization focus">
-              <li>
-                <span>Focus</span>
-                <strong>Work tools</strong>
-              </li>
-              <li>
-                <span>Domains</span>
-                <strong>Games · Sims</strong>
-              </li>
-              <li>
-                <span>Product</span>
-                <strong>VGP</strong>
-              </li>
-            </ul>
-          </div>
-          <div className="forge-hero__stage">
-            <HeroModel />
-          </div>
-        </div>
-      </section>
-
-      {/* 2 · Pillar cards — product org IA */}
-      <section className="forge-section" aria-labelledby="pillars-title">
-        <div className="forge-section-head">
-          <p className="forge-kicker">What we build</p>
-          <h2 id="pillars-title" className="forge-section-title">
-            Three rails, one mission.
-          </h2>
-        </div>
-        <div className="forge-pillars">
-          {PILLARS.map((p) => {
-            const Icon = p.icon;
-            return (
-              <a key={p.title} href={p.href} className="forge-pillar">
-                <span className="forge-pillar__icon" aria-hidden>
-                  <Icon size={22} />
-                </span>
-                <h3 className="forge-pillar__title">{p.title}</h3>
-                <p className="forge-pillar__body">{p.body}</p>
-                <span className="forge-pillar__cta">
-                  {p.cta} <ArrowRight size={14} aria-hidden />
-                </span>
-              </a>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 3 · Flagship band */}
-      <section className="forge-flagship" aria-labelledby="flagship-title">
-        <div className="forge-flagship__inner">
-          <div>
-            <p className="forge-kicker forge-kicker--on-dark">Flagship</p>
-            <h2 id="flagship-title" className="forge-flagship__title">
-              Visual Graph Programming
-            </h2>
-            <p className="forge-flagship__lead">
-              Graph and metrics visualization for modules, assets, and storyboards—so creative and
-              engineering teams share one structural model instead of siloed tools.
-            </p>
-            <a href={appPath('/content/projects')} className="forge-btn forge-btn--primary">
-              View product direction <ArrowRight size={18} aria-hidden />
+    <div className="forge-home forge-home--cinematic">
+      {/* Hero: one message + one visual */}
+      <section className="cine-hero" aria-labelledby="hero-title">
+        <div className="cine-hero__copy">
+          <p className="cine-hero__eyebrow">Hyperion Corporation · early stage</p>
+          <h1 id="hero-title" className="cine-hero__title">
+            Structure tools for
+            <br />
+            <span>creative systems.</span>
+          </h1>
+          <p className="cine-hero__lead">
+            We build software that helps developers, artists, and designers see how modules, assets,
+            and storyboards connect—so teams ship games and simulations with less friction.
+          </p>
+          <div className="cine-hero__actions">
+            <a href={appPath('/content/products')} className="forge-btn forge-btn--primary">
+              See products <ArrowRight size={18} aria-hidden />
+            </a>
+            <a href={appPath('/content/about')} className="forge-btn forge-btn--ghost">
+              About Hyperion
             </a>
           </div>
-          <dl className="forge-flagship__facts">
-            <div>
-              <dt>Audience</dt>
-              <dd>Devs · artists · designers</dd>
-            </div>
-            <div>
-              <dt>Mode</dt>
-              <dd>2D / 3D graphs</dd>
-            </div>
-            <div>
-              <dt>Status</dt>
-              <dd>In progress</dd>
-            </div>
-          </dl>
+        </div>
+        <div className="cine-hero__visual" aria-hidden={false}>
+          <HeroModel />
         </div>
       </section>
 
-      {/* 4 · System map (constellation) — supporting, not first after hero like portfolio */}
-      <section className="forge-section forge-section--map" aria-label="Product system map">
-        <ResearchConstellation />
+      {/* Single focus strip — not a logo wall of fake partners */}
+      <p className="cine-focus" role="note">
+        Flagship direction: <strong>Visual Graph Programming</strong> — in development · demos are
+        illustrative
+      </p>
+
+      {/* Three quiet pillars */}
+      <section className="cine-pillars" aria-labelledby="pillars-title">
+        <h2 id="pillars-title" className="sr-only">
+          What we focus on
+        </h2>
+        <a href={appPath('/content/products')} className="cine-pillar">
+          <span className="cine-pillar__k">01</span>
+          <h3 className="cine-pillar__t">See structure</h3>
+          <p className="cine-pillar__d">Modules, assets, and boards in one graph metaphor.</p>
+        </a>
+        <a href={appPath('/content/products')} className="cine-pillar">
+          <span className="cine-pillar__k">02</span>
+          <h3 className="cine-pillar__t">Measure on the graph</h3>
+          <p className="cine-pillar__d">Metrics attached to things people edit—not free-floating noise.</p>
+        </a>
+        <a href={appPath('/content/about')} className="cine-pillar">
+          <span className="cine-pillar__k">03</span>
+          <h3 className="cine-pillar__t">Serve both crafts</h3>
+          <p className="cine-pillar__d">Built for engineers and creative roles on the same production.</p>
+        </a>
       </section>
 
-      {/* 5 · Metrics board (own chrome — not portfolio simulation slab + outer title) */}
-      <section className="forge-section" aria-label="Simulation proof">
-        <ConvergenceSimulation />
-      </section>
-
-      {/* 6 · Workbench bays */}
-      <div className="forge-section">
-        <LabShowcase />
-      </div>
-
-      {/* 7 · Signal feed — spine timeline, not GlassCard list/grid clone */}
-      <section className="forge-section" aria-labelledby="updates-title">
-        <div className="forge-feed">
-          <div className="forge-feed__side">
-            <p className="forge-kicker">
-              <PenTool size={14} aria-hidden className="inline" /> Signal
-            </p>
-            <h2 id="updates-title" className="forge-feed__title">
-              Dispatch
-            </h2>
-            <p className="forge-feed__lede">
-              Product and engineering notes as a vertical signal rail—not a blog index clone.
-            </p>
-            <a href={appPath('/content/posts')} className="forge-btn forge-btn--ghost">
-              Full archive <ArrowRight size={16} aria-hidden />
-            </a>
-          </div>
-          <ol className="forge-feed__spine">
-            {BLOG_POSTS.map((post, index) => (
-              <li key={post.id} className="forge-feed__item">
-                <div className="forge-feed__marker" aria-hidden>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                </div>
-                <article className="forge-feed__card">
-                  <div className="forge-feed__meta">
-                    <time>{post.date}</time>
-                    <Badge variant="outline" className="text-xs">
-                      {post.category}
-                    </Badge>
-                  </div>
-                  <h3 className="forge-feed__headline">
-                    <a href={appPath(`/content/posts/${post.id}`)}>{post.title}</a>
-                  </h3>
-                  <p className="forge-feed__excerpt">{post.excerpt}</p>
-                  <div className="forge-feed__tags">
-                    {post.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* 8 · Project bento — asymmetric, not equal project cards */}
-      <section className="forge-section" aria-labelledby="projects-title">
-        <div className="forge-bento-head">
-          <div>
-            <p className="forge-kicker">Build board</p>
-            <h2 id="projects-title" className="forge-section-title">
-              Active builds
-            </h2>
-          </div>
-          <a href={appPath('/content/projects')} className="forge-text-link">
-            All projects <ArrowRight size={14} aria-hidden />
-          </a>
-        </div>
-        <div className="forge-bento">
-          {PROJECTS.map((project, index) => (
-            <article
-              key={project.id}
-              className={`forge-bento__cell ${index === 0 ? 'forge-bento__cell--hero' : ''}`}
-            >
-              <div className="forge-bento__index" aria-hidden>
-                {String(index + 1).padStart(2, '0')}
-              </div>
-              <div className="forge-bento__body">
-                <div className="forge-bento__topline">
-                  <h3 className="forge-bento__title">{project.title}</h3>
-                  {project.stats && (
-                    <span className="forge-bento__stat">
-                      <Star size={10} fill="currentColor" aria-hidden /> {project.stats}
-                    </span>
-                  )}
-                </div>
-                <p className="forge-bento__copy">{project.description}</p>
-                <div className="forge-bento__actions">
-                  {project.links?.map((link, idx) => (
-                    <a key={idx} href={link.url} className="forge-bento__link">
-                      {link.icon} {link.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 9 · Closing CTA band */}
-      <section className="forge-cta" aria-labelledby="cta-title">
-        <Sparkles className="forge-cta__icon" size={28} aria-hidden />
-        <div>
-          <h2 id="cta-title" className="forge-cta__title">
-            Mission in one line
+      {/* One interactive only */}
+      <section className="cine-demo" aria-labelledby="demo-title">
+        <div className="cine-demo__head">
+          <p className="forge-kicker">Interactive</p>
+          <h2 id="demo-title" className="cine-demo__title">
+            A taste of the VGP idea.
           </h2>
-          <p className="forge-cta__body">
-            Hyperion builds software that optimizes the human work of developers, artists, and
-            designers—starting with graph- and metrics-centric tools for games, simulations, and
-            related computer systems.
+          <p className="cine-demo__lead">
+            One prototype graph—not a page of competing widgets. Full product narrative lives on
+            Products.
           </p>
         </div>
-        <a href={appPath('/content/about')} className="forge-btn forge-btn--primary">
-          Read about us <ArrowRight size={18} aria-hidden />
-        </a>
+        <VgpStructureDemo />
+        <div className="cine-demo__foot">
+          <a href={appPath('/content/products')} className="forge-btn forge-btn--primary">
+            Full products story <ArrowRight size={16} aria-hidden />
+          </a>
+        </div>
+      </section>
+
+      {/* Closing CTA — Cerebrium-style calm end */}
+      <section className="cine-close" aria-labelledby="close-title">
+        <h2 id="close-title" className="cine-close__title">
+          Early. Honest. Building in public.
+        </h2>
+        <p className="cine-close__lead">
+          Follow the GitHub organization for open work, or read how we think about the product
+          direction.
+        </p>
+        <div className="cine-hero__actions">
+          <a
+            href="https://github.com/Hyperion-Corporation"
+            className="forge-btn forge-btn--primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub organization
+          </a>
+          <a href={appPath('/content/projects')} className="forge-btn forge-btn--ghost">
+            Projects
+          </a>
+        </div>
       </section>
     </div>
   );

@@ -9,13 +9,13 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
-  const companyUnique = PRIMARY_NAV.filter((n) =>
+  const company = PRIMARY_NAV.filter((n) =>
     ['about', 'products', 'projects'].includes(n.slug)
   );
-
-  const resources = PRIMARY_NAV.filter((n) =>
-    ['reports', 'posts', 'faq', 'contact'].includes(n.slug)
-  ).concat(SECONDARY_NAV.filter((n) => n.slug === 'press'));
+  const resources = [
+    ...PRIMARY_NAV.filter((n) => ['reports', 'posts'].includes(n.slug)),
+    ...SECONDARY_NAV,
+  ];
 
   return (
     <footer className="forge-footer">
@@ -39,7 +39,7 @@ const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
         <div>
           <p className="forge-footer__col-title">Company</p>
           <ul className="forge-footer__links">
-            {companyUnique.map((item) => (
+            {company.map((item) => (
               <li key={item.slug}>
                 <Link href={item.href}>{item.label}</Link>
               </li>
@@ -81,7 +81,7 @@ const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
 
       <div className="forge-footer__bar">
         <p>&copy; {new Date().getFullYear()} Hyperion Corporation. All rights reserved.</p>
-        <p className="forge-footer__meta">Static export · GitHub Pages · corporate IA</p>
+        <p className="forge-footer__meta">Early · brand awareness · honest demos</p>
       </div>
     </footer>
   );
