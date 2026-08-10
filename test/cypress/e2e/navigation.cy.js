@@ -1,19 +1,14 @@
 describe('Navigation', () => {
-    it('should navigate to valid pages from the Sidebar/Header', () => {
-        cy.visit('/');
+  it('should navigate to FAQ from the primary nav', () => {
+    cy.visit('/');
+    cy.get('a[href="/content/faq"]').first().click();
+    cy.url().should('include', '/content/faq');
+    cy.contains('Frequently asked questions').should('be.visible');
+  });
 
-        // Check for "Other" link in the main navigation
-        // Note: Adjust selector based on actual generic sidebar/header implementation
-        // We expect an anchor with href="/content/other"
-        cy.get('a[href="/content/other"]').click();
-
-        // Verify we are on the correct page
-        cy.url().should('include', '/content/other');
-        cy.contains('Other Resources').should('be.visible');
-    });
-
-    it('should display the Math Curriculum card on the Other page', () => {
-        cy.visit('/content/other');
-        cy.contains('Mathematics Curriculum').should('be.visible');
-    });
+  it('should open the products page', () => {
+    cy.visit('/content/products');
+    cy.contains('Products').should('be.visible');
+    cy.contains('Visual Graph Programming').should('be.visible');
+  });
 });

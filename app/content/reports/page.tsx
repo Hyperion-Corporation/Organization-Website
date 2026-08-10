@@ -1,15 +1,11 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
-import { FileText, ExternalLink } from 'lucide-react';
-import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
-import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
-import pageImage from '@/assets/images/knowledge_graph.png';
+import { CorpPage, CorpSection, CorpCard } from '@/src/frameworks/react/components/ui/CorpPage';
+import { appPath } from '@/src/utils/paths';
 
 /**
- * Technical library index. HTML under public/reports/ is template-era research
- * material still served for reference until Hyperion product reports replace it.
+ * Research library. HTML under public/reports/ is retained reference material
+ * while product-facing VGP reports are authored.
  */
 const REPORTS = [
   { id: 'anime-gen', title: 'Anime Generation Model', category: 'Generative systems' },
@@ -24,47 +20,37 @@ const REPORTS = [
   { id: 'waste-logistics-architecture', title: 'Waste Logistics Architecture', category: 'Systems' },
 ];
 
-export default function ReportsIndexPage() {
+export default function ResearchLibraryPage() {
   return (
-    <div className="space-y-10 animate-in fade-in duration-500">
-      <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20">
-          <img
-            src={pageImage.src}
-            alt="Knowledge graph visualization"
-            className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
-          />
-        </div>
-      </div>
-
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-display font-bold text-slate-900 dark:text-white">Technical Reports</h1>
-        <p className="text-slate-600 dark:text-slate-400 mt-2">
-          Longer-form technical analysis for Hyperion. Existing entries are reference write-ups while product reports for Visual Graph Programming and related tooling are authored.
-        </p>
-      </div>
-
-      <section>
-        <SectionHeading title="Report library" icon={<FileText className="text-amber-500" />} />
-        <div className="grid md:grid-cols-2 gap-6">
+    <CorpPage
+      kicker="Research"
+      title="Research library"
+      lead="Longer-form technical write-ups. Entries below are a reference library while Hyperion authors product research for Visual Graph Programming and related tooling."
+    >
+      <CorpSection kicker="Catalog" title="Reports">
+        <div className="corp-report-grid">
           {REPORTS.map((report) => (
-            <Link key={report.id} href={`/content/reports/${report.id}`} className="group">
-              <GlassCard className="p-6 h-full hover:border-amber-500/50 transition-colors cursor-pointer">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <span className="text-xs font-bold text-amber-500 uppercase tracking-wider">{report.category}</span>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1 group-hover:text-amber-500 transition-colors">
-                      {report.title}
-                    </h3>
-                  </div>
-                  <ExternalLink size={18} className="text-slate-400 group-hover:text-amber-500" />
-                </div>
-                <p className="text-sm text-slate-500 mt-4">Open full HTML report.</p>
-              </GlassCard>
+            <Link
+              key={report.id}
+              href={appPath(`/content/reports/${report.id}`)}
+              className="corp-report-card"
+            >
+              <span className="corp-report-card__cat">{report.category}</span>
+              <h3 className="corp-report-card__title">{report.title}</h3>
+              <span className="corp-report-card__cta">Open report</span>
             </Link>
           ))}
         </div>
-      </section>
-    </div>
+      </CorpSection>
+
+      <CorpSection kicker="Note" title="Provenance">
+        <CorpCard>
+          <p className="corp-prose">
+            Some HTML reports predate Hyperion product framing and remain available for technical
+            reference. They are not presented as Hyperion product metrics without attribution.
+          </p>
+        </CorpCard>
+      </CorpSection>
+    </CorpPage>
   );
 }

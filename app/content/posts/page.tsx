@@ -1,9 +1,6 @@
 import React from 'react';
-import { PenTool, Calendar, ArrowRight } from 'lucide-react';
-import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
-import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
-import Badge from '@/src/frameworks/react/components/ui/Badge';
-import pageImage from '@/assets/icons/Hyperion-Corp-small.png';
+import Link from 'next/link';
+import { CorpPage, CorpSection } from '@/src/frameworks/react/components/ui/CorpPage';
 import { appPath } from '@/src/utils/paths';
 
 interface PostData {
@@ -15,7 +12,6 @@ interface PostData {
   excerpt: string;
 }
 
-/** Organization updates; HTML bodies live under public/posts/. */
 const POSTS_DATA: PostData[] = [
   {
     slug: 'Notes_on_RL_an_Introduction',
@@ -46,70 +42,39 @@ const POSTS_DATA: PostData[] = [
   },
 ].sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
 
-async function getAllPosts(): Promise<PostData[]> {
-  return POSTS_DATA;
-}
-
-export default async function PostsPage() {
-  const posts = await getAllPosts();
-
+export default function NewsPage() {
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
-      <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-md aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 flex items-center justify-center p-6">
-          <img
-            src={pageImage.src}
-            alt="Hyperion Corporation"
-            width={640}
-            height={360}
-            className="object-contain w-full h-full max-h-40"
-          />
-        </div>
-      </div>
-
-      <div className="flex items-center justify-between mb-8">
-        <SectionHeading title="Updates" icon={<PenTool className="text-teal-500" />} />
-      </div>
-
-      <div className="grid gap-6">
-        {posts.map((post) => (
-          <GlassCard key={post.slug} className="group hover:border-amber-500/30 transition-colors">
-            <div className="p-6">
-              <div className="flex items-center gap-3 text-sm text-slate-500 mb-3">
-                <span className="flex items-center gap-1">
-                  <Calendar size={14} /> {post.date}
-                </span>
-                <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                <span className="text-amber-700 dark:text-amber-300 font-medium">{post.category}</span>
+    <CorpPage
+      kicker="Newsroom"
+      title="News & updates"
+      lead="Organization announcements and product notes—formatted as a corporate dispatch list, not a personal blog index."
+    >
+      <CorpSection kicker="Latest" title="Dispatches">
+        <ol className="corp-news">
+          {POSTS_DATA.map((post, index) => (
+            <li key={post.slug} className="corp-news__item">
+              <div className="corp-news__num" aria-hidden>
+                {String(index + 1).padStart(2, '0')}
               </div>
-              <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
-                <a
-                  href={appPath(`/content/posts/${post.slug}`)}
-                  className="hover:underline decoration-blue-500/30 underline-offset-4"
-                >
-                  {post.title}
-                </a>
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
-              <div className="flex flex-wrap gap-2 items-center justify-between mt-auto">
-                <div className="flex gap-2">
-                  {post.tags.map((tag) => (
-                    <Badge key={tag} variant="outline" className="text-xs">
-                      {tag}
-                    </Badge>
+              <article className="corp-news__card">
+                <div className="corp-news__meta">
+                  <time dateTime={post.date}>{post.date}</time>
+                  <span className="corp-news__cat">{post.category}</span>
+                </div>
+                <h3 className="corp-news__title">
+                  <Link href={appPath(`/content/posts/${post.slug}`)}>{post.title}</Link>
+                </h3>
+                <p className="corp-news__excerpt">{post.excerpt}</p>
+                <div className="corp-news__tags">
+                  {post.tags.map((t) => (
+                    <span key={t}>{t}</span>
                   ))}
                 </div>
-                <a
-                  href={appPath(`/content/posts/${post.slug}`)}
-                  className="text-sm font-medium text-amber-700 dark:text-amber-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
-                >
-                  Read more <ArrowRight size={14} />
-                </a>
-              </div>
-            </div>
-          </GlassCard>
-        ))}
-      </div>
-    </div>
+              </article>
+            </li>
+          ))}
+        </ol>
+      </CorpSection>
+    </CorpPage>
   );
 }

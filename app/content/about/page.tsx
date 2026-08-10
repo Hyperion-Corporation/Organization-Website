@@ -1,151 +1,92 @@
 import React from 'react';
-import { Briefcase, Target, Heart, Building2, Network } from 'lucide-react';
-import SectionHeading from '@/src/frameworks/react/components/ui/SectionHeading';
-import GlassCard from '@/src/frameworks/react/components/ui/GlassCard';
-import orgLogo from '@/assets/icons/Hyperion-Corp-small.png';
+import Link from 'next/link';
+import { CorpPage, CorpSection, CorpCard } from '@/src/frameworks/react/components/ui/CorpPage';
+import { appPath } from '@/src/utils/paths';
 
 export default function AboutPage() {
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
-      <div className="flex justify-center mb-8">
-        <div className="relative w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/20 bg-slate-900 flex items-center justify-center p-8">
-          <img
-            src={orgLogo.src}
-            alt="Hyperion Corporation logo"
-            width={720}
-            height={400}
-            className="object-contain w-full h-full max-h-64"
-          />
-        </div>
-      </div>
-
-      <div className="space-y-2 text-center mb-12">
-        <h1 className="text-4xl font-display font-bold text-slate-900 dark:text-white">About Hyperion</h1>
-        <p className="text-slate-600 dark:text-slate-400">
-          Software that optimizes creative and engineering work
-        </p>
-      </div>
-
-      <section id="mission" className="scroll-mt-20">
-        <SectionHeading title="Mission" icon={<Target className="text-amber-500" />} />
-        <GlassCard className="p-6">
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-            <strong>Hyperion Corporation</strong> exists to create software that optimizes the human work of{' '}
-            <strong>developers, artists, and designers</strong>—especially for{' '}
-            <strong>games, simulations and simulators</strong>, and other computer-related production.
+    <CorpPage
+      kicker="Company"
+      title="About Hyperion Corporation"
+      lead="We build software that optimizes the human work of developers, artists, and designers—especially for games, simulations, and related interactive systems."
+      cta={{ href: appPath('/content/products'), label: 'See products' }}
+    >
+      <CorpSection id="mission" kicker="Mission" title="Why we exist">
+        <div className="corp-prose">
+          <p>
+            Large interactive projects bury structure across code modules, assets, and narrative or design
+            boards. Hyperion makes those relationships <strong>visible, measurable, and authorable</strong>
+            —so teams spend less time reconstructing context and more time shipping.
           </p>
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
-            Large interactive projects bury structure across code modules, assets, and narrative or design boards.
-            We build tools that make those relationships visible, measurable, and authorable—so teams spend less time
-            reconstructing context and more time building.
-          </p>
-        </GlassCard>
-      </section>
-
-      <section id="what-we-build" className="scroll-mt-20">
-        <SectionHeading title="What we build" icon={<Network className="text-teal-500" />} />
-        <GlassCard className="p-6 space-y-4">
-          <ul className="list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300">
-            <li>
-              <strong>Visual Graph Programming (VGP)</strong> — an in-progress platform for graph and metrics
-              visualization in 2D/3D, helping people understand how existing code modules, assets, and storyboards
-              relate, and to create new code modules from that shared model.
-            </li>
-            <li>
-              <strong>Workflow-oriented tooling</strong> — software that reduces cognitive load across technical and
-              creative roles in games, sims, and adjacent domains.
-            </li>
-            <li>
-              <strong>This organization website</strong> — a static Next.js site on GitHub Pages that presents our
-              mission, products, and updates.
-            </li>
-          </ul>
-        </GlassCard>
-      </section>
-
-      <section id="who-we-serve" className="scroll-mt-20">
-        <SectionHeading title="Who we serve" icon={<Briefcase className="text-green-500" />} />
-        <div className="grid md:grid-cols-2 gap-6">
-          <GlassCard className="p-6">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Technical roles</h3>
-            <ul className="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
-              <li>Programmers and technical directors navigating large codebases</li>
-              <li>Engineers working on simulations and interactive systems</li>
-              <li>Tooling teams integrating metrics and structure into daily workflows</li>
-            </ul>
-          </GlassCard>
-          <GlassCard className="p-6">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Creative roles</h3>
-            <ul className="space-y-2 text-slate-700 dark:text-slate-300 text-sm">
-              <li>Artists and designers connecting assets to systems and storyboards</li>
-              <li>Narrative and content teams mapping boards to implementation</li>
-              <li>Multidisciplinary game and sim production pipelines</li>
-            </ul>
-          </GlassCard>
         </div>
-      </section>
-
-      <section id="values" className="scroll-mt-20">
-        <SectionHeading title="Principles" icon={<Heart className="text-red-500" />} />
-        <GlassCard className="p-6">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-3 dark:text-white">How we work</h3>
-              <ul className="list-disc list-inside space-y-1 text-slate-700 dark:text-slate-300">
-                <li>Make structure visible before asking people to memorize it</li>
-                <li>Prefer tools that respect both craft and engineering rigor</li>
-                <li>Ship progressive, inspectable demos where they help understanding</li>
-                <li>Keep deployment simple (static where it fits)</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-3 dark:text-white">Domains</h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  'Games',
-                  'Simulations',
-                  'Graph visualization',
-                  'Metrics',
-                  'Developer tools',
-                  'Design tooling',
-                  'Asset relationships',
-                  'Storyboards',
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-200 rounded-full text-xs font-medium"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+        <div className="corp-stat-row">
+          <div className="corp-stat">
+            <span>Focus</span>
+            <strong>Creative systems tools</strong>
           </div>
-        </GlassCard>
-      </section>
+          <div className="corp-stat">
+            <span>Domains</span>
+            <strong>Games · Sims · Pipelines</strong>
+          </div>
+          <div className="corp-stat">
+            <span>Flagship</span>
+            <strong>Visual Graph Programming</strong>
+          </div>
+        </div>
+      </CorpSection>
 
-      <section id="presence" className="scroll-mt-20">
-        <SectionHeading title="Presence" icon={<Building2 className="text-yellow-500" />} />
-        <GlassCard className="p-6">
-          <p className="text-slate-700 dark:text-slate-300 mb-4">
-            Hyperion Corporation publishes open work under the{' '}
-            <a
-              href="https://github.com/Hyperion-Corporation"
-              className="text-amber-700 dark:text-amber-300 hover:underline"
-            >
+      <CorpSection id="approach" kicker="Approach" title="How we work">
+        <div className="corp-split">
+          <CorpCard>
+            <h3 className="corp-card__title">Product principles</h3>
+            <ul className="corp-list">
+              <li>Make structure visible before asking people to memorize it</li>
+              <li>Respect both craft and engineering rigor</li>
+              <li>Progressive enhancement: HTML first, canvas when it helps</li>
+              <li>Simple deploy defaults (static where it fits)</li>
+            </ul>
+          </CorpCard>
+          <CorpCard accent>
+            <h3 className="corp-card__title">Who we serve</h3>
+            <ul className="corp-list">
+              <li>Programmers &amp; technical directors</li>
+              <li>Artists, designers &amp; narrative teams</li>
+              <li>Tooling groups inside game / sim studios</li>
+              <li>Multidisciplinary production pipelines</li>
+            </ul>
+          </CorpCard>
+        </div>
+      </CorpSection>
+
+      <CorpSection id="presence" kicker="Open work" title="Presence">
+        <CorpCard>
+          <p className="corp-prose">
+            Open work publishes under the{' '}
+            <a href="https://github.com/Hyperion-Corporation" className="corp-inline-link">
               Hyperion-Corporation
             </a>{' '}
-            GitHub organization. This website is hosted on GitHub Pages from the{' '}
+            GitHub organization. This site is a static export from{' '}
             <a
               href="https://github.com/Hyperion-Corporation/Organization-Website"
-              className="text-amber-700 dark:text-amber-300 hover:underline"
+              className="corp-inline-link"
             >
               Organization-Website
-            </a>{' '}
-            repository.
+            </a>
+            .
           </p>
-        </GlassCard>
-      </section>
-    </div>
+          <div className="corp-link-row">
+            <Link href={appPath('/content/careers')} className="forge-text-link">
+              Careers
+            </Link>
+            <Link href={appPath('/content/contact')} className="forge-text-link">
+              Contact
+            </Link>
+            <Link href={appPath('/content/press')} className="forge-text-link">
+              Press kit
+            </Link>
+          </div>
+        </CorpCard>
+      </CorpSection>
+    </CorpPage>
   );
 }

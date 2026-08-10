@@ -1,17 +1,19 @@
 /**
- * Primary site navigation — product org IA (not personal-portfolio sidebar).
- * Single source for Header (desktop + mobile) and Footer link columns.
+ * Corporate site navigation for Hyperion Corporation.
+ * Product org IA — not a personal portfolio sidebar clone.
  */
 import type { LucideIcon } from 'lucide-react';
 import {
   Home,
-  User,
-  Code,
+  Building2,
+  Package,
+  FolderKanban,
   FileText,
-  Wrench,
-  PenTool,
-  Tv,
-  Folder,
+  Newspaper,
+  HelpCircle,
+  Mail,
+  Briefcase,
+  Megaphone,
 } from 'lucide-react';
 
 export interface SiteNavItem {
@@ -19,19 +21,25 @@ export interface SiteNavItem {
   label: string;
   slug: string;
   icon: LucideIcon;
-  /** Short label for dense chrome */
   shortLabel?: string;
 }
 
+/** Primary chrome (top nav) — keep dense labels short. */
 export const PRIMARY_NAV: SiteNavItem[] = [
   { href: '/', label: 'Home', slug: 'home', icon: Home },
-  { href: '/content/about', label: 'About', slug: 'about', icon: User },
-  { href: '/content/projects', label: 'Projects', slug: 'projects', icon: Code },
-  { href: '/content/reports', label: 'Reports', slug: 'reports', icon: FileText },
-  { href: '/content/tools', label: 'Tools', slug: 'tools', icon: Wrench },
-  { href: '/content/posts', label: 'Updates', slug: 'posts', icon: PenTool, shortLabel: 'News' },
-  { href: '/content/media', label: 'Media', slug: 'media', icon: Tv },
-  { href: '/content/other', label: 'Other', slug: 'other', icon: Folder },
+  { href: '/content/about', label: 'About', slug: 'about', icon: Building2 },
+  { href: '/content/products', label: 'Products', slug: 'products', icon: Package },
+  { href: '/content/projects', label: 'Projects', slug: 'projects', icon: FolderKanban },
+  { href: '/content/reports', label: 'Research', slug: 'reports', icon: FileText, shortLabel: 'Research' },
+  { href: '/content/posts', label: 'News', slug: 'posts', icon: Newspaper },
+  { href: '/content/faq', label: 'FAQ', slug: 'faq', icon: HelpCircle },
+  { href: '/content/contact', label: 'Contact', slug: 'contact', icon: Mail },
+];
+
+/** Extra destinations linked from footer / in-page, not always in the top rail. */
+export const SECONDARY_NAV: SiteNavItem[] = [
+  { href: '/content/careers', label: 'Careers', slug: 'careers', icon: Briefcase },
+  { href: '/content/press', label: 'Press kit', slug: 'press', icon: Megaphone },
 ];
 
 export function sectionFromPath(path: string | null): string {

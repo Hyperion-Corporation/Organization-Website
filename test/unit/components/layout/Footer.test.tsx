@@ -8,7 +8,7 @@ describe('Footer', () => {
   it('renders copyright and product link columns', () => {
     render(<Footer darkMode={false} toggleTheme={mockToggleTheme} />);
     expect(screen.getByText(/All rights reserved/)).toBeInTheDocument();
-    expect(screen.getByText('Explore')).toBeInTheDocument();
+    expect(screen.getByText('Company')).toBeInTheDocument();
     expect(screen.getByText('Hyperion Corporation')).toBeInTheDocument();
   });
 

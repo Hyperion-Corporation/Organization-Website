@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Corporate content IA:** interior pages use `CorpPage` chrome (About, Products, Projects, Research, News, FAQ, Contact, Careers, Press). Retired personal-style Tools / Media / Other indexes redirect to Products / Press / FAQ. Top nav and footer updated for organization destinations.
 - **Structural break from the Journals/github-pages personal shell:** full-width product top navigation (no sticky left sidebar), multi-column product footer, and a redesigned homepage IA — pillars, flagship band, system map, proof panel, **tabbed lab** (not a field-notes demo dump), update card grid, project rail, and closing CTA. Shared nav constants in `src/constants/siteNav.ts`.
 
 ### Added

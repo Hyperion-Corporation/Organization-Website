@@ -43,8 +43,8 @@ const PILLARS = [
     icon: Cpu,
     title: 'Workflow optimization',
     body: 'Reduce friction between art, design, and engineering with structure, metrics, and clear relationships.',
-    href: appPath('/content/tools'),
-    cta: 'Tooling surface',
+    href: appPath('/content/products'),
+    cta: 'Product lineup',
   },
 ];
 

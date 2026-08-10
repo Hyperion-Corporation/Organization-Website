@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Moon, Sun, Github } from 'lucide-react';
-import { PRIMARY_NAV } from '../../../../constants/siteNav';
+import { PRIMARY_NAV, SECONDARY_NAV } from '../../../../constants/siteNav';
 
 interface FooterProps {
   darkMode: boolean;
@@ -9,12 +9,15 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
-  const explore = PRIMARY_NAV.filter((n) =>
-    ['about', 'projects', 'tools', 'reports'].includes(n.slug)
-  );
-  const publish = PRIMARY_NAV.filter((n) =>
-    ['posts', 'media', 'other'].includes(n.slug)
-  );
+  const company = PRIMARY_NAV.filter((n) =>
+    ['about', 'products', 'projects', 'careers'].includes(n.slug)
+  ).concat(SECONDARY_NAV.filter((n) => n.slug === 'careers'));
+  // de-dupe careers if both
+  const companyUnique = Array.from(new Map(company.map((i) => [i.slug, i])).values());
+
+  const resources = PRIMARY_NAV.filter((n) =>
+    ['reports', 'posts', 'faq', 'contact'].includes(n.slug)
+  ).concat(SECONDARY_NAV.filter((n) => n.slug === 'press'));
 
   return (
     <footer className="forge-footer">
@@ -36,9 +39,9 @@ const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
         </div>
 
         <div>
-          <p className="forge-footer__col-title">Explore</p>
+          <p className="forge-footer__col-title">Company</p>
           <ul className="forge-footer__links">
-            {explore.map((item) => (
+            {companyUnique.map((item) => (
               <li key={item.slug}>
                 <Link href={item.href}>{item.label}</Link>
               </li>
@@ -47,9 +50,9 @@ const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
         </div>
 
         <div>
-          <p className="forge-footer__col-title">Publish</p>
+          <p className="forge-footer__col-title">Resources</p>
           <ul className="forge-footer__links">
-            {publish.map((item) => (
+            {resources.map((item) => (
               <li key={item.slug}>
                 <Link href={item.href}>{item.label}</Link>
               </li>
@@ -64,7 +67,12 @@ const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
               <Link href="/">Home</Link>
             </li>
             <li>
-              <button type="button" onClick={toggleTheme} className="forge-footer__theme" aria-label="Toggle Dark Mode">
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="forge-footer__theme"
+                aria-label="Toggle Dark Mode"
+              >
                 {darkMode ? <Sun size={14} aria-hidden /> : <Moon size={14} aria-hidden />}
                 {darkMode ? 'Light mode' : 'Dark mode'}
               </button>
@@ -75,7 +83,7 @@ const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
 
       <div className="forge-footer__bar">
         <p>&copy; {new Date().getFullYear()} Hyperion Corporation. All rights reserved.</p>
-        <p className="forge-footer__meta">Static export · GitHub Pages · Helios Forge identity</p>
+        <p className="forge-footer__meta">Static export · GitHub Pages · corporate IA</p>
       </div>
     </footer>
   );

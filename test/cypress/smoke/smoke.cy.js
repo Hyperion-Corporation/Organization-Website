@@ -5,12 +5,14 @@
 const ROUTES = [
     '/',
     '/content/about',
+    '/content/products',
     '/content/projects',
     '/content/reports',
-    '/content/tools',
     '/content/posts',
-    '/content/media',
-    '/content/other',
+    '/content/faq',
+    '/content/contact',
+    '/content/careers',
+    '/content/press',
 ];
 
 describe('Smoke: site is up', () => {
