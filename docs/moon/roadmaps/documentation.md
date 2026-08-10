@@ -15,11 +15,11 @@ Goal: make every Hyperion product surface and visual experiment maintainable, re
 | DOC9 | Performance playbook and benchmark journal for renderer, worker, ML and solver decisions | M | IT6 | 📋 |
 | DOC10 | Visitor-facing accessibility/motion/data controls help and privacy statement for local computation | S | UI6, ML4 | 📋 |
 | DOC11 | Contributor templates/checklists for issues, ADRs, visual features and reproducible project case studies | S | DOC5–DOC9 | 📋 |
-| DOC12 | Documentation dashboard as a product surface: Hyperion identity, navigable corpus map, hub tabs and roadmap timeline on the Docusaurus site | M | UI15 | ✅ |
+| DOC12 | Documentation dashboard as a product surface: Helios Forge identity, navigable corpus map, hub tabs and roadmap timeline on the Docusaurus site | M | UI15 | ✅ |
 
 ### DOC12 — dashboard acceptance
 
-- The dashboard homepage states what the corpus is, links every surface (docs, guides, generated API reference, component library, research) and carries the same visual identity as the main site (see [UI15](user_interface.md)).
+- The dashboard homepage states what the corpus is, links every surface (docs, guides, generated API reference, component library, research) and carries the same **Helios Forge** visual identity as the main site (see [UI15](user_interface.md)).
 - The corpus map is authored data (`docs/website/src/constants/docsGraph.ts`), not a crawl: nodes carry a summary and a destination, and the accessible list is generated from the same array as the visualization.
 - Hub tab and timeline copy restate roadmap content rather than inventing claims; the phase list mirrors the gates in [`ROADMAP.md`](../ROADMAP.md).
 - New dashboard components ship a Storybook story with hand-written prop tables, since react-docgen does not attach docgen info in this setup.

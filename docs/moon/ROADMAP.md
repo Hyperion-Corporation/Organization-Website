@@ -1,6 +1,6 @@
 # Organization-Website — Hyperion Corporation Master Roadmap
 
-**Last updated:** 2026-08-09 · **Roadmap session:** R5 · **Delivery model:** static-first progressive enhancement
+**Last updated:** 2026-08-10 · **Roadmap session:** R5.2 · **Delivery model:** static-first progressive enhancement
 
 This is the product-level index for the **Hyperion Corporation** organization website. Hyperion builds software that optimizes the human work of developers, artists, and designers for **games, simulations/simulators**, and related systems—especially **Visual Graph Programming (VGP)** (graph and metrics visualization of modules, assets, and storyboards).
 
@@ -60,8 +60,8 @@ flowchart LR
   R8["R8 Polyglot islands\nVue + GraphQL + WASM"]:::feature
   Q["Quality gates\nbudgets + a11y"]:::perf
   D["Docs + market\nresearch reports"]:::docs
-  class R0,R1 done
-  class R2,R3,Q,D active
+  class R0,R1,R2 done
+  class R3,Q,D active
   class R4,R5,R6,R7,R8 planned
   R0 ==> R1 ==> R2 ==> R3
   R3 --> R4
@@ -82,23 +82,26 @@ flowchart LR
 
 ### Shipped or partially shipped
 
-- Next.js 14 static export (`basePath: /Organization-Website`), content routes, theme shell, Vitest/RTL/MSW, Cypress, notebooks workspace.
+- Next.js 14 static export (`basePath: /Organization-Website` in prod; empty in `next dev`), content routes, theme shell, Vitest/RTL/MSW, Cypress, notebooks workspace.
 - Hyperion branding: logo assets, org about/projects/media/posts copy, product domain constellation.
-- Tokenized homepage with Three.js model fallback, graph/DOM constellation, simulation islands, and field-note demos (being realigned to VGP messaging).
-- Domain UI under `src/frameworks/react/components/{audio,books,canvas,games,graph,image,maps,models,routes,video,visualization,layout,ui}`.
+- **Helios Forge visual system (R2 / UI3–UI5 / UI15):** gold–cobalt–teal tokens on main site (`app/globals.css`, Tailwind `primary`/`helios`) and docs (`observatory.css` + Infima map); `NetworkFieldBackdrop` ambient canvas + ember drift on the main shell; docs backdrop with pulses/embers; shell nav accents aligned. Distinct from the github-pages template and from VGP/PMF palettes.
+- Homepage with hero image stage, graph/DOM constellation, simulation islands, and field-note demos (copy realigned toward VGP; deeper fixtures still RR2).
+- Domain UI under `src/frameworks/react/components/{audio,books,canvas,games,graph,image,maps,models,routes,video,visualization,layout,ui,graphics}`.
 - Framework-neutral simulations; Astro and Aurelia island seeds; GraphQL schema still a placeholder.
 - Interactive graphics IF1–IF13 marked complete in their workstream; root `benchmark/` harness.
 - Optional self-host: `infra/{docker,nginx,ansible,terraform}/` only. Default deploy remains GitHub Pages.
 - `public/reports/` retained as a technical HTML library; product research lives under `docs/moon/{research,reports}/`.
-- Documentation dashboard (`docs/website/`) carries the Hyperion observatory identity: shared tokens, ambient backdrop, editorial hero, hub tabs, corpus knowledge map, and the R0–R8 timeline (UI15, DOC12).
+- Documentation dashboard (`docs/website/`) shares Helios Forge identity: tokens, ambient network field, editorial hero, hub tabs, corpus knowledge map, and the R0–R8 timeline (UI15, DOC12).
 
 ### Open risks
 
+- Visual-regression baselines and Lighthouse gate for G2 still open (UI3 residual).
 - Homepage structure demos renamed to `StructureMap` / `StructureCanvas` with VGP-oriented copy; deeper VGP fixtures still planned (RR2).
 - Vue 3 dual-runtime cost and Next App Router loader conflicts unproven.
 - GraphQL/Apollo must stay static-export safe.
 - WASM OOM / main-thread jank without workers, memory gates, and pure-TS fallbacks.
 - Market research claims must not be presented as Hyperion product metrics without attribution.
+- Main-site and docs tokens are parallel files (`--helios-*` / `--hy-*`); risk of palette drift without a single source of truth.
 
 ## How to use this roadmap
 
@@ -119,9 +122,9 @@ Core routes build on GitHub Pages; semantic content survives disabled JS; tests 
 
 Org branding, mission, projects (VGP), and navigation are consistent. Exit: no personal-template identity strings on user-facing routes.
 
-### Gate G2 — Visual system (in progress)
+### Gate G2 — Visual system (near complete / hardening)
 
-Tokens, hierarchy, reduced motion, focus, contrast, capability policy. Exit: Lighthouse baseline + keyboard/SR smoke.
+Helios Forge tokens, ambient NetworkField, shell accents, and docs parity shipped. Residual: Lighthouse baseline, visual-regression references, capability policy (UI6), shared token package. Exit: Lighthouse baseline + keyboard/SR smoke + both themes contrast-checked.
 
 ### Gate G3 — Explainable product interaction (in progress)
 
@@ -147,7 +150,7 @@ React host; Vue/Astro/Aurelia islands; GraphQL fixtures; optional WASM with pure
 
 | Workstream | IDs | Detail | Current state |
 | --- | --- | --- | --- |
-| Visual design and UX | UI1–UI14 | [user_interface.md](roadmaps/user_interface.md) | 🔄 Hyperion shell; tokens partial |
+| Visual design and UX | UI1–UI15 | [user_interface.md](roadmaps/user_interface.md) | 🔄 Helios Forge tokens + ambient; UI6–UI12 open |
 | Interactive graphics | IF1–IF13 | [interactive_features.md](roadmaps/interactive_features.md) | ✅ IF1–IF13 (reframe demos for VGP) |
 | Simulations and Aurelia | SIM1–SIM10 | [simulations_and_aurelia.md](roadmaps/simulations_and_aurelia.md) | 🔄 SIM1–SIM4 partial |
 | Multi-framework platform | MFP1–MFP16 | [multi_framework_platform.md](roadmaps/multi_framework_platform.md) | 🔄 React/Astro/Aurelia seeds |
@@ -214,6 +217,7 @@ React host; Vue/Astro/Aurelia islands; GraphQL fixtures; optional WASM with pure
 
 | Date | Revision | Change |
 | --- | --- | --- |
+| 2026-08-10 | R5.2 | Helios Forge identity across main site + docs (gold/cobalt/teal; NetworkField + embers); R2 marked done on timeline; UI3–UI5 partial→hardening; G2 residual noted. |
 | 2026-08-09 | R5.1 | Documentation dashboard adopts the Hyperion visual identity (UI15, DOC12); Astro island restyled and its build hazard recorded. |
 | 2026-08-09 | R5 | Hyperion org-site vision; VGP-centered timeline; research anchors updated to Visual Development Tool + Game Dev Tools market; infra keepers only. |
 | 2026-08-09 | R4 | Multi-framework platform workstream (MFP1–MFP16) and gate G6. |

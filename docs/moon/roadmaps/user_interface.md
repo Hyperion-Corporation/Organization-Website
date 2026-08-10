@@ -1,14 +1,16 @@
 # Visual Design and User Interface Roadmap
 
-Goal: create a distinctive Hyperion product identity—deep-space surfaces, luminous data accents, editorial typography, tactile glass panels, and restrained cinematic motion—while keeping mission, VGP, and navigation legible.
+Goal: create a distinctive **Helios Forge** product identity—deep ink surfaces, solar gold / forge cobalt / network teal accents, editorial typography, tactile glass panels, and restrained cinematic motion—while keeping mission, VGP, and navigation legible.
+
+**Identity note (2026-08-10):** Helios Forge deliberately diverges from the Journals/`github-pages` cyan–violet–pink “observatory” seed, from VGP’s violet–emerald–magenta workbench, and from PMF’s crimson coastal theme. Token names under `hy-` remain for class stability; semantic colours map to gold/cobalt/teal.
 
 | ID | Deliverable | Effort | Depends on | Status |
 | --- | --- | --- | --- | --- |
 | UI1 | Next.js App Router, responsive shell, content routes and Tailwind foundation | M | — | ✅ |
 | UI2 | Persisted light/dark theme and collapsible responsive navigation | S | UI1 | ✅ |
-| UI3 | Semantic design tokens for color, type scale, spacing, radius, elevation, blur, motion and chart palettes | M | UI1 | 🚧 |
-| UI4 | Layered ambient backdrop: aurora gradients, subtle grid/noise, spotlight response and high-contrast fallback | M | UI3 | 🚧 |
-| UI5 | Responsive home composition with editorial hero, proof points, bento cards and clear narrative hierarchy | M | UI3 | 🚧 |
+| UI3 | Semantic Helios Forge design tokens for color, type scale, spacing, radius, elevation, blur, motion and chart palettes | M | UI1 | 🔄 |
+| UI4 | Layered ambient backdrop: gold/cobalt/teal aurora, NetworkField canvas (nodes/edges/pulses), falling solar embers, reduced-motion static frame | M | UI3 | 🔄 |
+| UI5 | Responsive home composition with editorial hero, proof points, bento cards and clear narrative hierarchy | M | UI3 | 🔄 |
 | UI6 | Capability and preference policy covering reduced motion, reduced data, contrast, pointer type, WebGL/WebGPU and device tier | M | UI3, IT6 | 📋 |
 | UI7 | Motion language for hover/focus, reveal, shared-element/FLIP project filtering and View Transitions enhancement | L | UI6 | 📋 |
 | UI8 | Command palette and global search across projects, posts, reports and tools with keyboard-first navigation | L | DOC5 | 📋 |
@@ -16,19 +18,19 @@ Goal: create a distinctive Hyperion product identity—deep-space surfaces, lumi
 | UI10 | Case-study template with scrollytelling chapters, sticky metrics, architecture diagrams and media gallery | L | UI7, DOC5 | 📋 |
 | UI11 | Accessibility hardening: skip links, focus restoration, landmark audit, contrast modes and screen-reader announcements | M | UI3–UI10 | 📋 |
 | UI12 | Internationalization-ready content/layout primitives and locale-safe dates/numbers without requiring an immediate translation | M | DOC5 | 🔬 |
-| UI13 | Domain component taxonomy under `src/components/{audio,books,canvas,games,graph,image,maps,models,routes,video}` with shared UI primitives and no catch-all interactive folder | M | UI3, DOC5 | 🚧 |
-| UI14 | Redux store for genuinely cross-cutting experience state: theme, quality tier, active simulation and active media; local state remains local | M | UI6, UI13 | 🚧 |
-| UI15 | Documentation dashboard visual identity: observatory tokens, Docusaurus chrome, ambient backdrop, editorial hero, bento/tabs/timeline and the docs knowledge map | M | UI3–UI5 | ✅ |
+| UI13 | Domain component taxonomy under `src/frameworks/react/components/{audio,books,canvas,games,graph,image,maps,models,routes,video}` with shared UI primitives and no catch-all interactive folder | M | UI3, DOC5 | 🔄 |
+| UI14 | Redux store for genuinely cross-cutting experience state: theme, quality tier, active simulation and active media; local state remains local | M | UI6, UI13 | 🔄 |
+| UI15 | Documentation dashboard visual identity: Helios Forge tokens, Docusaurus chrome, ambient NetworkField/embers, editorial hero, bento/tabs/timeline and the docs knowledge map | M | UI3–UI5 | ✅ |
 
 ## Acceptance criteria
 
-### UI3–UI5 — visual foundation
+### UI3–UI5 — visual foundation (Helios Forge)
 
-- Tokens are CSS custom properties consumed by Tailwind-compatible classes; components do not invent arbitrary repeated colors.
-- Light and dark palettes meet WCAG AA contrast for text and controls. Decorative glow never carries meaning.
+- Tokens are CSS custom properties (`--helios-*` on the main site; `--hy-*` on the docs site) consumed by Tailwind-compatible classes; components do not invent arbitrary repeated colors. Brand primaries: solar gold, forge cobalt, network teal.
+- Light (warm paper) and dark (deep ink) palettes meet WCAG AA contrast for text and controls. Decorative glow never carries meaning.
 - Hero scales from 320 px to ultrawide displays without clipped content, horizontal scrolling, or a layout shift.
-- Ambient effects use transform/opacity where possible, are `pointer-events: none`, and become static under `prefers-reduced-motion`.
-- Visual regression reference images cover home at mobile/tablet/desktop in both themes.
+- Ambient effects: main site mounts `NetworkFieldBackdrop` (batched edges, dataflow pulses, falling embers); CSS aurora + ember drift layers; `pointer-events: none`; static under `prefers-reduced-motion`; loops pause while the document is hidden.
+- Residual for full ✅: visual-regression baselines (mobile/tablet/desktop × themes), spotlight-on-pointer (optional), and a single shared token package so main-site and docs never drift again.
 
 ### UI6–UI7 — capabilities and motion
 
@@ -52,11 +54,11 @@ Goal: create a distinctive Hyperion product identity—deep-space surfaces, lumi
 
 ### UI15 — documentation dashboard
 
-The Docusaurus dashboard under `docs/website/` is a second surface for the same identity, not a separate brand:
+The Docusaurus dashboard under `docs/website/` is a second surface for the same **Helios Forge** identity, not a separate brand:
 
-- `docs/website/src/css/observatory.css` owns the tokens and the `hy-` component classes; `custom.css` maps them onto Infima and restyles navbar, sidebar, doc content, code blocks, and footer. Both Docusaurus and Storybook load the same file, so a component looks identical in either host.
-- The homepage composes an ambient particle/constellation backdrop, an editorial hero with a canvas module lattice, a bento grid, an ARIA tabs hub, the zoomable documentation knowledge map, the Astro research-orbit island, and the R0–R8 timeline.
-- The hero model is drawn with plain 2D canvas maths rather than a WebGL renderer: a documentation route must not pay a three.js download for decoration. Continuous animation stops while the document is hidden, device pixel ratio is clamped, and every effect drops to a static frame under `prefers-reduced-motion: reduce`.
+- `docs/website/src/css/observatory.css` (filename retained) owns Helios Forge tokens and the `hy-` component classes; `custom.css` maps them onto Infima and restyles navbar, sidebar, doc content, code blocks, and footer. Both Docusaurus and Storybook load the same file, so a component looks identical in either host.
+- The homepage composes an ambient network/ember backdrop (`ObservatoryBackdrop`), an editorial hero with a canvas module lattice, a bento grid, an ARIA tabs hub, the zoomable documentation knowledge map, the Astro research-orbit island, and the R0–R8 timeline.
+- Canvas palette lives in `docs/website/src/frameworks/react/components/docs/theme.ts` (gold + teal, theme-aware). The hero model is plain 2D canvas maths, not WebGL. Continuous animation stops while the document is hidden, device pixel ratio is clamped, and every effect drops to a static frame under `prefers-reduced-motion: reduce`.
 - Every visualization keeps a DOM equivalent — the knowledge map renders the same nodes as a plain list of links, and the timeline's scroll reveal is only armed once its observer attaches.
 
 ## Design QA matrix

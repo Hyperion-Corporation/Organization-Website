@@ -9,14 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Hyperion observatory identity for the documentation dashboard (UI15, DOC12): `docs/website/src/css/observatory.css` holds the tokens and `hy-` component classes, and `custom.css` maps them onto Infima and restyles the navbar, sidebar, doc content, code blocks, and footer. Lexend/Inter load from the site config with `display=swap`.
-- Composed dashboard homepage: ambient particle/constellation backdrop, editorial hero with a canvas module lattice, bento navigation, ARIA tabs documentation hub, a zoomable/pannable knowledge map of the documentation corpus, the Astro research-orbit island, and the R0–R8 phase timeline.
+- **Helios Forge** visual identity on the main Organization site (UI3–UI5): solar gold / forge cobalt / network teal tokens in `app/globals.css` and Tailwind (`primary`, `helios.*`); warm-paper light surfaces and deep-ink dark ground with multi-stop aurora fields.
+- Ambient **NetworkFieldBackdrop** (`src/frameworks/react/components/graphics/NetworkFieldBackdrop.tsx`) mounted from the client shell: drifting nodes, batched constellation edges, teal dataflow pulses, and falling solar embers (VGP/PMF-inspired motion, Hyperion palette). CSS ember drift layer as a secondary ambient channel. Honours `prefers-reduced-motion`, tab visibility, and clamped DPR.
+- Hero stage background image (`public/hyperion_hero_image.jpg`) for the model panel.
+- Hyperion Helios Forge identity for the documentation dashboard (UI15, DOC12 refresh): `docs/website/src/css/observatory.css` holds the tokens and `hy-` component classes (gold/cobalt/teal semantics); `custom.css` maps them onto Infima and restyles the navbar, sidebar, doc content, code blocks, and footer. Lexend/Inter load from the site config with `display=swap`.
+- Composed dashboard homepage: ambient network/ember backdrop, editorial hero with a canvas module lattice, bento navigation, ARIA tabs documentation hub, a zoomable/pannable knowledge map of the documentation corpus, the Astro research-orbit island, and the R0–R8 phase timeline.
 - Storybook stories with hand-written prop tables for every new dashboard component, and the Storybook Tailwind entry now loads the same design system stylesheet as Docusaurus.
 
 ### Changed
 
+- Main-site and docs accents moved off the template cyan–violet–pink “observatory” palette so Organization-Website is visually distinct from `Journals/github-pages`, VGP docs, and PMF docs.
+- Shell (header, sidebar, badges, glass cards) and content routes use amber/gold active states and teal secondary accents; constellation gradient and chart encodings follow Helios tokens.
+- Docs canvas palette (`theme.ts`) and `ObservatoryBackdrop` upgraded with edge pulses and falling embers; docs graph node colors realigned.
 - Dashboard visualizations follow the platform's motion and budget policy: the hero model is plain 2D canvas maths instead of a WebGL renderer, continuous animation stops while the tab is hidden, device pixel ratio is clamped, and reduced motion renders a static frame. The knowledge map and timeline keep DOM equivalents (a plain link list; a reveal that is only armed once its observer attaches).
-- Astro research-orbit island restyled to the observatory palette with a transparent background and reduced-motion-aware orbit rings; the host wrapper now points at the island's directory URL, since `docusaurus serve` rewrites an explicit `/index.html` into a route that falls through to the SPA.
+- Astro research-orbit island restyled to the Helios palette with a transparent background and reduced-motion-aware orbit rings; the host wrapper now points at the island's directory URL, since `docusaurus serve` rewrites an explicit `/index.html` into a route that falls through to the SPA.
+- Moon roadmap session **R5.2**: R2 visual language marked done on the master timeline; UI3–UI5 residual = visual regression + shared token package; G2 hardening.
 
 ### Fixed
 

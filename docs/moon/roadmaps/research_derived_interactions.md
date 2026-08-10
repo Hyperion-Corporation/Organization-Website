@@ -7,7 +7,7 @@
 - [Visual Development Tool Roadmap & Tech Stack](../research/Visual%20Development%20Tool%20Roadmap%20%26%20Tech%20Stack.md)
 - [Game Dev Tools Market Research](../reports/Game%20Dev%20Tools%20Market%20Research.md)
 
-**Last updated:** 2026-08-09
+**Last updated:** 2026-08-10
 
 ## Contents
 

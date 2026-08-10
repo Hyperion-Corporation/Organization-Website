@@ -67,7 +67,7 @@ Product research turns the catalogue into evidence-led packages: RR2 structure/r
 
 ## Documentation dashboard application
 
-The Docusaurus dashboard (`docs/website/`) applies the IF3/IF4 contract to the documentation corpus itself: a zoomable, pannable SVG knowledge map whose nodes are focusable buttons, whose selection is announced through a live detail panel, and whose full node set is always rendered as a plain list of links. The hero model deliberately stops short of IF2's renderer — it is 2D canvas maths, not WebGL — so the docs route keeps its budget while still demonstrating the tier policy (static frame under reduced motion, no rendering while the tab is hidden, clamped device pixel ratio). See [UI15](user_interface.md) for the identity it belongs to.
+The Docusaurus dashboard (`docs/website/`) applies the IF3/IF4 contract to the documentation corpus itself: a zoomable, pannable SVG knowledge map whose nodes are focusable buttons, whose selection is announced through a live detail panel, and whose full node set is always rendered as a plain list of links. The hero model deliberately stops short of IF2's renderer — it is 2D canvas maths, not WebGL — so the docs route keeps its budget while still demonstrating the tier policy (static frame under reduced motion, no rendering while the tab is hidden, clamped device pixel ratio). Ambient decoration uses the Helios Forge NetworkField/ember field (not product data). See [UI15](user_interface.md) for the identity it belongs to.
 
 ## Document history
 
