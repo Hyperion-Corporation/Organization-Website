@@ -204,6 +204,7 @@ React host; Vue/Astro/Aurelia islands; GraphQL fixtures; optional WASM with pure
 - [Visual Development Tool research](research/Visual%20Development%20Tool%20Roadmap%20%26%20Tech%20Stack.md)
 - [Game Dev Tools market report](reports/Game%20Dev%20Tools%20Market%20Research.md)
 - [UI visual system](roadmaps/user_interface.md)
+- [G2 visual system checklist](roadmaps/g2_visual_system_checklist.md)
 - [IF graphics](roadmaps/interactive_features.md)
 - [SIM simulations/Aurelia](roadmaps/simulations_and_aurelia.md)
 - [MFP multi-framework](roadmaps/multi_framework_platform.md)

@@ -1,4 +1,6 @@
 /* Importing global styles directly into the Next.js App Router */
+@import '../src/styles/helios-tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,34 +61,14 @@ html {
    Tokens
    =================================================================== */
 
+/* Surface / motion aliases for this file's component rules (values from helios-tokens.css). */
 :root {
-  --helios-gold: #f59e0b;
-  --helios-amber: #fbbf24;
-  --helios-ember: #ea580c;
-  --helios-cobalt: #2563eb;
-  --helios-teal: #14b8a6;
-  --helios-mint: #2dd4bf;
-  --helios-ink: #070b14;
-
-  --helios-panel: rgb(255 252 247 / 0.72);
-  --helios-border: rgb(28 25 23 / 0.1);
-
-  --helios-gradient-text: linear-gradient(105deg, #b45309 8%, #1d4ed8 52%, #0f766e);
-  --helios-gradient-action: linear-gradient(115deg, #b45309 0%, #c2410c 38%, #1d4ed8 100%);
+  --font-display: var(--helios-font-display);
+  --ease-out: var(--helios-ease-out);
+  --dur-fast: var(--helios-dur-fast);
+  --dur: var(--helios-dur);
+  --dur-slow: var(--helios-dur-slow);
   --helios-gradient-panel: linear-gradient(145deg, #0a1220, #101a32 55%, #0c1f24);
-
-  --font-display: 'Lexend', 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur-fast: 0.16s;
-  --dur: 0.25s;
-  --dur-slow: 0.5s;
-}
-
-.dark {
-  --helios-panel: rgb(10 16 28 / 0.76);
-  --helios-border: rgb(148 163 184 / 0.16);
-  --helios-gradient-text: linear-gradient(105deg, #fbbf24 8%, #60a5fa 52%, #2dd4bf);
-  --helios-gradient-action: linear-gradient(115deg, #d97706 0%, #ea580c 40%, #2563eb 100%);
 }
 
 /* ===================================================================
@@ -182,6 +164,29 @@ html.dark body::after {
 .shell-root {
   position: relative;
   z-index: 2;
+}
+
+/* Skip link — first focusable control for keyboard users (G2 / UI11 slice) */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  border-radius: 0.65rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1c1917;
+  background: var(--helios-amber);
+  box-shadow: 0 8px 24px rgb(180 83 9 / 0.35);
+  transform: translateY(-150%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--helios-gold);
+  outline-offset: 3px;
 }
 
 /* ===================================================================

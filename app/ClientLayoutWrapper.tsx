@@ -78,6 +78,9 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
           darkMode ? 'dark bg-helios-ink/80 text-slate-200' : 'bg-stone-50/80 text-stone-800'
         }`}
       >
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
 
       <div className="shell-body flex flex-1 w-full max-w-7xl mx-auto overflow-hidden min-h-0">
@@ -113,7 +116,11 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
         )}
 
         <div className="shell-main flex-1 min-w-0 h-full overflow-y-auto">
-          <main className="shell-main-inner flex-1 w-full max-w-5xl mx-auto pt-20 lg:pt-12">
+          <main
+            id="main-content"
+            tabIndex={-1}
+            className="shell-main-inner flex-1 w-full max-w-5xl mx-auto pt-20 lg:pt-12 outline-none"
+          >
             {children}
             <Footer darkMode={darkMode} toggleTheme={toggleTheme} />
           </main>

@@ -8,7 +8,7 @@ Goal: create a distinctive **Helios Forge** product identity—deep ink surfaces
 | --- | --- | --- | --- | --- |
 | UI1 | Next.js App Router, responsive shell, content routes and Tailwind foundation | M | — | ✅ |
 | UI2 | Persisted light/dark theme and collapsible responsive navigation | S | UI1 | ✅ |
-| UI3 | Semantic Helios Forge design tokens for color, type scale, spacing, radius, elevation, blur, motion and chart palettes | M | UI1 | 🔄 |
+| UI3 | Semantic Helios Forge design tokens for color, type scale, spacing, radius, elevation, blur, motion and chart palettes (`src/styles/helios-tokens.css`) | M | UI1 | 🔄 |
 | UI4 | Layered ambient backdrop: gold/cobalt/teal aurora, NetworkField canvas (nodes/edges/pulses), falling solar embers, reduced-motion static frame | M | UI3 | 🔄 |
 | UI5 | Responsive home composition with editorial hero, proof points, bento cards and clear narrative hierarchy | M | UI3 | 🔄 |
 | UI6 | Capability and preference policy covering reduced motion, reduced data, contrast, pointer type, WebGL/WebGPU and device tier | M | UI3, IT6 | 📋 |
@@ -16,7 +16,7 @@ Goal: create a distinctive **Helios Forge** product identity—deep ink surfaces
 | UI8 | Command palette and global search across projects, posts, reports and tools with keyboard-first navigation | L | DOC5 | 📋 |
 | UI9 | Project explorer with URL-backed filters, animated bento layout, comparison mode and accessible list/table view | L | UI7, DOC5 | 📋 |
 | UI10 | Case-study template with scrollytelling chapters, sticky metrics, architecture diagrams and media gallery | L | UI7, DOC5 | 📋 |
-| UI11 | Accessibility hardening: skip links, focus restoration, landmark audit, contrast modes and screen-reader announcements | M | UI3–UI10 | 📋 |
+| UI11 | Accessibility hardening: skip links, focus restoration, landmark audit, contrast modes and screen-reader announcements | M | UI3–UI10 | 🔄 |
 | UI12 | Internationalization-ready content/layout primitives and locale-safe dates/numbers without requiring an immediate translation | M | DOC5 | 🔬 |
 | UI13 | Domain component taxonomy under `src/frameworks/react/components/{audio,books,canvas,games,graph,image,maps,models,routes,video}` with shared UI primitives and no catch-all interactive folder | M | UI3, DOC5 | 🔄 |
 | UI14 | Redux store for genuinely cross-cutting experience state: theme, quality tier, active simulation and active media; local state remains local | M | UI6, UI13 | 🔄 |
@@ -30,7 +30,8 @@ Goal: create a distinctive **Helios Forge** product identity—deep ink surfaces
 - Light (warm paper) and dark (deep ink) palettes meet WCAG AA contrast for text and controls. Decorative glow never carries meaning.
 - Hero scales from 320 px to ultrawide displays without clipped content, horizontal scrolling, or a layout shift.
 - Ambient effects: main site mounts `NetworkFieldBackdrop` (batched edges, dataflow pulses, falling embers); CSS aurora + ember drift layers; `pointer-events: none`; static under `prefers-reduced-motion`; loops pause while the document is hidden.
-- Residual for full ✅: visual-regression baselines (mobile/tablet/desktop × themes), spotlight-on-pointer (optional), and a single shared token package so main-site and docs never drift again.
+- Shared tokens live in [`src/styles/helios-tokens.css`](../../../src/styles/helios-tokens.css) (imported by main `globals.css` and docs `observatory.css`).
+- Residual for full ✅: visual-regression baselines (mobile/tablet/desktop × themes), optional spotlight-on-pointer, Lighthouse score row in [`docs/BENCHMARKS.md`](../../BENCHMARKS.md). Checklist: [g2_visual_system_checklist.md](g2_visual_system_checklist.md).
 
 ### UI6–UI7 — capabilities and motion
 

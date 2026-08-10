@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Shared Helios token file [`src/styles/helios-tokens.css`](../../src/styles/helios-tokens.css) imported by the main site and the docs dashboard (reduces palette drift).
+- Skip-to-content link and stable `main#main-content` landmark (G2 / UI11 slice); Cypress smoke `test/cypress/smoke/a11y-shell.cy.js`.
+- Gate G2 checklist: [`docs/moon/roadmaps/g2_visual_system_checklist.md`](roadmaps/g2_visual_system_checklist.md); expanded [`docs/BENCHMARKS.md`](../BENCHMARKS.md) with budget table and Lighthouse recording steps.
 - **Helios Forge** visual identity on the main Organization site (UI3–UI5): solar gold / forge cobalt / network teal tokens in `app/globals.css` and Tailwind (`primary`, `helios.*`); warm-paper light surfaces and deep-ink dark ground with multi-stop aurora fields.
 - Ambient **NetworkFieldBackdrop** (`src/frameworks/react/components/graphics/NetworkFieldBackdrop.tsx`) mounted from the client shell: drifting nodes, batched constellation edges, teal dataflow pulses, and falling solar embers (VGP/PMF-inspired motion, Hyperion palette). CSS ember drift layer as a secondary ambient channel. Honours `prefers-reduced-motion`, tab visibility, and clamped DPR.
 - Hero stage background image (`public/hyperion_hero_image.jpg`) for the model panel.
