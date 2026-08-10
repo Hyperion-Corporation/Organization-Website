@@ -12,7 +12,6 @@ import {
   Newspaper,
   HelpCircle,
   Mail,
-  Briefcase,
   Megaphone,
 } from 'lucide-react';
 
@@ -36,9 +35,11 @@ export const PRIMARY_NAV: SiteNavItem[] = [
   { href: '/content/contact', label: 'Contact', slug: 'contact', icon: Mail },
 ];
 
-/** Extra destinations linked from footer / in-page, not always in the top rail. */
+/**
+ * Extra destinations linked from footer / in-page.
+ * Careers is intentionally omitted until a real opening exists.
+ */
 export const SECONDARY_NAV: SiteNavItem[] = [
-  { href: '/content/careers', label: 'Careers', slug: 'careers', icon: Briefcase },
   { href: '/content/press', label: 'Press kit', slug: 'press', icon: Megaphone },
 ];
 

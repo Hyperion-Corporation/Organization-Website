@@ -1,46 +1,96 @@
 import React from 'react';
 import Link from 'next/link';
 import { CorpPage, CorpSection, CorpCard } from '@/src/frameworks/react/components/ui/CorpPage';
+import VgpStructureDemo from '@/src/frameworks/react/components/products/VgpStructureDemo';
 import { appPath } from '@/src/utils/paths';
 
-const PRODUCTS = [
+const LINEUP = [
   {
     id: 'vgp',
     status: 'In development',
     name: 'Visual Graph Programming',
     summary:
-      'Graph and metrics visualization for modules, assets, and storyboards—so creative and engineering teams share one structural model.',
-    points: ['2D / 3D graph views', 'Relationship authoring', 'Metrics tied to structure', 'Games & sims pipelines'],
+      'Direction for graph and metrics visualization of modules, assets, and storyboards—so teams share one structural model. Not an installable product yet.',
+    points: ['Structure graph', 'Metrics on structure', 'Cross-role authoring', 'Games & sims'],
   },
   {
     id: 'pipeline',
     status: 'Exploratory',
     name: 'Creative pipeline tooling',
     summary:
-      'Workflow-oriented software that reduces friction between art, design, and engineering on complex interactive productions.',
-    points: ['Cross-role visibility', 'Asset ↔ code links', 'Board ↔ implementation maps'],
+      'Early thinking on workflow tools that reduce friction between art, design, and engineering. Exploratory—not a named SKU.',
+    points: ['Cross-role visibility', 'Asset ↔ code links', 'Board ↔ implementation'],
   },
   {
-    id: 'site',
-    status: 'Shipped',
+    id: 'surfaces',
+    status: 'Public surface',
     name: 'Organization surfaces',
     summary:
-      'Public product presence (this site): static Next.js export, progressive demos, documentation dashboard.',
-    points: ['GitHub Pages', 'Interactive islands', 'Docs + Storybook'],
+      'This website and docs dashboard: brand, mission, progressive demos, and engineering transparency while products mature.',
+    points: ['Static export', 'Interactive demos', 'Docs + Storybook'],
   },
 ];
 
 export default function ProductsPage() {
   return (
     <CorpPage
-      kicker="Portfolio"
+      kicker="Offerings"
       title="Products"
-      lead="Software for makers of interactive systems—starting with graph-centric tools that expose structure, metrics, and relationships."
-      cta={{ href: appPath('/content/contact'), label: 'Talk to us' }}
+      lead="Hyperion builds software for makers of interactive systems. Today we are early: we share direction, metaphors, and demos—not a downloadable suite."
+      cta={{ href: appPath('/content/projects'), label: 'See active projects' }}
     >
-      <CorpSection kicker="Lineup" title="What we are building">
+      <CorpSection kicker="Honesty" title="How to read this page">
+        <CorpCard accent>
+          <p className="corp-prose">
+            <strong>Brand awareness &amp; direction.</strong> Visual Graph Programming (VGP) is an{' '}
+            <em>in-development</em> product direction. The interactive graph below is an{' '}
+            <strong>illustrative prototype</strong> for understanding modules, assets, storyboards, and metrics—not a
+            shipping editor, not a production pipeline integration.
+          </p>
+        </CorpCard>
+      </CorpSection>
+
+      <CorpSection id="vgp" kicker="Flagship direction" title="Visual Graph Programming">
+        <div className="corp-prose corp-prose-block">
+          <p>
+            Games and simulations bury structure across <strong>code modules</strong>, <strong>assets</strong>, and{' '}
+            <strong>design or story boards</strong>. VGP aims to make those relationships visible and eventually
+            authorable—so developers, artists, and designers share one map of the work.
+          </p>
+        </div>
+        <div className="corp-triad corp-triad--tight">
+          <CorpCard>
+            <h3 className="corp-card__title">See</h3>
+            <p className="corp-card__body">
+              Graph views of how systems, content, and boards connect—before you memorize the repo folklore.
+            </p>
+          </CorpCard>
+          <CorpCard>
+            <h3 className="corp-card__title">Measure</h3>
+            <p className="corp-card__body">
+              Metrics attached to structure (depth, references, coverage)—not only free-floating telemetry.
+            </p>
+          </CorpCard>
+          <CorpCard>
+            <h3 className="corp-card__title">Author (later)</h3>
+            <p className="corp-card__body">
+              Longer-term: evolve modules from a shared visual model. Today: metaphor and demos only.
+            </p>
+          </CorpCard>
+        </div>
+      </CorpSection>
+
+      <CorpSection kicker="Interactive demo" title="Module · asset · board · metric">
+        <p className="corp-section-lead">
+          Click a node to inspect it. Filter by kind. Related edges light up. A list equivalent sits under the
+          graph for accessibility and reduced-motion contexts.
+        </p>
+        <VgpStructureDemo />
+      </CorpSection>
+
+      <CorpSection kicker="Lineup" title="What exists on paper today">
         <div className="corp-product-stack">
-          {PRODUCTS.map((p, i) => (
+          {LINEUP.map((p, i) => (
             <article key={p.id} className={`corp-product ${i === 0 ? 'corp-product--flagship' : ''}`}>
               <div className="corp-product__meta">
                 <span className="corp-product__status">{p.status}</span>
@@ -58,7 +108,7 @@ export default function ProductsPage() {
         </div>
       </CorpSection>
 
-      <CorpSection kicker="Outcomes" title="Problems we care about">
+      <CorpSection kicker="Problems" title="Why this matters">
         <div className="corp-triad">
           <CorpCard>
             <h3 className="corp-card__title">Lost structure</h3>
@@ -69,13 +119,13 @@ export default function ProductsPage() {
           <CorpCard>
             <h3 className="corp-card__title">Opaque metrics</h3>
             <p className="corp-card__body">
-              Telemetry without topology—numbers that do not attach to the things people actually edit.
+              Numbers that do not attach to the things people actually edit.
             </p>
           </CorpCard>
           <CorpCard>
             <h3 className="corp-card__title">Role friction</h3>
             <p className="corp-card__body">
-              Engineers, artists, and designers optimize local tools while the system as a whole stays opaque.
+              Each discipline optimizes a local tool while the whole system stays opaque.
             </p>
           </CorpCard>
         </div>
@@ -84,10 +134,13 @@ export default function ProductsPage() {
       <CorpSection kicker="Next" title="Explore further">
         <div className="corp-link-row">
           <Link href={appPath('/content/projects')} className="forge-btn forge-btn--primary">
-            Active projects
+            Projects &amp; repos
           </Link>
           <Link href={appPath('/content/reports')} className="forge-btn forge-btn--ghost">
-            Research notes
+            Research &amp; roadmap
+          </Link>
+          <Link href={appPath('/content/contact')} className="forge-text-link">
+            Contact via GitHub
           </Link>
         </div>
       </CorpSection>

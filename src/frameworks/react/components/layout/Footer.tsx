@@ -9,11 +9,9 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ darkMode, toggleTheme }) => {
-  const company = PRIMARY_NAV.filter((n) =>
-    ['about', 'products', 'projects', 'careers'].includes(n.slug)
-  ).concat(SECONDARY_NAV.filter((n) => n.slug === 'careers'));
-  // de-dupe careers if both
-  const companyUnique = Array.from(new Map(company.map((i) => [i.slug, i])).values());
+  const companyUnique = PRIMARY_NAV.filter((n) =>
+    ['about', 'products', 'projects'].includes(n.slug)
+  );
 
   const resources = PRIMARY_NAV.filter((n) =>
     ['reports', 'posts', 'faq', 'contact'].includes(n.slug)
