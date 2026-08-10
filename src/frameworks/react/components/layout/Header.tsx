@@ -1,117 +1,119 @@
 'use client';
 
-// Add useState to manage the menu open/closed state
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  Home,
-  User,
-  Code,
-  Wrench,
-  Tv,
-  FileText,
-  PenTool,
-  Folder,
-  Menu, // Import Menu icon for the closed state
-  X,    // Import X icon for the open state
-  Sun,
-  Moon
-} from 'lucide-react';
-
-const NAV_ITEMS = [
-  { label: 'Home', href: '/', icon: Home },
-  { label: 'About', href: '/content/about', icon: User },
-  { label: 'Projects', href: '/content/projects', icon: Code },
-  { label: 'Reports', href: '/content/reports', icon: FileText },
-  { label: 'Tools', href: '/content/tools', icon: Wrench },
-  { label: 'Updates', href: '/content/posts', icon: PenTool },
-  { label: 'Media', href: '/content/media', icon: Tv },
-  { label: 'Other', href: '/content/other', icon: Folder },
-];
+import { Menu, X, Sun, Moon, Github } from 'lucide-react';
+import { PRIMARY_NAV, sectionFromPath } from '../../../../constants/siteNav';
+import orgLogo from '@/assets/icons/Hyperion-mark.png';
 
 interface HeaderProps {
   darkMode: boolean;
   toggleTheme: () => void;
 }
 
+/**
+ * Product-site top navigation (Helios Forge).
+ * Replaces the personal-portfolio pattern of sticky left sidebar + sparse header.
+ */
 export default function Header({ darkMode, toggleTheme }: HeaderProps) {
   const pathname = usePathname();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const active = sectionFromPath(pathname);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [mobileOpen]);
 
   return (
-    // Remove md:hidden to make visible on desktop
-    <header className="w-full bg-stone-50/80 dark:bg-helios-ink/80 backdrop-blur-md border-b border-stone-200/80 dark:border-slate-800/80 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo / Title Area */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="font-bold text-xl text-stone-900 dark:text-white flex items-center gap-2" onClick={closeMobileMenu}>
-              <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-blue-600 bg-clip-text text-transparent">Hyperion</span>
-              <span className="text-stone-900 dark:text-white">Corp</span>
-            </Link>
-          </div>
+    <header className="forge-topbar sticky top-0 z-50">
+      <div className="forge-topbar__inner">
+        <Link href="/" className="forge-brand" onClick={() => setMobileOpen(false)}>
+          <span className="forge-brand__mark">
+            <img src={orgLogo.src} alt="" width={36} height={36} decoding="async" />
+          </span>
+          <span className="forge-brand__text">
+            <span className="forge-brand__name">Hyperion</span>
+            <span className="forge-brand__tag">Corporation</span>
+          </span>
+        </Link>
 
-          {/* Controls: Theme Toggle & Menu */}
-          <div className="flex items-center gap-2">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-md text-stone-600 dark:text-slate-400 hover:bg-amber-50 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
-              aria-label="Toggle theme"
-            >
-              {darkMode ? <Sun size={24} /> : <Moon size={24} />}
-            </button>
+        <nav className="forge-nav" aria-label="Primary">
+          {PRIMARY_NAV.map((item) => {
+            const isActive = active === item.slug;
+            return (
+              <Link
+                key={item.slug}
+                href={item.href}
+                className={`forge-nav__link ${isActive ? 'is-active' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item.shortLabel ?? item.label}
+              </Link>
+            );
+          })}
+        </nav>
 
-            {/* Mobile Menu Button - Hide on Large Screens where Sidebar exists */}
-            <button
-              onClick={toggleMobileMenu}
-              className="p-2 rounded-md text-stone-600 dark:text-slate-400 hover:bg-amber-50 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 lg:hidden"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+        <div className="forge-topbar__actions">
+          <a
+            href="https://github.com/Hyperion-Corporation"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="forge-icon-btn"
+            aria-label="Hyperion on GitHub"
+          >
+            <Github size={18} />
+          </a>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="forge-icon-btn"
+            aria-label="Toggle theme"
+          >
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
+            type="button"
+            className="forge-icon-btn forge-topbar__menu-btn"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-expanded={mobileOpen}
+            aria-controls="forge-mobile-nav"
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
 
-      {/* MOBILE Menu Dropdown Container */}
-      {/* Conditionally render based on state */}
-      {isMobileMenuOpen && (
-        <div className="absolute w-full bg-stone-50 dark:bg-helios-ink border-b border-stone-200 dark:border-slate-800 shadow-lg z-40 animate-in slide-in-from-top-2">
-          {/* ... (Menu rendering logic remains the same) ... */}
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {NAV_ITEMS.map((item) => {
+      {mobileOpen && (
+        <div id="forge-mobile-nav" className="forge-mobile-nav" role="dialog" aria-label="Site menu">
+          <nav className="forge-mobile-nav__list" aria-label="Mobile primary">
+            {PRIMARY_NAV.map((item) => {
               const Icon = item.icon;
-              const isActive = pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href));
-
+              const isActive = active === item.slug;
               return (
                 <Link
-                  key={item.href}
+                  key={item.slug}
                   href={item.href}
-                  onClick={closeMobileMenu}
-                  className={`
-                    flex items-center px-3 py-3 rounded-md text-base font-medium transition-colors duration-200
-                    ${isActive
-                      ? 'bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300'
-                      : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
-                    }
-                  `}
+                  className={`forge-mobile-nav__link ${isActive ? 'is-active' : ''}`}
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={() => setMobileOpen(false)}
                 >
-                  <Icon size={20} className="mr-3" />
+                  <Icon size={18} aria-hidden />
                   {item.label}
                 </Link>
               );
             })}
-          </div>
+          </nav>
         </div>
       )}
     </header>

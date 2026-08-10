@@ -1,29 +1,55 @@
 import React from 'react';
-import { PenTool, Calendar, Star, Code, ArrowRight, Network, Layers, Sparkles } from 'lucide-react';
+import {
+  ArrowRight,
+  Network,
+  Layers,
+  Gamepad2,
+  Cpu,
+  PenTool,
+  Calendar,
+  Star,
+  Sparkles,
+  ExternalLink,
+} from 'lucide-react';
 import GlassCard from '../src/frameworks/react/components/ui/GlassCard';
-import SectionHeading from '../src/frameworks/react/components/ui/SectionHeading';
 import Badge from '../src/frameworks/react/components/ui/Badge';
 import { BlogPost, Project } from '../src/interfaces/types';
 import HeroModel from '../src/frameworks/react/components/models/HeroModel';
 import ResearchConstellation from '../src/frameworks/react/components/graph/ResearchConstellation';
 import ConvergenceSimulation from '../src/frameworks/react/components/routes/ConvergenceSimulation';
-import AudioSpectrum from '../src/frameworks/react/components/audio/AudioSpectrum';
-import ResearchShelf from '../src/frameworks/react/components/books/ResearchShelf';
-import StructureCanvas from '../src/frameworks/react/components/canvas/StructureCanvas';
-import PrototypeCard from '../src/frameworks/react/components/games/PrototypeCard';
-import MediaMosaic from '../src/frameworks/react/components/image/MediaMosaic';
-import StructureMap from '../src/frameworks/react/components/maps/StructureMap';
-import MediaReel from '../src/frameworks/react/components/video/MediaReel';
-import { StarfieldWrapper } from '../src/frameworks/astro/components/StarfieldWrapper';
-import { AureliaWrapper } from '../src/frameworks/aurelia/components/AureliaWrapper';
-import { WebGPUExperiment } from '../src/frameworks/react/components/canvas/WebGPUExperiment';
-import { WebXRExperiment } from '../src/frameworks/react/components/canvas/WebXRExperiment';
-import { GaussianSplatGallery } from '../src/frameworks/react/components/models/GaussianSplatGallery';
+import LabShowcase from '../src/frameworks/react/components/home/LabShowcase';
 import { appPath } from '../src/utils/paths';
 
 /**
- * Featured updates — replace with Markdown-backed content as org publishing matures.
+ * Product-site homepage composition (Helios Forge).
+ * Intentionally not the github-pages personal stack:
+ * hero → constellation → convergence → field-notes dump → posts list → projects.
  */
+
+const PILLARS = [
+  {
+    icon: Network,
+    title: 'Visual Graph Programming',
+    body: 'See how modules, assets, and storyboards relate—then author new structure from that shared model.',
+    href: appPath('/content/projects'),
+    cta: 'Flagship direction',
+  },
+  {
+    icon: Gamepad2,
+    title: 'Games & simulations',
+    body: 'Tools aimed at creative and technical teams shipping interactive worlds, not another personal portfolio grid.',
+    href: appPath('/content/about'),
+    cta: 'Domains we serve',
+  },
+  {
+    icon: Cpu,
+    title: 'Workflow optimization',
+    body: 'Reduce friction between art, design, and engineering with structure, metrics, and clear relationships.',
+    href: appPath('/content/tools'),
+    cta: 'Tooling surface',
+  },
+];
+
 const BLOG_POSTS: BlogPost[] = [
   {
     id: 'Notes_on_RL_an_Introduction',
@@ -64,7 +90,7 @@ const PROJECTS: Project[] = [
       {
         label: 'GitHub Organization',
         url: 'https://github.com/Hyperion-Corporation',
-        icon: <Code size={14} className="w-4 h-4 mr-1" />,
+        icon: <ExternalLink size={14} className="w-4 h-4 mr-1" />,
       },
     ],
     stats: 'Flagship',
@@ -79,7 +105,7 @@ const PROJECTS: Project[] = [
     links: [
       {
         label: 'About Hyperion',
-        url: appPath("/content/about"),
+        url: appPath('/content/about'),
         icon: <Layers size={14} className="w-4 h-4 mr-1" />,
       },
     ],
@@ -96,7 +122,7 @@ const PROJECTS: Project[] = [
       {
         label: 'Repository',
         url: 'https://github.com/Hyperion-Corporation/Organization-Website',
-        icon: <Code size={14} className="w-4 h-4 mr-1" />,
+        icon: <ExternalLink size={14} className="w-4 h-4 mr-1" />,
       },
     ],
     stats: 'Next.js',
@@ -107,127 +133,171 @@ const PROJECTS: Project[] = [
 
 export default function Home() {
   return (
-    <>
-      {/* Hero Section */}
-      <section className="hero-observatory mb-20" aria-labelledby="hero-title">
-        <div className="hero-observatory__copy">
-          <Badge variant="default" className="bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200">
-            <span className="status-pulse" aria-hidden="true" /> Building tools for makers
-          </Badge>
-          <p className="hero-kicker">Hyperion Corporation</p>
-          <h1 id="hero-title" className="hero-title">
-            Software that optimizes <span>human creative work.</span>
-          </h1>
-          <p className="hero-summary">
-            We create tools for <strong>developers, artists, and designers</strong> working on{' '}
-            <strong>games, simulations, and related systems</strong>—so teams can understand structure, metrics, and relationships, and ship with less friction.
-          </p>
-          <div className="hero-actions">
-            <a href={appPath("/content/projects")} className="hero-action hero-action--primary">
-              Explore projects <ArrowRight size={18} />
-            </a>
-            <a href={appPath("/content/about")} className="hero-action hero-action--secondary">
-              About Hyperion
+    <div className="forge-home">
+      {/* 1 · Full-bleed product hero (not personal observatory 2-col copy+model only) */}
+      <section className="forge-hero" aria-labelledby="hero-title">
+        <div className="forge-hero__glow" aria-hidden="true" />
+        <div className="forge-hero__grid">
+          <div className="forge-hero__copy">
+            <Badge variant="default" className="bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200">
+              <span className="status-pulse" aria-hidden="true" /> Building tools for makers
+            </Badge>
+            <p className="forge-kicker">Hyperion Corporation · Helios Forge</p>
+            <h1 id="hero-title" className="forge-hero__title">
+              Software that optimizes <span>human creative work.</span>
+            </h1>
+            <p className="forge-hero__summary">
+              We build for <strong>developers, artists, and designers</strong> shipping{' '}
+              <strong>games, simulations, and complex interactive systems</strong>—so teams can
+              understand structure, metrics, and relationships with less friction.
+            </p>
+            <div className="forge-hero__actions">
+              <a href={appPath('/content/projects')} className="forge-btn forge-btn--primary">
+                Explore projects <ArrowRight size={18} aria-hidden />
+              </a>
+              <a href={appPath('/content/about')} className="forge-btn forge-btn--ghost">
+                About Hyperion
+              </a>
+            </div>
+            <ul className="forge-stat-rail" aria-label="Organization focus">
+              <li>
+                <span>Focus</span>
+                <strong>Work tools</strong>
+              </li>
+              <li>
+                <span>Domains</span>
+                <strong>Games · Sims</strong>
+              </li>
+              <li>
+                <span>Product</span>
+                <strong>VGP</strong>
+              </li>
+            </ul>
+          </div>
+          <div className="forge-hero__stage">
+            <HeroModel />
+          </div>
+        </div>
+      </section>
+
+      {/* 2 · Pillar cards — product org IA */}
+      <section className="forge-section" aria-labelledby="pillars-title">
+        <div className="forge-section-head">
+          <p className="forge-kicker">What we build</p>
+          <h2 id="pillars-title" className="forge-section-title">
+            Three rails, one mission.
+          </h2>
+        </div>
+        <div className="forge-pillars">
+          {PILLARS.map((p) => {
+            const Icon = p.icon;
+            return (
+              <a key={p.title} href={p.href} className="forge-pillar">
+                <span className="forge-pillar__icon" aria-hidden>
+                  <Icon size={22} />
+                </span>
+                <h3 className="forge-pillar__title">{p.title}</h3>
+                <p className="forge-pillar__body">{p.body}</p>
+                <span className="forge-pillar__cta">
+                  {p.cta} <ArrowRight size={14} aria-hidden />
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 3 · Flagship band */}
+      <section className="forge-flagship" aria-labelledby="flagship-title">
+        <div className="forge-flagship__inner">
+          <div>
+            <p className="forge-kicker forge-kicker--on-dark">Flagship</p>
+            <h2 id="flagship-title" className="forge-flagship__title">
+              Visual Graph Programming
+            </h2>
+            <p className="forge-flagship__lead">
+              Graph and metrics visualization for modules, assets, and storyboards—so creative and
+              engineering teams share one structural model instead of siloed tools.
+            </p>
+            <a href={appPath('/content/projects')} className="forge-btn forge-btn--primary">
+              View product direction <ArrowRight size={18} aria-hidden />
             </a>
           </div>
-          <dl className="hero-metrics" aria-label="Organization focus areas">
+          <dl className="forge-flagship__facts">
             <div>
-              <dt>Focus</dt>
-              <dd>Work tools</dd>
+              <dt>Audience</dt>
+              <dd>Devs · artists · designers</dd>
             </div>
             <div>
-              <dt>Domains</dt>
-              <dd>Games · Sims</dd>
+              <dt>Mode</dt>
+              <dd>2D / 3D graphs</dd>
             </div>
             <div>
-              <dt>Product</dt>
-              <dd>VGP</dd>
+              <dt>Status</dt>
+              <dd>In progress</dd>
             </div>
           </dl>
         </div>
-        <HeroModel />
       </section>
 
-      <ResearchConstellation />
-
-      <ConvergenceSimulation />
-
-      <section className="mb-20" aria-labelledby="field-notes-title">
-        <div className="mb-8">
-          <p className="hero-kicker">Interactive surfaces</p>
-          <h2 id="field-notes-title" className="mt-2 text-3xl font-black text-slate-900 dark:text-white">
-            Experiments that preview how Hyperion thinks about systems.
-          </h2>
-        </div>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <StructureMap />
-          <StructureCanvas />
-          <AudioSpectrum />
-          <PrototypeCard />
-          <ResearchShelf />
-          <MediaMosaic />
-          <div className="lg:col-span-2">
-            <WebGPUExperiment />
-          </div>
-          <div className="lg:col-span-2">
-            <GaussianSplatGallery />
-          </div>
-          <div className="lg:col-span-2">
-            <WebXRExperiment />
-          </div>
-          <div className="lg:col-span-2">
-            <StarfieldWrapper />
-          </div>
-          <div className="lg:col-span-2">
-            <AureliaWrapper />
-          </div>
-          <div className="lg:col-span-2">
-            <MediaReel />
-          </div>
-        </div>
+      {/* 4 · System map (constellation) — supporting, not first after hero like portfolio */}
+      <section className="forge-section forge-section--map" aria-label="Product system map">
+        <ResearchConstellation />
       </section>
 
-      {/* Latest Posts Section */}
-      <section className="mb-16">
-        <div className="flex items-center justify-between mb-8">
-          <SectionHeading title="Latest Updates" icon={<PenTool className="text-amber-500" />} />
-          <a
-            href={appPath("/content/posts")}
-            className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline flex items-center gap-1"
-          >
-            View all <ArrowRight size={14} />
+      {/* 5 · Convergence as proof panel inside a band */}
+      <section className="forge-section" aria-label="Simulation proof">
+        <div className="forge-section-head">
+          <p className="forge-kicker">Explainable interaction</p>
+          <h2 className="forge-section-title">Metrics and structure, not black boxes.</h2>
+          <p className="forge-section-lead">
+            Interactive demos stay progressive enhancements over clear product language.
+          </p>
+        </div>
+        <ConvergenceSimulation />
+      </section>
+
+      {/* 6 · Tabbed lab (not personal field-notes grid) */}
+      <div className="forge-section">
+        <LabShowcase />
+      </div>
+
+      {/* 7 · Updates as card grid (not stacked full-width list) */}
+      <section className="forge-section" aria-labelledby="updates-title">
+        <div className="forge-section-head forge-section-head--row">
+          <div>
+            <p className="forge-kicker">
+              <PenTool size={14} aria-hidden className="inline mr-1" /> Updates
+            </p>
+            <h2 id="updates-title" className="forge-section-title">
+              Latest from Hyperion
+            </h2>
+          </div>
+          <a href={appPath('/content/posts')} className="forge-text-link">
+            View all <ArrowRight size={14} aria-hidden />
           </a>
         </div>
-
-        <div className="grid gap-6">
+        <div className="forge-update-grid">
           {BLOG_POSTS.map((post) => (
-            <GlassCard key={post.id} className="group hover:border-amber-500/35 transition-colors">
-              <div className="p-6">
-                <div className="flex items-center gap-3 text-sm text-slate-500 mb-3">
-                  <span className="flex items-center gap-1">
-                    <Calendar size={14} /> {post.date}
-                  </span>
-                  <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                  <span className="text-amber-700 dark:text-amber-300 font-medium">{post.category}</span>
+            <GlassCard key={post.id} className="forge-update-card group">
+              <div className="p-5 flex flex-col h-full">
+                <div className="flex items-center gap-2 text-xs text-stone-500 dark:text-slate-400 mb-3">
+                  <Calendar size={12} aria-hidden />
+                  {post.date}
+                  <span className="text-amber-700 dark:text-amber-300 font-semibold">{post.category}</span>
                 </div>
-                <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
+                <h3 className="text-lg font-bold font-display text-stone-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
                   <a href={appPath(`/content/posts/${post.id}`)}>{post.title}</a>
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
-                <div className="flex flex-wrap gap-2 items-center justify-between mt-auto">
-                  <div className="flex gap-2">
-                    {post.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                  <a
-                    href={appPath(`/content/posts/${post.id}`)}
-                    className="text-sm font-medium text-teal-700 dark:text-teal-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
-                  >
-                    Read more <ArrowRight size={14} />
-                  </a>
+                <p className="text-sm text-stone-600 dark:text-slate-400 mt-2 line-clamp-3 flex-1">
+                  {post.excerpt}
+                </p>
+                <div className="flex flex-wrap gap-1.5 mt-4">
+                  {post.tags.map((tag) => (
+                    <Badge key={tag} variant="outline" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
                 </div>
               </div>
             </GlassCard>
@@ -235,62 +305,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest Projects Section */}
-      <section>
-        <div className="flex items-center justify-between mb-8">
-          <SectionHeading title="Featured Projects" icon={<Network className="text-teal-500" />} />
-          <a
-            href={appPath("/content/projects")}
-            className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline flex items-center gap-1"
-          >
-            View all projects <ArrowRight size={14} />
+      {/* 8 · Projects as horizontal feature strip */}
+      <section className="forge-section" aria-labelledby="projects-title">
+        <div className="forge-section-head forge-section-head--row">
+          <div>
+            <p className="forge-kicker">Portfolio</p>
+            <h2 id="projects-title" className="forge-section-title">
+              Featured projects
+            </h2>
+          </div>
+          <a href={appPath('/content/projects')} className="forge-text-link">
+            View all projects <ArrowRight size={14} aria-hidden />
           </a>
         </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="forge-project-rail">
           {PROJECTS.map((project) => (
-            <GlassCard key={project.id} className="h-full flex flex-col">
-              <div className="p-6 flex-1">
-                <h4 className="text-lg font-bold font-display flex items-center gap-3 text-slate-900 dark:text-white">
-                  {project.title}
-                  {project.stats && (
-                    <span className="hidden sm:flex items-center gap-1 text-xs font-medium px-2 py-0.5 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-500 rounded-full border border-yellow-200 dark:border-yellow-800">
-                      <Star size={10} fill="currentColor" /> {project.stats}
-                    </span>
-                  )}
-                </h4>
-                <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 mb-4 leading-relaxed">{project.description}</p>
-                <div className="flex items-center gap-4 text-sm mt-auto">
-                  {project.links &&
-                    project.links.map((link, idx) => (
-                      <a
-                        key={idx}
-                        href={link.url}
-                        className="inline-flex items-center text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors"
-                      >
-                        {link.icon} {link.label}
-                      </a>
-                    ))}
-                </div>
+            <article key={project.id} className="forge-project-card">
+              <div className="forge-project-card__top">
+                <h3 className="forge-project-card__title">{project.title}</h3>
+                {project.stats && (
+                  <span className="forge-project-card__badge">
+                    <Star size={10} fill="currentColor" aria-hidden /> {project.stats}
+                  </span>
+                )}
               </div>
-            </GlassCard>
+              <p className="forge-project-card__body">{project.description}</p>
+              <div className="forge-project-card__links">
+                {project.links?.map((link, idx) => (
+                  <a key={idx} href={link.url} className="forge-text-link">
+                    {link.icon} {link.label}
+                  </a>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="mt-16">
-        <GlassCard className="p-6">
-          <div className="flex items-start gap-3">
-            <Sparkles className="text-amber-500 shrink-0 mt-1" size={22} />
-            <div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Mission in one line</h3>
-              <p className="text-slate-600 dark:text-slate-400 mt-1">
-                Hyperion builds software that optimizes the human work of developers, artists, and designers—starting with graph- and metrics-centric tools for games, simulations, and related computer systems.
-              </p>
-            </div>
-          </div>
-        </GlassCard>
+      {/* 9 · Closing CTA band */}
+      <section className="forge-cta" aria-labelledby="cta-title">
+        <Sparkles className="forge-cta__icon" size={28} aria-hidden />
+        <div>
+          <h2 id="cta-title" className="forge-cta__title">
+            Mission in one line
+          </h2>
+          <p className="forge-cta__body">
+            Hyperion builds software that optimizes the human work of developers, artists, and
+            designers—starting with graph- and metrics-centric tools for games, simulations, and
+            related computer systems.
+          </p>
+        </div>
+        <a href={appPath('/content/about')} className="forge-btn forge-btn--primary">
+          Read about us <ArrowRight size={18} aria-hidden />
+        </a>
       </section>
-    </>
+    </div>
   );
 }

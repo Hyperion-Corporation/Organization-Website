@@ -2,29 +2,30 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Header from '@/src/frameworks/react/components/layout/Header';
 
-// Mock usePathname
 vi.mock('next/navigation', () => ({
-    usePathname: () => '/',
+  usePathname: () => '/',
+}));
+
+vi.mock('@/assets/icons/Hyperion-mark.png', () => ({
+  default: { src: '/mock-image.jpg', height: 36, width: 36 },
 }));
 
 describe('Header', () => {
-    const mockToggleTheme = vi.fn();
+  const mockToggleTheme = vi.fn();
 
-    it('renders logo and navigation items', () => {
-        render(<Header darkMode={false} toggleTheme={mockToggleTheme} />);
-        expect(screen.getByText('Hyperion')).toBeInTheDocument();
-        expect(screen.getByText('Corp')).toBeInTheDocument();
-    });
+  it('renders brand and primary navigation items', () => {
+    render(<Header darkMode={false} toggleTheme={mockToggleTheme} />);
+    expect(screen.getByText('Hyperion')).toBeInTheDocument();
+    expect(screen.getByText('Corporation')).toBeInTheDocument();
+    // Desktop nav + brand may share labels; at least one Home link
+    expect(screen.getAllByRole('link', { name: /home/i }).length).toBeGreaterThan(0);
+  });
 
-    it('toggles mobile menu', () => {
-        render(<Header darkMode={false} toggleTheme={mockToggleTheme} />);
-
-        // Initially menu should be hidden (or button present)
-        // Using getByRole is more robust and accessible
-        const menuButton = screen.getByRole('button', { name: /open main menu/i });
-        fireEvent.click(menuButton);
-
-        // Check if menu items are visible
-        expect(screen.getAllByText('Home')[0]).toBeInTheDocument();
-    });
+  it('opens the mobile menu and exposes navigation', () => {
+    render(<Header darkMode={false} toggleTheme={mockToggleTheme} />);
+    const menuButton = screen.getByRole('button', { name: /open menu/i });
+    fireEvent.click(menuButton);
+    expect(screen.getByRole('dialog', { name: /site menu/i })).toBeInTheDocument();
+    expect(screen.getAllByText('About').length).toBeGreaterThan(0);
+  });
 });

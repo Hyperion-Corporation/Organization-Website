@@ -10,7 +10,7 @@ Goal: create a distinctive **Helios Forge** product identity—deep ink surfaces
 | UI2 | Persisted light/dark theme and collapsible responsive navigation | S | UI1 | ✅ |
 | UI3 | Semantic Helios Forge design tokens for color, type scale, spacing, radius, elevation, blur, motion and chart palettes (`src/styles/helios-tokens.css`) | M | UI1 | 🔄 |
 | UI4 | Layered ambient backdrop: gold/cobalt/teal aurora, NetworkField canvas (nodes/edges/pulses), falling solar embers, reduced-motion static frame | M | UI3 | 🔄 |
-| UI5 | Responsive home composition with editorial hero, proof points, bento cards and clear narrative hierarchy | M | UI3 | 🔄 |
+| UI5 | Product home composition: full-bleed forge hero, pillars, flagship band, system map, tabbed lab, update grid, project rail, CTA — not personal portfolio stack | M | UI3 | 🔄 |
 | UI6 | Capability and preference policy covering reduced motion, reduced data, contrast, pointer type, WebGL/WebGPU and device tier | M | UI3, IT6 | 📋 |
 | UI7 | Motion language for hover/focus, reveal, shared-element/FLIP project filtering and View Transitions enhancement | L | UI6 | 📋 |
 | UI8 | Command palette and global search across projects, posts, reports and tools with keyboard-first navigation | L | DOC5 | 📋 |

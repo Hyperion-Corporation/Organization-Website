@@ -73,17 +73,13 @@ export const metadata: Metadata = {
 const criticalShellCss = `
 html,body{margin:0;padding:0;}
 body{font-family:Inter,system-ui,sans-serif;background:#070b14;color:#e2e8f0;}
-.shell-root{position:relative;z-index:2;display:flex;flex-direction:column;min-height:100vh;height:100vh;overflow:hidden;}
-.shell-body{display:flex;flex:1;width:100%;max-width:80rem;margin:0 auto;overflow:hidden;min-height:0;}
-.shell-main{flex:1;min-width:0;height:100%;overflow:auto;}
-.shell-main-inner{padding:1.5rem;max-width:64rem;margin:0 auto;}
+.shell-root,.forge-shell{position:relative;z-index:2;display:flex;flex-direction:column;min-height:100vh;}
+.shell-main,.forge-shell__main{flex:1;min-width:0;overflow:auto;}
+.forge-shell__content{width:100%;max-width:72rem;margin:0 auto;padding:1.25rem 1.25rem 3rem;}
 @media (min-width:1024px){
-  .shell-main-inner{padding:3rem;}
-  .shell-sidebar-slot{display:block;height:100%;}
+  .forge-shell__content{padding:2rem 2rem 4rem;}
 }
-@media (max-width:1023px){
-  .shell-sidebar-slot{display:none;}
-}
+.forge-topbar{border-bottom:1px solid rgba(148,163,184,.16);background:rgba(7,11,20,.82);}
 `;
 
 export default function RootLayout({
