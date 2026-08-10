@@ -1,31 +1,35 @@
 /**
- * Canvas palettes for the docs-dashboard visuals.
+ * Canvas palettes for the docs-dashboard visuals — Helios Forge.
  *
  * CSS custom properties cover everything drawn in the DOM, but a canvas has to
  * pick its colours in JS. Docusaurus writes the active colour mode onto
  * `<html data-theme>` (and Storybook's preview toggles a `dark` class), so both
- * hosts can be read the same way. Luminous accents that read well on the deep
- * observatory surface are too faint on a white one, hence two palettes rather
- * than one set of alphas.
+ * hosts can be read the same way.
+ *
+ * Gold + teal (not cyan/violet) so the docs site matches the main Helios Forge
+ * identity and stays distinct from VGP and the github-pages template seed.
  */
 
 export interface CanvasPalette {
   /** `r, g, b` triples, used inside `rgba(...)` template strings. */
   accent: string;
   accentAlt: string;
+  edge: string;
   /** Multiplier applied to decorative alphas. */
   intensity: number;
 }
 
 export const DARK_PALETTE: CanvasPalette = {
-  accent: '56, 189, 248',
-  accentAlt: '139, 92, 246',
+  accent: '245, 158, 11', // gold
+  accentAlt: '45, 212, 191', // teal
+  edge: '96, 165, 250', // soft cobalt
   intensity: 1,
 };
 
 export const LIGHT_PALETTE: CanvasPalette = {
-  accent: '3, 105, 161',
-  accentAlt: '109, 40, 217',
+  accent: '180, 83, 9', // deep gold
+  accentAlt: '15, 118, 110', // deep teal
+  edge: '37, 99, 235', // cobalt
   intensity: 1.25,
 };
 

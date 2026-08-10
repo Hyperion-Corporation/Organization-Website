@@ -28,7 +28,7 @@ export default function MediaPage() {
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-8">
           <section>
-            <SectionHeading title="Product domains" icon={<Gamepad2 className="text-purple-500" />} />
+            <SectionHeading title="Product domains" icon={<Gamepad2 className="text-teal-500" />} />
             <GlassCard className="p-6 space-y-4">
               <div>
                 <h3 className="font-bold text-lg mb-2 text-slate-800 dark:text-slate-200">Games &amp; interactive media</h3>
@@ -47,7 +47,7 @@ export default function MediaPage() {
           </section>
 
           <section>
-            <SectionHeading title="Ideas we draw on" icon={<BookOpen className="text-blue-500" />} />
+            <SectionHeading title="Ideas we draw on" icon={<BookOpen className="text-amber-500" />} />
             <GlassCard className="p-6">
               <ul className="list-disc list-inside mt-2 text-slate-600 dark:text-slate-400 space-y-2 text-sm">
                 <li>Program dependency and module graphs</li>
@@ -80,7 +80,7 @@ export default function MediaPage() {
               </p>
               <a
                 href={appPath("/content/projects")}
-                className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline"
+                className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline"
               >
                 See projects →
               </a>

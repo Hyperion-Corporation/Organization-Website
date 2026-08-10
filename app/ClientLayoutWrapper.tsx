@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import Sidebar from '../src/frameworks/react/components/layout/Sidebar';
 import Footer from '../src/frameworks/react/components/layout/Footer';
 import Header from '../src/frameworks/react/components/layout/Header';
+import NetworkFieldBackdrop from '../src/frameworks/react/components/graphics/NetworkFieldBackdrop';
 import { useAppDispatch } from '../src/libraries/redux/store/hooks';
 import { setTheme } from '../src/libraries/redux/actions/appActions';
 import { persistTheme, readStoredTheme } from '../src/libraries/redux/services/persistence';
@@ -70,11 +71,13 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
   return (
     // shell-* classes are backed by critical inline CSS in app/layout.tsx so
     // the layout survives if the Tailwind bundle is delayed or blocked.
-    <div
-      className={`shell-root flex flex-col h-screen overflow-hidden transition-colors duration-300 font-sans ${
-        darkMode ? 'dark bg-slate-900 text-slate-200' : 'bg-slate-50 text-slate-800'
-      }`}
-    >
+    <>
+      <NetworkFieldBackdrop />
+      <div
+        className={`shell-root flex flex-col h-screen overflow-hidden transition-colors duration-300 font-sans ${
+          darkMode ? 'dark bg-helios-ink/80 text-slate-200' : 'bg-stone-50/80 text-stone-800'
+        }`}
+      >
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
 
       <div className="shell-body flex flex-1 w-full max-w-7xl mx-auto overflow-hidden min-h-0">
@@ -91,7 +94,7 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
 
         {/* Mobile drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-40 bg-white dark:bg-slate-900 overflow-y-auto">
+          <div className="lg:hidden fixed inset-0 z-40 bg-stone-50 dark:bg-helios-ink overflow-y-auto">
             <Sidebar
               activeSection={activeSection}
               darkMode={darkMode}
@@ -116,7 +119,8 @@ const ClientLayoutContent: React.FC<ClientLayoutWrapperProps> = ({ children }) =
           </main>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

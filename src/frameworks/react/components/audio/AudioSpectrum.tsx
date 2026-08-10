@@ -24,12 +24,12 @@ export default function AudioSpectrum() {
 
   return (
     <section
-      className="rounded-2xl border border-cyan-400/20 bg-slate-950 p-5 text-slate-100"
+      className="rounded-2xl border border-amber-400/20 bg-slate-950 p-5 text-slate-100"
       aria-labelledby="audio-spectrum-title"
     >
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[.18em] text-cyan-300">Creative pipeline</p>
+          <p className="text-xs font-bold uppercase tracking-[.18em] text-amber-300">Creative pipeline</p>
           <h2 id="audio-spectrum-title" className="mt-2 text-xl font-bold">
             Signal / metrics pulse
           </h2>
@@ -37,7 +37,7 @@ export default function AudioSpectrum() {
         <button
           type="button"
           onClick={() => setPlaying((value) => !value)}
-          className="rounded-lg border border-cyan-300/30 px-3 py-2 text-xs font-bold"
+          className="rounded-lg border border-amber-300/30 px-3 py-2 text-xs font-bold"
         >
           {playing ? 'Pause' : 'Preview'}
         </button>
@@ -57,7 +57,7 @@ export default function AudioSpectrum() {
               width="6"
               height={height}
               rx="3"
-              fill={index > 9 ? '#a78bfa' : '#22d3ee'}
+              fill={index > 9 ? '#14b8a6' : '#f59e0b'}
               opacity=".8"
             />
           ))}

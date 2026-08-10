@@ -68,21 +68,21 @@ export default async function PostsPage() {
       </div>
 
       <div className="flex items-center justify-between mb-8">
-        <SectionHeading title="Updates" icon={<PenTool className="text-purple-500" />} />
+        <SectionHeading title="Updates" icon={<PenTool className="text-teal-500" />} />
       </div>
 
       <div className="grid gap-6">
         {posts.map((post) => (
-          <GlassCard key={post.slug} className="group hover:border-blue-500/30 transition-colors">
+          <GlassCard key={post.slug} className="group hover:border-amber-500/30 transition-colors">
             <div className="p-6">
               <div className="flex items-center gap-3 text-sm text-slate-500 mb-3">
                 <span className="flex items-center gap-1">
                   <Calendar size={14} /> {post.date}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                <span className="text-blue-600 dark:text-blue-400 font-medium">{post.category}</span>
+                <span className="text-amber-700 dark:text-amber-300 font-medium">{post.category}</span>
               </div>
-              <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-amber-700 dark:group-hover:text-amber-300 transition-colors">
                 <a
                   href={appPath(`/content/posts/${post.slug}`)}
                   className="hover:underline decoration-blue-500/30 underline-offset-4"
@@ -101,7 +101,7 @@ export default async function PostsPage() {
                 </div>
                 <a
                   href={appPath(`/content/posts/${post.slug}`)}
-                  className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                  className="text-sm font-medium text-amber-700 dark:text-amber-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                 >
                   Read more <ArrowRight size={14} />
                 </a>

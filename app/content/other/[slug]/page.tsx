@@ -149,7 +149,7 @@ export default function OtherPage({ params }: PageProps) {
                     <div className="mb-6 pt-10">
                         <Link
                             href="/content/other"
-                            className="flex items-center text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors w-fit group"
+                            className="flex items-center text-slate-600 dark:text-slate-400 hover:text-amber-500 transition-colors w-fit group"
                         >
                             <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
                             Back to Projects List

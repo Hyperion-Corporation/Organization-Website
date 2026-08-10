@@ -35,7 +35,7 @@ export default function StructureCanvas() {
         for (let i = 2; i < route.length; i += 2) {
           context.lineTo(route[i] * width, route[i + 1] * height);
         }
-        context.strokeStyle = index ? '#a78bfa' : '#67e8f9';
+        context.strokeStyle = index ? '#14b8a6' : '#f59e0b';
         context.stroke();
       });
 

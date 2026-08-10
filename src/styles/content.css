@@ -117,41 +117,41 @@
 
 /* Vibrant Headings */
 .dark .post-container h1 {
-  background: linear-gradient(to right, #22d3ee, #3b82f6);
+  background: linear-gradient(to right, #f59e0b, #2563eb);
   /* Cyan-400 to Blue-500 */
   background-clip: text;
   /* Standard property */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #22d3ee;
+  color: #f59e0b;
   /* Fallback */
 }
 
 .dark .post-container h2 {
-  color: #818cf8;
+  color: #fbbf24;
   /* Indigo-400 */
 }
 
 .dark .post-container h3 {
-  color: #34d399;
+  color: #14b8a6;
   /* Emerald-400 */
 }
 
 .dark .post-container h4 {
-  color: #f472b6;
+  color: #ea580c;
   /* Pink-400 */
 }
 
 /* Accents */
 .dark .post-container strong,
 .dark .post-container b {
-  color: #38bdf8;
+  color: #f59e0b;
   /* Sky-400 */
 }
 
 .dark .post-container em,
 .dark .post-container i {
-  color: #c084fc;
+  color: #60a5fa;
   /* Purple-400 */
 }
 

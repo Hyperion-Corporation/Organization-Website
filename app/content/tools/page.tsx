@@ -11,7 +11,7 @@ export default function ToolsPage() {
     <div className="flex flex-wrap gap-2 mt-4">
       {tools.map(tool => (
         <a key={tool.name} href={tool.url} target="_blank" rel="noopener noreferrer">
-          <Badge variant="outline" className="hover:bg-blue-50 dark:hover:bg-blue-900/20 cursor-pointer transition-colors">
+          <Badge variant="outline" className="hover:bg-amber-50 dark:hover:bg-amber-500/15 cursor-pointer transition-colors">
             {tool.name}
           </Badge>
         </a>
@@ -40,7 +40,7 @@ export default function ToolsPage() {
       </div>
 
       <section>
-        <SectionHeading title="Programming Languages" icon={<Terminal className="text-blue-500" />} />
+        <SectionHeading title="Programming Languages" icon={<Terminal className="text-amber-500" />} />
         <GlassCard className="p-6">
           {renderToolGroup([
             { name: 'Python', url: 'https://www.python.org/' },
@@ -121,7 +121,7 @@ export default function ToolsPage() {
       </section>
 
       <section>
-        <SectionHeading title="Art & Design" icon={<Palette className="text-purple-500" />} />
+        <SectionHeading title="Art & Design" icon={<Palette className="text-teal-500" />} />
         <GlassCard className="p-6">
           {renderToolGroup([
             { name: 'Blender', url: 'https://www.blender.org/' },

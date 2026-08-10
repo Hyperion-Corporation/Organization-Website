@@ -111,7 +111,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero-observatory mb-20" aria-labelledby="hero-title">
         <div className="hero-observatory__copy">
-          <Badge variant="default" className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+          <Badge variant="default" className="bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200">
             <span className="status-pulse" aria-hidden="true" /> Building tools for makers
           </Badge>
           <p className="hero-kicker">Hyperion Corporation</p>
@@ -190,10 +190,10 @@ export default function Home() {
       {/* Latest Posts Section */}
       <section className="mb-16">
         <div className="flex items-center justify-between mb-8">
-          <SectionHeading title="Latest Updates" icon={<PenTool className="text-purple-500" />} />
+          <SectionHeading title="Latest Updates" icon={<PenTool className="text-amber-500" />} />
           <a
             href={appPath("/content/posts")}
-            className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+            className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline flex items-center gap-1"
           >
             View all <ArrowRight size={14} />
           </a>
@@ -201,16 +201,16 @@ export default function Home() {
 
         <div className="grid gap-6">
           {BLOG_POSTS.map((post) => (
-            <GlassCard key={post.id} className="group hover:border-blue-500/30 transition-colors">
+            <GlassCard key={post.id} className="group hover:border-amber-500/35 transition-colors">
               <div className="p-6">
                 <div className="flex items-center gap-3 text-sm text-slate-500 mb-3">
                   <span className="flex items-center gap-1">
                     <Calendar size={14} /> {post.date}
                   </span>
                   <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
-                  <span className="text-blue-600 dark:text-blue-400 font-medium">{post.category}</span>
+                  <span className="text-amber-700 dark:text-amber-300 font-medium">{post.category}</span>
                 </div>
-                <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
                   <a href={appPath(`/content/posts/${post.id}`)}>{post.title}</a>
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
@@ -224,7 +224,7 @@ export default function Home() {
                   </div>
                   <a
                     href={appPath(`/content/posts/${post.id}`)}
-                    className="text-sm font-medium text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                    className="text-sm font-medium text-teal-700 dark:text-teal-300 flex items-center gap-1 group-hover:translate-x-1 transition-transform"
                   >
                     Read more <ArrowRight size={14} />
                   </a>
@@ -238,10 +238,10 @@ export default function Home() {
       {/* Latest Projects Section */}
       <section>
         <div className="flex items-center justify-between mb-8">
-          <SectionHeading title="Featured Projects" icon={<Network className="text-blue-500" />} />
+          <SectionHeading title="Featured Projects" icon={<Network className="text-teal-500" />} />
           <a
             href={appPath("/content/projects")}
-            className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+            className="text-sm font-medium text-amber-700 dark:text-amber-300 hover:underline flex items-center gap-1"
           >
             View all projects <ArrowRight size={14} />
           </a>
@@ -266,7 +266,7 @@ export default function Home() {
                       <a
                         key={idx}
                         href={link.url}
-                        className="inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors"
+                        className="inline-flex items-center text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors"
                       >
                         {link.icon} {link.label}
                       </a>
@@ -281,7 +281,7 @@ export default function Home() {
       <section className="mt-16">
         <GlassCard className="p-6">
           <div className="flex items-start gap-3">
-            <Sparkles className="text-blue-500 shrink-0 mt-1" size={22} />
+            <Sparkles className="text-amber-500 shrink-0 mt-1" size={22} />
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white">Mission in one line</h3>
               <p className="text-slate-600 dark:text-slate-400 mt-1">

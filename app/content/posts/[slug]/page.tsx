@@ -68,7 +68,7 @@ export default function PostPage({ params }: PostPageProps) {
       <div className="mb-6">
         <Link
           href="/content/posts"
-          className="flex items-center text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors"
+          className="flex items-center text-slate-600 dark:text-slate-400 hover:text-amber-500 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Updates

@@ -32,7 +32,7 @@ describe('active section integration', () => {
         );
 
         const reportsLink = container.querySelector('aside nav a[href="/content/reports"]');
-        expect(reportsLink).toHaveClass('bg-blue-50');
+        expect(reportsLink).toHaveClass('bg-amber-50');
     });
 
     it('marks the Home sidebar item active at the root path', () => {
@@ -45,9 +45,9 @@ describe('active section integration', () => {
         );
 
         const homeLink = container.querySelector('aside nav a[href="/"]');
-        expect(homeLink).toHaveClass('bg-blue-50');
+        expect(homeLink).toHaveClass('bg-amber-50');
 
         const reportsLink = container.querySelector('aside nav a[href="/content/reports"]');
-        expect(reportsLink).not.toHaveClass('bg-blue-50');
+        expect(reportsLink).not.toHaveClass('bg-amber-50');
     });
 });

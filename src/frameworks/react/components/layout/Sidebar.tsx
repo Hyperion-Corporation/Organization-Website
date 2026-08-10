@@ -45,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     // h-screen sticky top-0 overflow-y-auto is necessary to enable internal scrolling
-    <aside className={`hidden lg:flex flex-col ${sidebarWidthClass} h-screen sticky top-0 overflow-y-auto border-r border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl ${hPaddingClass} transition-all duration-300 ease-in-out relative`}>
+    <aside className={`hidden lg:flex flex-col ${sidebarWidthClass} h-screen sticky top-0 overflow-y-auto border-r border-stone-200/80 dark:border-slate-800/80 bg-stone-50/70 dark:bg-helios-ink/70 backdrop-blur-xl ${hPaddingClass} transition-all duration-300 ease-in-out relative`}>
 
       {/* Collapse Toggle Button */}
       <button
@@ -61,7 +61,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         {/* Profile / Header Section */}
         <div>
           <div
-            className={`sidebar-brand-mark relative overflow-hidden shadow-lg ring-4 ring-white dark:ring-slate-800 transition-all duration-300 mb-4 bg-slate-200 dark:bg-slate-700 ${isCollapsed ? 'sidebar-brand-mark--collapsed' : ''}`}
+            className={`sidebar-brand-mark relative overflow-hidden shadow-lg shadow-amber-500/20 ring-4 ring-amber-100 dark:ring-slate-800 transition-all duration-300 mb-4 bg-gradient-to-br from-amber-100 to-orange-50 dark:from-slate-800 dark:to-slate-900 ${isCollapsed ? 'sidebar-brand-mark--collapsed' : ''}`}
           >
             <img
               src={orgLogo.src}
@@ -74,12 +74,12 @@ const Sidebar: React.FC<SidebarProps> = ({
 
           {!isCollapsed && (
             <>
-              <Link href="/" className="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-blue-500">Hyperion</span>
+              <Link href="/" className="font-bold text-xl text-stone-900 dark:text-white flex items-center gap-2">
+                <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-blue-600 bg-clip-text text-transparent">Hyperion</span>
                 <span>{' '}Corp</span>
               </Link>
-              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium dark:text-white">Creative systems software</p>
-              <p className="text-xs text-slate-400 mt-2 uppercase tracking-wider dark:text-white">Games · Sims · Tools</p>
+              <p className="text-sm text-stone-500 dark:text-slate-400 mt-1 font-medium">Creative systems software</p>
+              <p className="text-xs text-stone-400 dark:text-slate-500 mt-2 uppercase tracking-wider">Games · Sims · Tools</p>
             </>
           )}
         </div>

@@ -45,19 +45,19 @@ export default function ReportsIndexPage() {
       </div>
 
       <section>
-        <SectionHeading title="Report library" icon={<FileText className="text-blue-500" />} />
+        <SectionHeading title="Report library" icon={<FileText className="text-amber-500" />} />
         <div className="grid md:grid-cols-2 gap-6">
           {REPORTS.map((report) => (
             <Link key={report.id} href={`/content/reports/${report.id}`} className="group">
-              <GlassCard className="p-6 h-full hover:border-blue-500/50 transition-colors cursor-pointer">
+              <GlassCard className="p-6 h-full hover:border-amber-500/50 transition-colors cursor-pointer">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">{report.category}</span>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1 group-hover:text-blue-500 transition-colors">
+                    <span className="text-xs font-bold text-amber-500 uppercase tracking-wider">{report.category}</span>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1 group-hover:text-amber-500 transition-colors">
                       {report.title}
                     </h3>
                   </div>
-                  <ExternalLink size={18} className="text-slate-400 group-hover:text-blue-500" />
+                  <ExternalLink size={18} className="text-slate-400 group-hover:text-amber-500" />
                 </div>
                 <p className="text-sm text-slate-500 mt-4">Open full HTML report.</p>
               </GlassCard>

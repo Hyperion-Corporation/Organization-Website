@@ -20,7 +20,7 @@ const Badge: React.FC<BadgeProps> = ({ children, className = '', variant = 'defa
     baseClasses += ' border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 bg-transparent';
   } else {
     // Styles for the 'default' variant (e.g., solid blue)
-    baseClasses += ' bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300';
+    baseClasses += ' bg-amber-100 text-amber-800 dark:bg-amber-500/20 dark:text-amber-200';
   }
 
   // Combine base classes with any user-provided classes

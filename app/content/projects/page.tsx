@@ -7,7 +7,7 @@ import Badge from '@/src/frameworks/react/components/ui/Badge';
 import pageImage from '@/assets/icons/Hyperion-Corp-small.png';
 
 const linkStyles =
-  'inline-flex items-center text-sm font-medium text-purple-400 hover:text-purple-300 transition-colors';
+  'inline-flex items-center text-sm font-medium text-teal-400 hover:text-teal-300 transition-colors';
 
 export default function ProjectsPage() {
   return (
@@ -62,7 +62,7 @@ export default function ProjectsPage() {
       </section>
 
       <section>
-        <SectionHeading title="Platform & presence" icon={<Layers className="text-blue-500" />} />
+        <SectionHeading title="Platform & presence" icon={<Layers className="text-amber-500" />} />
         <div className="grid md:grid-cols-2 gap-6">
           <GlassCard className="p-6">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Organization Website</h3>
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
       </section>
 
       <section>
-        <SectionHeading title="Target domains" icon={<Gamepad2 className="text-purple-500" />} />
+        <SectionHeading title="Target domains" icon={<Gamepad2 className="text-teal-500" />} />
         <div className="grid md:grid-cols-2 gap-6">
           <GlassCard className="p-6">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">Games &amp; interactive media</h3>

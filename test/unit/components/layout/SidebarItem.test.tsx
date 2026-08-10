@@ -21,7 +21,7 @@ describe('SidebarItem', () => {
     it('applies active styles', () => {
         render(<SidebarItem {...defaultProps} active={true} />);
         const link = screen.getByRole('link');
-        expect(link).toHaveClass('bg-blue-50'); // Checking one of the active classes
+        expect(link).toHaveClass('bg-amber-50'); // Helios Forge active nav
     });
 
     it('hides label when collapsed', () => {

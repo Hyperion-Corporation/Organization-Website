@@ -1,25 +1,23 @@
 /**
  * Docusaurus theme layer for the Hyperion documentation dashboard.
  *
- * ./observatory.css owns the design tokens and the homepage's own components;
+ * ./observatory.css owns the Helios Forge design tokens and homepage components;
  * this file maps those tokens onto Infima's variables and restyles the
  * Docusaurus chrome (navbar, sidebar, doc content, footer) so the docs site
- * reads as the same product as the main Next.js site rather than a default
- * Docusaurus install. See docs/moon/roadmaps/user_interface.md (UI3–UI5).
+ * reads as the same product as the main Next.js site.
  */
 
 @import './observatory.css';
 
 :root {
-  /* Brand primaries follow the main site's Tailwind theme (tailwind.config.js:
-     primary.500/600) shifted toward the observatory cyan used for links. */
-  --ifm-color-primary: #0369a1;
-  --ifm-color-primary-dark: #035e91;
-  --ifm-color-primary-darker: #035888;
-  --ifm-color-primary-darkest: #024870;
-  --ifm-color-primary-light: #0378b1;
-  --ifm-color-primary-lighter: #037eba;
-  --ifm-color-primary-lightest: #048ed2;
+  /* Brand primaries — solar gold (not template cyan/blue) */
+  --ifm-color-primary: #b45309;
+  --ifm-color-primary-dark: #a14a08;
+  --ifm-color-primary-darker: #984607;
+  --ifm-color-primary-darkest: #7d3a06;
+  --ifm-color-primary-light: #c75c0a;
+  --ifm-color-primary-lighter: #d0610b;
+  --ifm-color-primary-lightest: #e06d12;
 
   --ifm-code-font-size: 92%;
   --ifm-font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -28,47 +26,43 @@
   --ifm-h1-font-size: 2.5rem;
   --ifm-global-radius: 0.85rem;
   --ifm-navbar-height: 4rem;
-  --ifm-navbar-background-color: rgb(255 255 255 / 0.72);
+  --ifm-navbar-background-color: rgb(255 252 247 / 0.78);
   --ifm-navbar-shadow: none;
-  --ifm-background-color: #f7f9fc;
-  --ifm-background-surface-color: #ffffff;
+  --ifm-background-color: #faf8f5;
+  --ifm-background-surface-color: #fffdf9;
   --ifm-toc-border-color: var(--hy-border);
-  --ifm-code-background: rgb(15 23 42 / 0.05);
+  --ifm-code-background: rgb(28 25 23 / 0.05);
   --ifm-blockquote-color: var(--hy-ink-soft);
-  --ifm-blockquote-border-color: var(--hy-violet);
-  --docusaurus-highlighted-code-line-bg: rgb(56 189 248 / 0.14);
+  --ifm-blockquote-border-color: var(--hy-gold);
+  --docusaurus-highlighted-code-line-bg: rgb(245 158 11 / 0.14);
 
-  /* Legacy homepage-module names kept so any remaining CSS-module rule that
-     still references them resolves to the observatory palette. */
-  --hero-accent: #7c3aed;
-  --hero-glow-color: rgb(56 189 248 / 0.28);
-  --hero-bg-end: #eef2ff;
+  --hero-accent: #b45309;
+  --hero-glow-color: rgb(245 158 11 / 0.28);
+  --hero-bg-end: #fff7ed;
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #7dd3fc;
-  --ifm-color-primary-dark: #59c5fa;
-  --ifm-color-primary-darker: #47bef9;
-  --ifm-color-primary-darkest: #12abf6;
-  --ifm-color-primary-light: #a1e1fd;
-  --ifm-color-primary-lighter: #b3e8fe;
-  --ifm-color-primary-lightest: #e9f8ff;
+  --ifm-color-primary: #fbbf24;
+  --ifm-color-primary-dark: #f5b40b;
+  --ifm-color-primary-darker: #eaaa08;
+  --ifm-color-primary-darkest: #c18c06;
+  --ifm-color-primary-light: #fcca4a;
+  --ifm-color-primary-lighter: #fdd05c;
+  --ifm-color-primary-lightest: #fee28f;
 
-  --ifm-navbar-background-color: rgb(6 12 24 / 0.72);
-  --ifm-background-color: #05080f;
-  --ifm-background-surface-color: #0b1424;
+  --ifm-navbar-background-color: rgb(7 11 20 / 0.78);
+  --ifm-background-color: #070b14;
+  --ifm-background-surface-color: #0a1220;
   --ifm-code-background: rgb(148 163 184 / 0.12);
-  --docusaurus-highlighted-code-line-bg: rgb(56 189 248 / 0.16);
+  --docusaurus-highlighted-code-line-bg: rgb(245 158 11 / 0.16);
 
-  --hero-accent: #a78bfa;
-  --hero-glow-color: rgb(56 189 248 / 0.35);
-  --hero-bg-end: #0f172a;
+  --hero-accent: #fbbf24;
+  --hero-glow-color: rgb(245 158 11 / 0.35);
+  --hero-bg-end: #0a1220;
 }
 
 /* -------------------------------------------------------------------
-   Page ground: the same layered aurora the main site paints on <body>
-   (app/globals.css), so every route — not just the homepage — sits on
-   Hyperion's deep-space surface.
+   Page ground: Helios aurora on every route
    ------------------------------------------------------------------- */
 
 html,
@@ -77,18 +71,20 @@ body {
 }
 
 body {
-  background-image: radial-gradient(circle at 74% 6%, rgb(56 189 248 / 0.09), transparent 34rem),
-    radial-gradient(circle at 20% 62%, rgb(139 92 246 / 0.07), transparent 36rem);
+  background-image:
+    radial-gradient(circle at 78% -4%, rgb(245 158 11 / 0.11), transparent 34rem),
+    radial-gradient(circle at 12% 58%, rgb(37 99 235 / 0.08), transparent 36rem),
+    radial-gradient(circle at 55% 100%, rgb(20 184 166 / 0.07), transparent 32rem);
   background-attachment: fixed;
 }
 
 :focus-visible {
-  outline: 2px solid var(--hy-cyan);
+  outline: 2px solid var(--hy-gold);
   outline-offset: 3px;
 }
 
 /* -------------------------------------------------------------------
-   Navbar — glass bar with a luminous hairline
+   Navbar — glass bar with solar hairline
    ------------------------------------------------------------------- */
 
 .navbar {
@@ -104,7 +100,14 @@ body {
   right: 0;
   bottom: -1px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgb(56 189 248 / 0.5), rgb(139 92 246 / 0.5), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(245 158 11 / 0.55),
+    rgb(37 99 235 / 0.45),
+    rgb(20 184 166 / 0.4),
+    transparent
+  );
   pointer-events: none;
 }
 
@@ -148,7 +151,7 @@ body {
 
 .menu__link--active:not(.menu__link--sublist) {
   position: relative;
-  background: linear-gradient(100deg, rgb(56 189 248 / 0.14), rgb(139 92 246 / 0.1));
+  background: linear-gradient(100deg, rgb(245 158 11 / 0.14), rgb(37 99 235 / 0.1));
 }
 
 .menu__link--active:not(.menu__link--sublist)::before {
@@ -159,7 +162,7 @@ body {
   bottom: 0.35rem;
   width: 2px;
   border-radius: 2px;
-  background: linear-gradient(180deg, var(--hy-cyan), var(--hy-violet));
+  background: linear-gradient(180deg, var(--hy-gold), var(--hy-teal));
 }
 
 /* -------------------------------------------------------------------
@@ -179,14 +182,14 @@ body {
 
 .markdown a {
   font-weight: 600;
-  text-decoration-color: rgb(56 189 248 / 0.4);
+  text-decoration-color: rgb(245 158 11 / 0.45);
   text-underline-offset: 0.2em;
 }
 
 .markdown blockquote {
   border-left-width: 2px;
   border-radius: 0 var(--hy-radius-sm) var(--hy-radius-sm) 0;
-  background: rgb(139 92 246 / 0.07);
+  background: rgb(245 158 11 / 0.07);
 }
 
 .markdown table {
@@ -200,7 +203,7 @@ body {
 }
 
 .markdown table thead tr {
-  background: linear-gradient(120deg, rgb(56 189 248 / 0.12), rgb(139 92 246 / 0.1));
+  background: linear-gradient(120deg, rgb(245 158 11 / 0.12), rgb(37 99 235 / 0.1));
 }
 
 .markdown table th,
@@ -211,7 +214,7 @@ body {
 .theme-code-block {
   border: 1px solid var(--hy-border);
   border-radius: var(--hy-radius-sm) !important;
-  box-shadow: 0 14px 34px rgb(15 23 42 / 0.1) !important;
+  box-shadow: 0 14px 34px rgb(28 25 23 / 0.1) !important;
 }
 
 .pagination-nav__link {
@@ -236,11 +239,11 @@ body {
 .footer {
   position: relative;
   border-top: 1px solid var(--hy-border);
-  background: linear-gradient(180deg, transparent, rgb(3 7 18 / 0.9));
+  background: linear-gradient(180deg, transparent, rgb(7 11 20 / 0.92));
 }
 
 [data-theme='light'] .footer {
-  background: linear-gradient(180deg, #0b1424, #05080f);
+  background: linear-gradient(180deg, #0a1220, #070b14);
 }
 
 .footer__title {
@@ -260,5 +263,42 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .pagination-nav__link:hover {
     transform: none;
+  }
+}
+
+/* Soft solar ember drift (matches main site ambient motion) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image:
+    radial-gradient(circle, #f59e0b 1.4px, transparent 1.4px),
+    radial-gradient(circle, #14b8a6 1.8px, transparent 1.8px),
+    radial-gradient(circle, #2563eb 1px, transparent 1px);
+  background-size: 170px 170px, 230px 230px, 200px 200px;
+  background-position: 0 0, 50px 40px, 110px 90px;
+  animation: helios-ember-drift 70s linear infinite;
+  opacity: 0.28;
+}
+
+[data-theme='dark'] body::after {
+  opacity: 0.48;
+}
+
+@keyframes helios-ember-drift {
+  0% {
+    background-position: 0 0, 50px 40px, 110px 90px;
+  }
+  100% {
+    background-position: 30px 1800px, 20px 2200px, 140px 2000px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none !important;
+    opacity: 0.12;
   }
 }

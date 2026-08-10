@@ -16,7 +16,7 @@ describe('GlassCard', () => {
         const { container } = render(<GlassCard>Content</GlassCard>);
         const card = container.firstChild as HTMLElement;
         expect(card).toHaveClass('backdrop-blur-md');
-        expect(card).toHaveClass('bg-white/70');
+        expect(card).toHaveClass('bg-stone-50/75');
     });
 
     it('merges custom classNames', () => {

@@ -27,7 +27,7 @@ export default function AboutPage() {
       </div>
 
       <section id="mission" className="scroll-mt-20">
-        <SectionHeading title="Mission" icon={<Target className="text-blue-500" />} />
+        <SectionHeading title="Mission" icon={<Target className="text-amber-500" />} />
         <GlassCard className="p-6">
           <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
             <strong>Hyperion Corporation</strong> exists to create software that optimizes the human work of{' '}
@@ -43,7 +43,7 @@ export default function AboutPage() {
       </section>
 
       <section id="what-we-build" className="scroll-mt-20">
-        <SectionHeading title="What we build" icon={<Network className="text-purple-500" />} />
+        <SectionHeading title="What we build" icon={<Network className="text-teal-500" />} />
         <GlassCard className="p-6 space-y-4">
           <ul className="list-disc list-inside space-y-2 text-slate-700 dark:text-slate-300">
             <li>
@@ -113,7 +113,7 @@ export default function AboutPage() {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium"
+                    className="px-3 py-1 bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-200 rounded-full text-xs font-medium"
                   >
                     {tag}
                   </span>
@@ -131,14 +131,14 @@ export default function AboutPage() {
             Hyperion Corporation publishes open work under the{' '}
             <a
               href="https://github.com/Hyperion-Corporation"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-amber-700 dark:text-amber-300 hover:underline"
             >
               Hyperion-Corporation
             </a>{' '}
             GitHub organization. This website is hosted on GitHub Pages from the{' '}
             <a
               href="https://github.com/Hyperion-Corporation/Organization-Website"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-amber-700 dark:text-amber-300 hover:underline"
             >
               Organization-Website
             </a>{' '}

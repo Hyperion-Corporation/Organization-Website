@@ -49,14 +49,14 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
 
   return (
     // Remove md:hidden to make visible on desktop
-    <header className="w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+    <header className="w-full bg-stone-50/80 dark:bg-helios-ink/80 backdrop-blur-md border-b border-stone-200/80 dark:border-slate-800/80 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo / Title Area */}
           <div className="flex-shrink-0">
-            <Link href="/" className="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-2" onClick={closeMobileMenu}>
-              <span className="text-blue-500">Hyperion</span>
-              <span className="text-slate-900 dark:text-white">Corp</span>
+            <Link href="/" className="font-bold text-xl text-stone-900 dark:text-white flex items-center gap-2" onClick={closeMobileMenu}>
+              <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-blue-600 bg-clip-text text-transparent">Hyperion</span>
+              <span className="text-stone-900 dark:text-white">Corp</span>
             </Link>
           </div>
 
@@ -65,7 +65,7 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="p-2 rounded-md text-stone-600 dark:text-slate-400 hover:bg-amber-50 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
               aria-label="Toggle theme"
             >
               {darkMode ? <Sun size={24} /> : <Moon size={24} />}
@@ -74,7 +74,7 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
             {/* Mobile Menu Button - Hide on Large Screens where Sidebar exists */}
             <button
               onClick={toggleMobileMenu}
-              className="p-2 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 lg:hidden"
+              className="p-2 rounded-md text-stone-600 dark:text-slate-400 hover:bg-amber-50 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 lg:hidden"
             >
               <span className="sr-only">Open main menu</span>
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -86,7 +86,7 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
       {/* MOBILE Menu Dropdown Container */}
       {/* Conditionally render based on state */}
       {isMobileMenuOpen && (
-        <div className="absolute w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-lg z-40 animate-in slide-in-from-top-2">
+        <div className="absolute w-full bg-stone-50 dark:bg-helios-ink border-b border-stone-200 dark:border-slate-800 shadow-lg z-40 animate-in slide-in-from-top-2">
           {/* ... (Menu rendering logic remains the same) ... */}
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {NAV_ITEMS.map((item) => {
@@ -101,7 +101,7 @@ export default function Header({ darkMode, toggleTheme }: HeaderProps) {
                   className={`
                     flex items-center px-3 py-3 rounded-md text-base font-medium transition-colors duration-200
                     ${isActive
-                      ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400'
+                      ? 'bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300'
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
                     }
                   `}

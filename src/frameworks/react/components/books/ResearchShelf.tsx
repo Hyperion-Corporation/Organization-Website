@@ -21,7 +21,7 @@ const reading = [
 export default function ResearchShelf() {
   return (
     <section aria-labelledby="research-shelf-title">
-      <div className="mb-4 flex items-center gap-2 text-violet-500">
+      <div className="mb-4 flex items-center gap-2 text-amber-500">
         <BookOpen size={18} />
         <h2 id="research-shelf-title" className="font-bold">
           Focus areas
@@ -35,7 +35,7 @@ export default function ResearchShelf() {
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <p className="text-[.65rem] font-bold uppercase tracking-widest text-violet-500">{item.kind}</p>
+                <p className="text-[.65rem] font-bold uppercase tracking-widest text-amber-500">{item.kind}</p>
                 <h3 className="mt-1 font-bold text-slate-900 dark:text-white">{item.title}</h3>
                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{item.note}</p>
               </div>

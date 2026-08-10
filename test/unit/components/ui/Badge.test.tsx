@@ -11,7 +11,7 @@ describe('Badge', () => {
     it('applies default styles when no variant is provided', () => {
         const { container } = render(<Badge>Default</Badge>);
         const badge = container.firstChild as HTMLElement;
-        expect(badge).toHaveClass('bg-blue-100');
+        expect(badge).toHaveClass('bg-amber-100');
         expect(badge).toHaveClass('px-3');
     });
 

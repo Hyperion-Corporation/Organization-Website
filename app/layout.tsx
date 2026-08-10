@@ -72,8 +72,8 @@ export const metadata: Metadata = {
  */
 const criticalShellCss = `
 html,body{margin:0;padding:0;}
-body{font-family:Inter,system-ui,sans-serif;background:#0f172a;color:#e2e8f0;}
-.shell-root{display:flex;flex-direction:column;min-height:100vh;height:100vh;overflow:hidden;}
+body{font-family:Inter,system-ui,sans-serif;background:#070b14;color:#e2e8f0;}
+.shell-root{position:relative;z-index:2;display:flex;flex-direction:column;min-height:100vh;height:100vh;overflow:hidden;}
 .shell-body{display:flex;flex:1;width:100%;max-width:80rem;margin:0 auto;overflow:hidden;min-height:0;}
 .shell-main{flex:1;min-width:0;height:100%;overflow:auto;}
 .shell-main-inner{padding:1.5rem;max-width:64rem;margin:0 auto;}

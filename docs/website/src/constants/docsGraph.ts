@@ -40,12 +40,12 @@ export interface DocsEdge {
 
 export const DOCS_GRAPH_VIEWBOX = { width: 900, height: 520 } as const;
 
-/** Accent per kind (matches --hy-* tokens in src/css/observatory.css). */
+/** Accent per kind (matches Helios Forge --hy-* tokens in src/css/observatory.css). */
 export const DOCS_NODE_COLORS: Record<DocsNodeKind, string> = {
-  [DocsNodeKind.Core]: '#22d3ee',
-  [DocsNodeKind.Guide]: '#34d399',
-  [DocsNodeKind.Roadmap]: '#a78bfa',
-  [DocsNodeKind.Reference]: '#f472b6',
+  [DocsNodeKind.Core]: '#f59e0b',
+  [DocsNodeKind.Guide]: '#14b8a6',
+  [DocsNodeKind.Roadmap]: '#2563eb',
+  [DocsNodeKind.Reference]: '#ea580c',
   [DocsNodeKind.Research]: '#fbbf24',
 };
 
